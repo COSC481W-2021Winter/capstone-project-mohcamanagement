@@ -1,7 +1,7 @@
 # capstone-project-mohcamanagement
 capstone-project-mohcamanagement created by GitHub Classroom
 
-<b>Persona:</b><br>
+<h1>Persona:</h1>
 
 <img src="https://motionarray.imgix.net/preview-397057-8gWZWGbXcZOzqybT-large.jpg?w=250&q=60&fit=max&auto=format" width="310" align="left" />
 
@@ -26,3 +26,20 @@ Keep track of inventory<br>
 Employee friendly<br>
 Helps with communication<br>
 
+<hr>
+
+<h1>Prototype:</h1>
+<ol>
+  <li>Welcome page - Entry page with functional login and register buttons with “about me” information.</li>
+  <li>Registration page - Will give a user the ability to add their company to use the app. The button will send them to a user registration page also to make an administrator account for the login. User info will be stored in a database.</li>
+  <li>Login page - Will let any user login to get to the main page as well as check the credentials to see if they are contained in the users table of the database.</li>
+  <li>User/Manager main page - Will show the buttons for either the manager or the user. This will show a simple calendar for now to show where the schedule will be once we get the table added to the database. As well as all the buttons that send you to the other pages.</li>
+  <li>Inventory page - Will contain a table with the product, its par, and how much is in stock. A basic database will contain this information.</li>
+  <li>About page - Small description about the company and some information about the developers.</li>
+  <li>Create users page - Type all of the forms to create a user and it will check the database to see if the user already exists. If not then adds to database when click the submit button.</li>
+  <li>Schedule generation page - Page that has a table that will show where to type up a schedule. (Just for show at this point)</li>
+  <li>Update Availability Page - An employee has the ability to update his availability and a message will pop up letting them know that the manager will be notified. (Just for show at this point)</li>
+  <li>Request Off Page -  Employee’s have the ability to request time off through the website. A message will be shown letting them know that the manager will be notified. (Just for show at this point)</li>
+  <li>Inventory to Order Page - This web page will generate a table and be calculated by (par-quantity on hand).</li>
+</ol>
+<hr>
