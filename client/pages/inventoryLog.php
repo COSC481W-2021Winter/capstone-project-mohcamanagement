@@ -35,14 +35,6 @@
 			echo "Error!";
 		}
 	}
-
-	function generateTable(){
-		getInclude();
-		echo "<table>";
-		generateTableHeader();
-		generateTableData();
-		echo "</table>";
-	}
 ?>
 
 <!DOCTYPE html>
@@ -51,10 +43,16 @@
 		<title>Page Title</title>
 	</head>
 <body>
-
-	<?php
-		generateTable();
-	?>
+	<table>
+		<tr>
+			<th>Item</th>
+			<th>Par</th>
+			<th>OnHand</th>
+		</tr>
+		<?php
+			generateTableData();
+		?>
+	</table>
 
 </body>
 </html>
