@@ -1,3 +1,10 @@
 h1 {
 	/*Style code here*/
 }
+.schedBorder{
+	outline-style:solid;
+	outline-color: black;
+	outline-width: 3px;
+	padding: 10px 25px 0px 25px;
+	text-align:center;
+}
