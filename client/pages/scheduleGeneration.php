@@ -52,5 +52,9 @@
 		}
 		?>
 	</table>
+
+	<form method="post" action="adminMain.php">
+			<input type="Submit" name="Submit" value="Back"></input>
+	</form>
  </body>
  </html>
