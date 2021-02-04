@@ -70,7 +70,7 @@
 	</style>
 
 	<body>
-		<h1>Admin Main Page</h1>
+		<h1>Hello Username</h1>
 		<div class="square1">Schedule Placeholder</div>
 		<div class="square2">Suggested Inventory / Writeoffs Placeholder</div>
 		<div class="square2">Employee Updates / Request Offs Placeholder</div>
