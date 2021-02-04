@@ -1,6 +1,7 @@
 <?php 
 	$usernameEntered = $_POST["Username"];
 	$pinEntered = $_POST["Pin"];
+	setcookie("Username", $usernameEntered);
 	$valid = false;
 	$userType = 0;
 

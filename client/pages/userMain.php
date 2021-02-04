@@ -2,6 +2,12 @@
 	/*db connection needed if in seperate file */
 	include_once ('../includes/dbConnection.php');
 	// $conn is the conection to database
+
+	// checking to see if the cookie array is empty
+	if(isset($_COOKIE["Username"])) {
+		// if not empty then we store the cookie into a variable
+		$userCookie = $_COOKIE["Username"];
+	}
 ?>
 
 <html>
@@ -76,13 +82,16 @@
 	</style>
  
 	<body>
-		<h1>User Main Page</h1>
+		<?php 
+		echo "<h1>Welcome $userCookie</h1>";
+		 ?>
 		<div class="square1">Schedule Placeholder</div>
 		<div class="square2">Suggested Inventory / Writeoffs Placeholder</div>
 		<div class="centerHorz">
 			<button class="button button1">Inventory Suggestions</button>
 			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/pages/userUpdateAvailabilty.php'"> Update Availability</button>
 			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/pages/userRequestOff.php'">Request Off</button>
+			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/index.html'">Log Out</button>
 		</div>
 	</body>
 </html>

@@ -7,6 +7,7 @@
 		// if POST array has the variables in it then we save the variables 
 		$username = $_POST['Username'];
 		$pin = $_POST['Pin'];
+		setcookie("Username", $username);
 		if(!empty($_POST['Monday']))
 			$monday = $_POST['Monday'];
 		else
