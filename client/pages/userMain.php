@@ -76,7 +76,7 @@
 	</style>
  
 	<body>
-		<h1>User Main Page</h1>
+		<h1>Hello Username</h1>
 		<div class="square1">Schedule Placeholder</div>
 		<div class="square2">Suggested Inventory / Writeoffs Placeholder</div>
 		<div class="centerHorz">
