@@ -2,6 +2,15 @@
 	/*db connection needed if in seperate file */
 	include_once ('../includes/dbConnection.php');
 	// $conn is the conection to database
+<<<<<<< HEAD
+=======
+
+	// checking to see if the cookie array is empty
+	if(isset($_COOKIE["Username"])) {
+		// if not empty then we store the cookie into a variable
+		$userCookie = $_COOKIE["Username"];
+	}
+>>>>>>> 01a8e8de2a947cc06424435501adf5d42d846463
 ?>
 
 <html>
@@ -76,13 +85,26 @@
 	</style>
  
 	<body>
+<<<<<<< HEAD
 		<h1>Hello Username</h1>
+=======
+		<?php 
+		echo "<h1>Welcome $userCookie</h1>";
+		 ?>
+>>>>>>> 01a8e8de2a947cc06424435501adf5d42d846463
 		<div class="square1">Schedule Placeholder</div>
 		<div class="square2">Suggested Inventory / Writeoffs Placeholder</div>
 		<div class="centerHorz">
 			<button class="button button1">Inventory Suggestions</button>
 			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/pages/userUpdateAvailabilty.php'"> Update Availability</button>
 			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/pages/userRequestOff.php'">Request Off</button>
+<<<<<<< HEAD
 		</div>
 	</body>
 </html>
+=======
+			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/index.html'">Log Out</button>
+		</div>
+	</body>
+</html>
+>>>>>>> 01a8e8de2a947cc06424435501adf5d42d846463
