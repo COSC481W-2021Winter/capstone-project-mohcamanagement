@@ -1,6 +1,66 @@
 h1 {
-	/*Style code here*/
-}
+	text-align: center;
+  }
+  
+  div.a {
+	text-align: center;
+	font-size: 20px;
+  }
+  
+  
+  a.button {
+	background-color: #4CAF50; /* Green background */
+	border: 1px solid green; /* Green border */
+	text-decoration: none;
+	font-size:13.5px;
+	color: white; /* White text */
+	padding: 13px 30px; /* Some padding */
+	cursor: pointer; /* Pointer/hand icon */
+	float: left; /* Float the buttons side by side */
+  }
+  
+  /* Clear floats */
+  .btn-group:after {
+	content: "";
+	clear: both;
+	display: table;
+  }
+  
+  .btn-group button:not(:last-child) {
+	border-right: none; /* Prevent double borders */
+  }
+  
+  /* Add a background color on hover */
+  .btn-group button:hover {
+	background-color: #3e8e41;
+  }
+  /*places button in BOTTOM center of screen*/
+  .center {
+	margin: 0;
+	position: absolute;
+	top: 75%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+  }
+  /*places button on the upper right side of screen*/
+  .rightSide{
+	margin: 0;
+	position: absolute;
+	top: 35%;
+	left: 75%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+  }
+  /*places button on upper left side of screen*/
+  .leftSide{
+	margin: 0;
+	position: absolute;
+	top: 35%;
+	left: 25%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+  }
 .schedBorder{
 	outline-style:solid;
 	outline-color: black;
