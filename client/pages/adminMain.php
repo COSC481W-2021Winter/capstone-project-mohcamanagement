@@ -73,7 +73,17 @@
 		color: black;
 	}
 	</style>
-
+	<header>
+		<img class="logo" src="" alt="logo">
+		<nav>
+			<ul class="nav_links">
+				<li><b href="/capstone-project-mohcamanagement/client/pages/inventoryLog.php">Inventory Log</b></li> 
+				<li><b href="/capstone-project-mohcamanagement/client/pages/scheduleGeneration.php">Schedule Generation</b></li>
+				<li><b href="/capstone-project-mohcamanagement/client/pages/adminCreateUser.php">Create Users </b></li>
+			</ul>
+		</nav>
+		<b class="cta" href="#"><button0>Log out</button0></b>
+	</header>
 	<body>
 		<?php 
 		echo "<h1>Welcome $userCookie</h1>";
