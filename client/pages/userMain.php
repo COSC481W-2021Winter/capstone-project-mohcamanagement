@@ -84,8 +84,8 @@
 		<img class="logo" src="" alt="logo">
 		<nav>
 			<ul class="nav_links">
-				<li><b href="/capstone-project-mohcamanagement/client/pages/userUpdateAvailabilty.php">userUpdateAvailability</b></li>
-				<li><b href="/capstone-project-mohcamanagement/client/pages/userRequestOff.php">userRequestOff</b></li>
+				<li><b onclick="location.href='/capstone-project-mohcamanagement/client/pages/userUpdateAvailabilty.php' ">Update Availability</b></li>
+				<li><b onclick="location.href='/capstone-project-mohcamanagement/client/pages/userRequestOff.php' ">Request Off</b></li>
 			</ul>
 		</nav>
 		<button0 class="button button0" onclick="location.href='/capstone-project-mohcamanagement/client/index.html'">Log Out</button0>
