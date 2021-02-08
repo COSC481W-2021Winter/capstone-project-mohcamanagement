@@ -8,7 +8,7 @@
 <div style="width: 40%; margin: auto;">
 <table text-align="right" align="center">
 <!-- Not sure if in action, that's the link I add -->
-<form name="companyRegister" method="post" action="http://192.168.64.2/capstone-project-mohcamanagement/client/pages/companyRegister.php">
+<form name="companyRegister" method="post" action="companyRegister.php">
 
 <tr>
 <td> Company Name </td>
