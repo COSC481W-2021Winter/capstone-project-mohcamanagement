@@ -88,7 +88,7 @@
 				<li><b href="/capstone-project-mohcamanagement/client/pages/userRequestOff.php">userRequestOff</b></li>
 			</ul>
 		</nav>
-		<b class="cta" href="#"><button0>Log out</button0></b>
+		<button0 class="button button0" onclick="location.href='/capstone-project-mohcamanagement/client/index.html'">Log Out</button0>
 	</header>
 	<body>
 		<?php 
