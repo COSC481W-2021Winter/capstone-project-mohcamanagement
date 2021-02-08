@@ -1,3 +1,4 @@
+
 <?php
 	/*db connection needed if in seperate file */
 	include_once ('../includes/dbConnection.php');
