@@ -83,7 +83,16 @@
 		color: black;
 	}
 	</style>
- 
+ <header>
+		<img class="logo" src="" alt="logo">
+		<nav>
+			<ul class="nav_links">
+				<li><b href="/capstone-project-mohcamanagement/client/pages/userUpdateAvailabilty.php">userUpdateAvailability</b></li>
+				<li><b href="/capstone-project-mohcamanagement/client/pages/userRequestOff.php">userRequestOff</b></li>
+			</ul>
+		</nav>
+		<b class="cta" href="#"><button0>Log out</button0></b>
+	</header>
 	<body>
 <<<<<<< HEAD
 		<h1>Hello Username</h1>

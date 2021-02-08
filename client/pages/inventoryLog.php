@@ -10,14 +10,6 @@
 		return mysqli_connect($dbHost, $dbUser, $dbPass, $db);
 	}
 
-	function generateTableHeader(){
-		echo "	<tr>
-					<th>Item</th>
-					<th>Par</th>
-					<th>On Hand</th>
-				<tr>";
-	}
-
 	function generateTableData(){
 		$conn = getInclude();
 		if($conn->connect_error){
@@ -29,6 +21,7 @@
 		if($result->num_rows > 0){
 			while($row = $result->fetch_assoc()){
 				echo "<tr><td>".$row["Item"]."</td><td>".$row["Par"]."</td>";
+				echo "<td><input type=\"text\" id=\"".$row["Item"]."\" name=\"".$row["Item"]."\"></td></tr>";
 			}
 		}
 		else{
@@ -36,12 +29,8 @@
 		}
 	}
 
-	function generateTable(){
-		getInclude();
-		echo "<table>";
-		generateTableHeader();
-		generateTableData();
-		echo "</table>";
+	function generateOptions(){
+		return;
 	}
 ?>
 
@@ -51,10 +40,26 @@
 		<title>Page Title</title>
 	</head>
 <body>
-
-	<?php
-		generateTable();
-	?>
+	<form action="inventory.php">
+		<select name="inventory" id="inventory">
+			<option value="type">Inventory Type</option>
+			<?php
+				generateOptions();
+			?>
+		</select>
+	</form>
+	<table>
+		<tr>
+			<th>Item</th>
+			<th>Par</th>
+			<th>Quantity on Hand</th>
+		</tr>
+		<?php
+			generateTableData();
+		?>
+	</table>
+	<button type="button" onclick="">Add Item</button>
+	<button type="button" onclick="">Submit</button>
 
 </body>
 </html>
