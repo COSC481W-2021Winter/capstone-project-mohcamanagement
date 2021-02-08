@@ -13,7 +13,7 @@
 <html>
  <head>
 	<title>User main page</title>
-	<link rel="stylesheet" href="../style/style.css">
+	<link rel="stylesheet" type="text/css" href="../style/style.css">
  </head>
 	<style>
 	h1{text-align: center;}
