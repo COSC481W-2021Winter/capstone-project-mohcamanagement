@@ -77,12 +77,12 @@
 		<img class="logo" src="" alt="logo">
 		<nav>
 			<ul class="nav_links">
-				<li><b href="/capstone-project-mohcamanagement/client/pages/inventoryLog.php">Inventory Log</b></li> 
-				<li><b href="/capstone-project-mohcamanagement/client/pages/scheduleGeneration.php">Schedule Generation</b></li>
-				<li><b href="/capstone-project-mohcamanagement/client/pages/adminCreateUser.php">Create Users </b></li>
+				<li><b onclick="location.href='/capstone-project-mohcamanagement/client/pages/inventoryLog.php'">Inventory Log</b></li> 
+				<li><b onclick="location.href='/capstone-project-mohcamanagement/client/pages/scheduleGeneration.php'">Schedule Generation</b></li>
+				<li><b onclick="location.href='/capstone-project-mohcamanagement/client/pages/adminCreateUser.php'">Create Users </b></li>
 			</ul>
 		</nav>
-		<b class="cta" href="#"><button0>Log out</button0></b>
+		<button0 class="button button0" onclick="location.href='/capstone-project-mohcamanagement/client/index.html'">Log Out</button0>
 	</header>
 	<body>
 		<?php 
