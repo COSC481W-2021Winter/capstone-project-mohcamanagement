@@ -7,7 +7,6 @@ h1 {
 	font-size: 20px;
   }
   
-  
   a.button {
 	background-color: #4CAF50; /* Green background */
 	border: 1px solid green; /* Green border */
@@ -96,22 +95,14 @@ header {
 .logo{
 	cursor: pointer;
 }
-
-.nav_links{
-	list-style: none;
-}
-.nav_links li{
+.NavButton{
 	display: inline-block; /*go side by side instead of top down*/
 	padding: 08px 20px;
 	border-radius: 50px;
 	background-color: rgb(223, 211, 211);
+	cursor: pointer
 }
-.nav_links li b{
-	transition: all 0.3s ease 0s;
-}
-.nav_links li b:hover{
-	color:darkgray;
-}
+
 .button0{
 	padding: 9px 25px;
 	background-color: darkgray;
