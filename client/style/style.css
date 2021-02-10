@@ -105,6 +105,7 @@ header {
 	padding: 08px 20px;
 	border-radius: 50px;
 	background-color: rgb(223, 211, 211);
+	cursor: pointer;
 }
 .nav_links li b{
 	transition: all 0.3s ease 0s;
