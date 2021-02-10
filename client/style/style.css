@@ -114,3 +114,19 @@ header {
 .button0:hover{
 	background-color: rgb(138, 135, 135);
 }
+table.userCreationTable {
+	position: absolute;
+	left: 40%;
+	top: 10%;
+	border-style: solid;
+	border-color: black;
+	padding: 5px;
+	background-color: #C2C0C0;
+}
+.inputBox {
+	background-color: #F5F4F4;
+	color: #969595;
+}
+.required {
+	color: red;
+}
