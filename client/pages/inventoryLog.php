@@ -34,6 +34,9 @@
 	}
 ?>
 
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -58,8 +61,56 @@
 			generateTableData();
 		?>
 	</table>
-	<button type="button" onclick="">Add Item</button>
-	<button type="button" onclick="">Submit</button>
+	
+	
+	
+	<style>
+.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button1 {background-color: #c29c9b;} /* Green */
+.button2 {background-color: #a88f8f;} /* Blue */
+.button1 {border-radius: 50%;}
+.button2 {border-radius: 50%;}
+</style>
+</head>
+<body>
+
+<button class="button button1">Add Item</button>
+<button class="button button2">Submit</button>
 
 </body>
+
+</html>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+table, th, td {
+  border: 2px solid black;
+}
+</style>
+</head>
+<body>
+
+
+</body>
+</html>
+
+
+
+
+
+
 </html>
