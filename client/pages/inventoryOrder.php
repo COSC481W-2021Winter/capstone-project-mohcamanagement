@@ -20,7 +20,7 @@
 			die("Connection failed: " . $conn->connect_error);
 		}
 
-		$sql = "SELECT * FROM inventory";
+		$sql = "SELECT * FROM Inventory";
 		$result = $conn->query($sql);
 
 		if($result->num_rows > 0){
