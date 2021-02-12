@@ -1,113 +1,106 @@
-<?php
-	/*Insert Code here*/
-	include("../includes/dbConnection.php");
-
-	// Checks the request method so that the error will only show if the request method is POST
-	if($_SERVER['REQUEST_METHOD'] == 'POST'){
-			if(!empty($_POST['Monday']))
-				$monday = $_POST['Monday'];
-			else
-				$monday = "Off";
-
-			if(!empty($_POST['Tuesday']))
-				$tuesday = $_POST['Tuesday'];
-			else
-				$tuesday = "Off";
-
-			if(!empty($_POST['Wednesday']))
-				$wednesday = $_POST['Wednesday'];
-			else
-				$wednesday = "Off";
-
-			if(!empty($_POST['Thursday']))
-				$thursday = $_POST['Thursday'];
-			else
-				$thursday = "Off";
-
-			if(!empty($_POST['Friday']))
-				$friday = $_POST['Friday'];
-			else
-				$friday = "Off";
-
-			if(!empty($_POST['Saturday']))
-				$saturday = $_POST['Saturday'];
-			else
-				$saturday = "Off";
-
-			if(!empty($_POST['Sunday']))
-				$sunday = $_POST['Sunday'];
-			else
-				$sunday = "Off";
-
-			// Use the saved variables to insert into the Users table
-			$query = "INSERT INTO Users VALUES('$monday', '$tuesday', '$wednesday', '$thursday', '$friday', '$saturday', '$sunday')";
-			mysqli_query($conn, $query);
-
-			// header() changes the page to the location listed
-			header("Location: userMain.php");
-		
-	}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<title>User Update Availability</title>
-
 		<link rel="stylesheet" type="text/css" href="../style/style.css">
+
+		<style>
+			input{
+				width: 40%;
+				height: 5%;
+				border: 4px;
+				border-radius: 5px;
+				padding: 10px 15px;
+				margin: 10px;
+				box-shadow: 1px 1px 1px 1px grey;
+			}
+			.container{
+				width: 500px;
+				clear: both;
+				align-items:center;
+			}
+			.container input{
+				width: 100%;
+				clear: both;
+			}
+		</style>
 	</head>
-
 	<body>
-		<!-- Form to collect the info -->
-		<table class="userCreationTable">
-			<form method="post" action="userUpdateAvailabilty.php">
-				<tr>	
-					<td style="padding: 2px;">
-						<input size="22px" type="text" name="Monday" placeholder="Enter Hours for Monday" class="inputBox"></input>
-					</td>
-				</tr>	
+		<center>
+		<div class="container">
+		
+			<h1>Update Your Weekly Work Schedule</h1>
+				<form action="" method="POST" >
+					<label for="monday">Monday</label>
+					<input type="text" name="monday" placeholder="Update Hours"/><br/>
+					<label for="tuesday">Tuesday</label>
+					<input type="text" name="tuesday" placeholder="Update Hours"/><br/>
+					<label for="wednesday">Wednesday</label>
+					<input type="text" name="wednesday" placeholder="Update Hours"/><br/>
+					<label for="thursday">Thursday</label>
+					<input type="text" name="thursday" placeholder="Update Hours"/><br/>
+					<label for="friday">Friday  </label>
+					<input type="text" name="friday" placeholder="Update Hours"/><br/>
+					<label for="saturday">Saturday</label>
+					<input type="text" name="saturday" placeholder="Update Hours"/><br/>
+					<label for="sunday">Sunday</label>
+					<input type="text" name="sunday" placeholder="Update Hours"/><br/>
 
-				<tr>
-					<td style="padding: 2px;">
-						<input size="22px" type="text" name="Tuesday" placeholder="Enter Hours for Tuesday" class="inputBox"></input>
-					</td>
-				</tr>
+					<input type="submit" name="update" value="UPDATE SCHEDULE"/>
+				</form> 
+		</div>
+		</center>
+	</body>
+</html> 
+<?php
+	/*Insert Code here*/
+	
 
-				<tr>
-					<td style="padding: 2px;">
-						<input size="22px" type="text" name="Wednesday" placeholder="Enter Hours for Wednesday" class="inputBox"></input>
-					</td>
-				</tr>
+	// Checks the request method so that the error will only show if the request method is POST
+	// if($_SERVER['REQUEST_METHOD'] == 'POST'){
+	// 	if(!empty($_POST['Monday']))
+	// 		$monday = $_POST['Monday'];
 
-				<tr>
-					<td style="padding: 2px;">
-						<input size="22px" type="text" name="Thursday" placeholder="Enter Hours for Thursday" class="inputBox"></input>
-					</td>
-				</tr>
+	// 	if(!empty($_POST['Tuesday']))
+	// 		$tuesday = $_POST['Tuesday'];
 
-				<tr>
-					<td style="padding: 2px;">
-						<input size="22px" type="text" name="Friday" placeholder="Enter Hours for Friday" class="inputBox"></input>
-					</td>
-				</tr>
+	// 	if(!empty($_POST['Wednesday']))
+	// 		$wednesday = $_POST['Wednesday'];
+	// 	else
+	// 		$wednesday = "Off";
 
-				<tr>
-					<td style="padding: 2px;">
-						<input size="22px" type="text" name="Saturday" placeholder="Enter Hours for Saturday" class="inputBox"></input>
-					</td>
-				</tr>
+	// 	if(!empty($_POST['Thursday']))
+	// 		$thursday = $_POST['Thursday'];
+	// 	else
+	// 		$thursday = "Off";
 
-				<tr>
-					<td style="padding: 2px;">
-						<input size="22px" type="text" name="Sunday" placeholder="Enter Hours for Sunday" class="inputBox"></input>
-					</td>
-				</tr>
-				<tr>
-					<td style="text-align: center; padding: 2px;">
-						<input style="background-color: #343131;  color: #969595;" type="Submit" name="Submit"></input>
-					</td>
-				</tr>
-			</form>
-		</table>
-</body>
-</html>
+	// 	if(!empty($_POST['Friday']))
+	// 		$friday = $_POST['Friday'];
+	// 	else
+	// 		$friday = "Off";
+
+	// 	if(!empty($_POST['Saturday']))
+	// 		$saturday = $_POST['Saturday'];
+	// 	else
+	// 		$saturday = "Off";
+
+	// 	if(!empty($_POST['Sunday']))
+	// 		$sunday = $_POST['Sunday'];
+	// 	else
+	// 		$sunday = "Off";
+
+	include("../includes/dbConnection.php");
+	if(isset($_POST['update'])){
+		$query = "UPDATE 'Users' SET monday='$_POST[monday], tuesday='$_POST[tuesday], wednesday='$_POST[wednesday], thursday='$_POST[thursday], friday='$_POST[friday], saturday='$_POST[saturday], sunday='$_POST[sunday]";
+		$query_run = mysqli_query($conn, $query);
+
+		if($query_run){
+			echo '<script type="text/javascript"> alert("Schedule Updated") </script>';
+			// header() changes the page to the location listed
+			header("Location: userMain.php");
+		}else{
+			echo '<script type="text/javascript"> alert("Schedule NOT Updated") </script>';
+		}
+		
+	}
+?>
