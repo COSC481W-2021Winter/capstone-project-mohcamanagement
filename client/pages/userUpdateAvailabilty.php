@@ -1,3 +1,73 @@
+<?php
+	$username=$_COOKIE['Username'];
+	include("../includes/dbConnection.php");
+
+	if($_SERVER['REQUEST_METHOD'] == 'POST'){
+		$query = "SELECT * from Users where Username='$username'";
+		$result = mysqli_query($conn, $query);
+
+		$currMon= '';
+		$currTue= '';
+		$currWed= '';
+		$currThur= '';
+		$currFri= '';
+		$currSat= ''; 
+		$currSun = '';
+
+		$row = mysqli_fetch_assoc($result);
+			$currMon = $row['Monday'];
+			$currTue = $row['Tuesday'];
+			$currWed = $row['Wednesday'];
+			$currThur = $row['Thursday'];
+			$currFri = $row['Friday'];
+			$currSat = $row['Saturday'];
+			$currSun = $row['Sunday'];
+
+			
+		if(!empty($_POST['monday']))
+			$monday = $_POST['monday'];
+		else
+			$monday = $currMon;
+
+		if(!empty($_POST['tuesday']))
+			$tuesday = $_POST['tuesday'];
+		else
+			$tuesday = $currTue;
+
+		if(!empty($_POST['wednesday']))
+			$wednesday = $_POST['wednesday'];
+		else
+			$wednesday = $currWed;
+		
+		if(!empty($_POST['thursday']))
+			$thursday = $_POST['thursday'];
+		else
+			$thursday = $currThur;
+
+		if(!empty($_POST['friday']))
+			$friday = $_POST['friday'];
+		else
+			$friday = $currFri;
+
+		if(!empty($_POST['saturday']))
+			$saturday = $_POST['saturday'];
+		else
+			$saturday = $currSat;
+
+		if(!empty($_POST['sunday']))
+			$sunday = $_POST['sunday'];
+		else
+			$sunday = $currSun;
+
+		$query = "UPDATE Users SET Monday='$monday', Tuesday='$tuesday', Wednesday='$wednesday', Thursday='$thursday', Friday='$friday', Saturday='$saturday', Sunday='$sunday' WHERE Username='$username'";
+		mysqli_query($conn, $query);
+
+		echo '<script type="text/javascript"> alert("Schedule Updated") </script>';
+		// header() changes the page to the location listed
+		header("Location: userMain.php");
+		
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -5,6 +75,9 @@
 		<link rel="stylesheet" type="text/css" href="../style/style.css">
 
 		<style>
+			h1{
+				padding: 30px 15px;
+			}
 			input{
 				width: 40%;
 				height: 5%;
@@ -13,6 +86,9 @@
 				padding: 10px 15px;
 				margin: 10px;
 				box-shadow: 1px 1px 1px 1px grey;
+			}
+			label{
+				font-size: 25px;
 			}
 			.container{
 				width: 500px;
@@ -30,7 +106,7 @@
 		<div class="container">
 		
 			<h1>Update Your Weekly Work Schedule</h1>
-				<form action="" method="POST" >
+				<form action="userUpdateAvailabilty.php" method="POST" >
 					<label for="monday">Monday</label>
 					<input type="text" name="monday" placeholder="Update Hours"/><br/>
 					<label for="tuesday">Tuesday</label>
@@ -51,56 +127,4 @@
 		</div>
 		</center>
 	</body>
-</html> 
-<?php
-	/*Insert Code here*/
-	
-
-	// Checks the request method so that the error will only show if the request method is POST
-	// if($_SERVER['REQUEST_METHOD'] == 'POST'){
-	// 	if(!empty($_POST['Monday']))
-	// 		$monday = $_POST['Monday'];
-
-	// 	if(!empty($_POST['Tuesday']))
-	// 		$tuesday = $_POST['Tuesday'];
-
-	// 	if(!empty($_POST['Wednesday']))
-	// 		$wednesday = $_POST['Wednesday'];
-	// 	else
-	// 		$wednesday = "Off";
-
-	// 	if(!empty($_POST['Thursday']))
-	// 		$thursday = $_POST['Thursday'];
-	// 	else
-	// 		$thursday = "Off";
-
-	// 	if(!empty($_POST['Friday']))
-	// 		$friday = $_POST['Friday'];
-	// 	else
-	// 		$friday = "Off";
-
-	// 	if(!empty($_POST['Saturday']))
-	// 		$saturday = $_POST['Saturday'];
-	// 	else
-	// 		$saturday = "Off";
-
-	// 	if(!empty($_POST['Sunday']))
-	// 		$sunday = $_POST['Sunday'];
-	// 	else
-	// 		$sunday = "Off";
-
-	include("../includes/dbConnection.php");
-	if(isset($_POST['update'])){
-		$query = "UPDATE 'Users' SET monday='$_POST[monday], tuesday='$_POST[tuesday], wednesday='$_POST[wednesday], thursday='$_POST[thursday], friday='$_POST[friday], saturday='$_POST[saturday], sunday='$_POST[sunday]";
-		$query_run = mysqli_query($conn, $query);
-
-		if($query_run){
-			echo '<script type="text/javascript"> alert("Schedule Updated") </script>';
-			// header() changes the page to the location listed
-			header("Location: userMain.php");
-		}else{
-			echo '<script type="text/javascript"> alert("Schedule NOT Updated") </script>';
-		}
-		
-	}
-?>
+</html>
