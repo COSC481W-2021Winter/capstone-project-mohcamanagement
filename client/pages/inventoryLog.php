@@ -21,7 +21,7 @@
 		if($result->num_rows > 0){
 			while($row = $result->fetch_assoc()){
 				echo "<tr><td>".$row["Item"]."</td><td>".$row["Par"]."</td>";
-				echo "<td><input type=\"text\" id=\"".$row["Item"]."\" name=\"".$row["Item"]."\"></td></tr>";
+				echo "<td><input type=\"number\" id=\"".$row["Item"]."\" name=\"".$row["Item"]."\"></td></tr>";
 			}
 		}
 		else{
@@ -34,6 +34,28 @@
 	}
 ?>
 
+<script>
+	function addItemToTable(itemName, itemPar){
+
+		var table = document.getElementById("itemTable");
+		var row = table.insertRow(table.rows.length);
+
+		var cell1 = row.insertCell(0);
+		var cell2 = row.insertCell(1);
+		var cell3 = row.insertCell(2);
+
+		cell1.innerHTML = itemName;
+		cell2.innerHTML = itemPar;
+		cell3.innerHTML = "<input type=\"number\" id=\""+itemName+"\" name=\""+itemName+"\">";
+	}
+
+	function getItemEntry(){
+		var itemName = document.getElementById("itemEntry").value;
+		var itemPar = document.getElementById("expectedPar").value;
+		addItemToTable(itemName, itemPar);
+	}
+</script>
+
 
 
 
@@ -43,24 +65,31 @@
 		<title>Page Title</title>
 	</head>
 <body>
-	<form action="inventory.php">
-		<select name="inventory" id="inventory">
-			<option value="type">Inventory Type</option>
-			<?php
-				generateOptions();
-			?>
-		</select>
-	</form>
-	<table>
-		<tr>
-			<th>Item</th>
-			<th>Par</th>
-			<th>Quantity on Hand</th>
-		</tr>
+	
+	<select name="inventory" id="inventory">
+		<option value="type">Inventory Type</option>
 		<?php
-			generateTableData();
+			generateOptions();
 		?>
-	</table>
+	</select>
+	
+
+	<form action="inventory.php">
+		<table id="itemTable">
+			<thead>
+				<tr>
+					<th>Item</th>
+					<th>Par</th>
+					<th>Quantity on Hand</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+					generateTableData();
+				?>
+			</tbody>
+		</table>
+	</form>
 	
 	
 	
@@ -85,7 +114,12 @@
 </head>
 <body>
 
-<button class="button button1">Add Item</button>
+<label for="itemEntry">Item Name</label>
+<input type="text" id="itemEntry" name="itemEntry">
+<label for="expectedPar">Item Par</label>
+<input type="number" id="expectedPar" name="expectedPar" value=1 min=1 max=99>
+<button class="button button1" onclick="getItemEntry();">Add Item</button>
+<br>
 <button class="button button2">Submit</button>
 
 </body>
