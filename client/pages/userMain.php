@@ -96,11 +96,11 @@
 		 ?>
 		<div class="square1">Schedule Placeholder</div>
 		<div class="square2">Suggested Inventory / Writeoffs Placeholder</div>
-		<div class="centerHorz">
+		<!-- <div class="centerHorz">
 			<button class="button button1">Inventory Suggestions</button>
 			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/pages/userUpdateAvailabilty.php'"> Update Availability</button>
 			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/pages/userRequestOff.php'">Request Off</button>
 			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/index.html'">Log Out</button>
-		</div>
+		</div> -->
 	</body>
 </html>

@@ -20,8 +20,8 @@
 
 		if($result->num_rows > 0){
 			while($row = $result->fetch_assoc()){
-				echo "<tr><td>".$row["Item"]."</td><td>".$row["Par"]."</td>";
-				echo "<td><input type=\"number\" id=\"".$row["Item"]."\" name=\"".$row["Item"]."\"></td></tr>";
+				echo "<tr><td style='text-align:center;'>".$row["Item"]."</td><td style='text-align:center;'>".$row["Par"]."</td>";
+				echo "<td style='text-align:center;'><input type=\"number\" id=\"".$row["Item"]."\" name=\"".$row["Item"]."\"></td></tr>";
 			}
 		}
 		else{
@@ -32,9 +32,22 @@
 	function generateOptions(){
 		return;
 	}
+
+	function addItemToTable($itemEntry, $expectedPar){
+		$conn = getInclude();
+
+		$query = "INSERT INTO Inventory Values('$itemEntry', $expectedPar, 0)";
+		mysqli_query($conn, $query);
+	}
+
+	if(isset($_POST["expectedPar"]) && isset($_POST["itemEntry"])) {
+		$itemEntry = $_POST["itemEntry"];
+		$expectedPar = $_POST['expectedPar'];
+		addItemToTable($itemEntry, $expectedPar);
+	}
 ?>
 
-<script>
+<!-- <script>
 	function addItemToTable(itemName, itemPar){
 
 		var table = document.getElementById("itemTable");
@@ -54,7 +67,7 @@
 		var itemPar = document.getElementById("expectedPar").value;
 		addItemToTable(itemName, itemPar);
 	}
-</script>
+</script> -->
 
 
 
@@ -63,87 +76,84 @@
 <html lang="en">
 	<head>
 		<title>Page Title</title>
+
+		<link rel="stylesheet" type="text/css" href="../style/style.css">
+
+		<style>
+			.button {
+			  border: none;
+			  color: white;
+			  padding: 15px 32px;
+			  text-align: center;
+			  text-decoration: none;
+			  display: inline-block;
+			  font-size: 16px;
+			  margin: 4px 2px;
+			  cursor: pointer;
+			}
+
+			.button1 {background-color: #c29c9b;} /* Green */
+			.button2 {background-color: #a88f8f;} /* Blue */
+			.button1 {border-radius: 50%;}
+			.button2 {border-radius: 50%;}
+		</style>
 	</head>
 <body>
-	
-	<select name="inventory" id="inventory">
-		<option value="type">Inventory Type</option>
-		<?php
-			generateOptions();
-		?>
-	</select>
-	
+		<table id="itemTable" class="userCreationTable">
+			<tr>
+				<td colspan="3" style="text-align: center;">
+					<select name="inventory" id="inventory">
+						<option value="type">Inventory Type</option>
+						<?php
+							generateOptions();
+						?>
+					</select>
+				</td>
+			</tr>
 
-	<form action="inventoryOrder.php" method="post"	>
-		<table id="itemTable">
-			<thead>
+			<form action="inventoryOrder.php" method="post"	>
+					<tr>
+						<th>Item</th>
+						<th>Par</th>
+						<th>Quantity on Hand</th>
+					</tr>
+					<?php
+						generateTableData();
+					?>
 				<tr>
-					<th>Item</th>
-					<th>Par</th>
-					<th>Quantity on Hand</th>
+					<td colspan="3" style="text-align: center;">
+						<input type="submit" style="background-color: #343131;  color: #969595;">
+					</td>
 				</tr>
-			</thead>
-			<tbody>
-				<?php
-					generateTableData();
-				?>
-			</tbody>
+			</form>
+
+		<form method="post" action="inventoryLog.php">
+			<tr>
+				<td style="padding-top: 40px;">
+					<input type="text" id="itemEntry" name="itemEntry" placeholder="Item Name"/>
+				</td>
+
+				<td style="padding-top: 40px;">
+					<label for="expectedPar">Item Par</label>
+				</td>
+
+				<td style="padding-top: 40px;">
+					<input type="number" id="expectedPar" name="expectedPar" value=1 min=1 max=99/>
+				</td>
+			</tr>
+
+			<tr>
+				<td colspan="3" style="text-align: center;">
+					<input type="submit" value="Add Item" style='background-color: #343131;  color: #969595;'/>
+				</td>
+			</tr>
+		</form>
+
+			<tr>
+				<td colspan="3" style="text-align: center;">
+					<button type="button" onclick="location.href='adminMain.php'" style='background-color: #343131;  color: #969595;'>Back</button>
+				</td>
+			</tr>
 		</table>
-		<input type="submit" class="button button2">
-	</form>
-	
-	
-	
-	<style>
-.button {
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-
-.button1 {background-color: #c29c9b;} /* Green */
-.button2 {background-color: #a88f8f;} /* Blue */
-.button1 {border-radius: 50%;}
-.button2 {border-radius: 50%;}
-</style>
-</head>
-<body>
-
-<label for="itemEntry">Item Name</label>
-<input type="text" id="itemEntry" name="itemEntry">
-<label for="expectedPar">Item Par</label>
-<input type="number" id="expectedPar" name="expectedPar" value=1 min=1 max=99>
-<button class="button button1" onclick="setItemEntry();">Add Item</button>
-
-</body>
-
-</html>
-
-
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-table, th, td {
-  border: 2px solid black;
-}
-</style>
-</head>
-<body>
-
-
-</body>
-</html>
-
-
-
-
-
-
+	</body>
 </html>

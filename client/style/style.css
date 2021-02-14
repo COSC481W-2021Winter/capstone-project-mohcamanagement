@@ -15,7 +15,7 @@ h1 {
 	color: white; /* White text */
 	padding: 13px 30px; /* Some padding */
 	cursor: pointer; /* Pointer/hand icon */
-	float: left; /* Float the buttons side by side */
+	float: left;  /*Float the buttons side by side */
   }
   
   /* Clear floats */

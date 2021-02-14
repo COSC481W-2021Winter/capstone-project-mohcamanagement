@@ -3,8 +3,9 @@
 	include_once ('../includes/dbConnection.php');
 	// $conn is the conection to database
 ?>
- <html>
- <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 	<title>Request Off</title>
 	<link rel="stylesheet" href="../style/style.css">
 	<style>
@@ -27,10 +28,15 @@
     margin-right:auto;
   }
 	</style>
- </head>
- <body>
+	
+
+	<link rel="stylesheet" type="text/css" href="../style/style.css">
+
+</head>
+
+<body>
 	<h1>Request Off</h1>
-	<table class="center">
+	<table class="userCreationTable">
 		<?php
 		//TODO be changed to whoever is logged in
 		$query = "SELECT * FROM Users";
@@ -43,30 +49,49 @@
 		?>
 		<!-- TODO fix placment of form on screen -->
 		<form method="post" onsubmit="myFunction()">
-		<tr>
-			<td>Start Date</td>
-		</tr>
-		<tr>
-		<td><input type="date" value="<?php echo date('Y-m-d');?>"></td>
-		</tr>
-		<tr><td>End Date</td></tr>
-		<tr>
-		<td><input type="date" value="<?php echo date('Y-m-d');?>"></td>
-		</tr>
 			<tr>
-			<td><input type="Submit" name="Submit" value="Submit"></input></td>
+				<td style="text-align: center;">Start Date</td>
 			</tr>
-			</table>
+
+			<tr>
+				<td><input type="date" value="<?php echo date('Y-m-d');?>" class="inputBox"></td>
+			</tr>
+
+			<tr>
+				<td style="text-align: center;">End Date</td>
+			</tr>
+
+			<tr>
+				<td><input type="date" value="<?php echo date('Y-m-d');?>" class="inputBox"></td>
+			</tr>
+
+			<tr>
+				<td style="text-align: center;"><input type="radio" name="type" value="mandatory">&nbsp;Mandatory</input></td>
+			</tr>
+
+			<tr>
+				<td style="text-align: center;"><input type="radio" name="type" value="optional">&nbsp;Optional</input></td>
+			</tr>
+
+			<tr>
+				<td style="text-align: center;"><input type="Submit" name="Submit" value="Submit"></input></td>
+			</tr>
 		</form>
 
-	<form method="post" action="adminMain.php">
-			<input type="Submit" name="Submit" value="Back"></input>
-	</form>
+		<form method="post" action="userMain.php">
+			<tr>
+				<td style="text-align: center;"><input type="Submit" name="back" value="Back"></input></td>
+			</tr>
+		</form>
+	</table>
+
+	
 	<script>
 	function myFunction(){
 		window.alert("Manager has been notified");
+	
 		//TODO redirect to a page when submitted
-		// window.location="adminMain.php";
+		document.location.href = "userMain.php";
 	}
 	</script>
  </body>

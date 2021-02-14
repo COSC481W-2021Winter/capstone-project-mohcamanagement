@@ -1,9 +1,20 @@
 <?php
 	/*Insert Code here*/
 	include("../includes/dbConnection.php");
+	
+	/*These are the entries from the last page so we can access them later.*/
+	// $companyName = $_COOKIE['companyName'];
+	// $companyType = $_COOKIE['companyType'];
+	// $email = $_COOKIE['email'];
+	// $irsNum = $_COOKIE['irsNum'];
+	// $phoneNo = $_COOKIE['phoneNo'];
+	// $address = $_COOKIE['address'];
+	// $city = $_COOKIE['city'];
+	// $state = $_COOKIE['state'];
+	// $zipCode = $_COOKIE['zipCode'];
 
 	// Checks the request method so that the error will only show if the request method is POST
-	if($_SERVER['REQUEST_METHOD'] == 'POST'){
+	if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["Create"])){
 		// checking to see if the username info was passed to the page from the form
 		if(!empty($_POST["Username"]) && !empty($_POST['Pin'])){
 			// if POST array has the variables in it then we save the variables 
@@ -145,7 +156,15 @@
 
 				<tr>
 					<td style="text-align: center; padding: 2px;">
-						<input style="background-color: #343131;  color: #969595;" type="Submit" name="Submit"></input>
+						<input style="background-color: #343131;  color: #969595;" type="Submit" name="Create" value="Create"></input>
+					</td>
+				</tr>
+			</form>
+
+			<form method="post" action="../index.html">
+				<tr>
+					<td style="text-align: center; padding: 2px;">
+						<input type="Submit" name="Submit" value="Back" style="background-color: #343131;  color: #969595;"></input>
 					</td>
 				</tr>
 			</form>

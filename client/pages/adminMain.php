@@ -91,12 +91,12 @@
 		<div class="square1">Schedule Placeholder</div>
 		<div class="square2">Suggested Inventory / Writeoffs Placeholder</div>
 		<div class="square2">Employee Updates / Request Offs Placeholder</div>
-		<div class="centerHorz">
+		<!-- <div class="centerHorz">
 			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/pages/inventoryLog.php'">Inventory</button>
 			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/pages/scheduleGeneration.php'">Schedule</button>
 			<button class="button button1">Employees</button>
 			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/pages/adminCreateUser.php'">Create Users</button>
 			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/index.html'">Log Out</button>
-		</div>
+		</div> -->
 	</body>
 </html>
