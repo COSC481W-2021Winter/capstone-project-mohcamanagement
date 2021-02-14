@@ -49,7 +49,7 @@
 		cell3.innerHTML = "<input type=\"number\" id=\""+itemName+"\" name=\""+itemName+"\">";
 	}
 
-	function getItemEntry(){
+	function setItemEntry(){
 		var itemName = document.getElementById("itemEntry").value;
 		var itemPar = document.getElementById("expectedPar").value;
 		addItemToTable(itemName, itemPar);
@@ -74,7 +74,7 @@
 	</select>
 	
 
-	<form action="inventory.php">
+	<form action="inventoryOrder.php" method="post"	>
 		<table id="itemTable">
 			<thead>
 				<tr>
@@ -89,6 +89,7 @@
 				?>
 			</tbody>
 		</table>
+		<input type="submit" class="button button2">
 	</form>
 	
 	
@@ -118,9 +119,7 @@
 <input type="text" id="itemEntry" name="itemEntry">
 <label for="expectedPar">Item Par</label>
 <input type="number" id="expectedPar" name="expectedPar" value=1 min=1 max=99>
-<button class="button button1" onclick="getItemEntry();">Add Item</button>
-<br>
-<button class="button button2">Submit</button>
+<button class="button button1" onclick="setItemEntry();">Add Item</button>
 
 </body>
 

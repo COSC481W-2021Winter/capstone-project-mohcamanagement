@@ -26,7 +26,7 @@
 		if($result->num_rows > 0){
 			while($row = $result->fetch_assoc()){
 				echo "<tr><td>".$row["Item"]."</td>";
-				echo "<td><input type=\"text\" id=\"".$row["Item"]."\" name=\"".$row["Item"]."\"></td></tr>";
+				echo "<td>".($row["Par"] - $_POST[$row["Item"]])."</td></tr>";
 			}
 		}
 		else{
@@ -52,7 +52,7 @@
 		?>
 	</table>
 
-	<button type="button" onclick="">Back</button>
+	<button type="button" onclick="location.href='adminMain.php'">Back</button>
 
 </body>
 </html>
