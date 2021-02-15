@@ -17,7 +17,7 @@
 <html>
  <head>
 	<title>Admin Main Page</title>
-	<link rel="stylesheet" href="../style/style.css">
+	<link rel="stylesheet" type="text/css" href="../style/style.css">
  </head>
 	<style>
 	h1{text-align: center;}
@@ -82,12 +82,12 @@
 		<img class="logo" src="" alt="logo">
 		<nav>
 			<ul class="nav_links">
-				<li><b href="/capstone-project-mohcamanagement/client/pages/inventoryLog.php">Inventory Log</b></li> 
-				<li><b href="/capstone-project-mohcamanagement/client/pages/scheduleGeneration.php">Schedule Generation</b></li>
-				<li><b href="/capstone-project-mohcamanagement/client/pages/adminCreateUser.php">Create Users </b></li>
+				<button class="button NavButton" onclick="location.href='/capstone-project-mohcamanagement/client/pages/inventoryLog.php'">Inventory Log</button>
+				<button class="button NavButton" onclick="location.href='/capstone-project-mohcamanagement/client/pages/scheduleGeneration.php'">Schedule Generation</button>
+				<button class="button NavButton" onclick="location.href='/capstone-project-mohcamanagement/client/pages/adminCreateUser.php'">Create Users</button>
 			</ul>
 		</nav>
-		<b class="cta" href="#"><button0>Log out</button0></b>
+		<button0 class="button button0" onclick="location.href='/capstone-project-mohcamanagement/client/index.html'">Log Out</button0>
 	</header>
 	<body>
 		<?php 
@@ -97,13 +97,13 @@
 		<div class="square1">Schedule Placeholder</div>
 		<div class="square2">Suggested Inventory / Writeoffs Placeholder</div>
 		<div class="square2">Employee Updates / Request Offs Placeholder</div>
-		<div class="centerHorz">
+		<!-- <div class="centerHorz">
 			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/pages/inventoryLog.php'">Inventory</button>
 			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/pages/scheduleGeneration.php'">Schedule</button>
 			<button class="button button1">Employees</button>
 			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/pages/adminCreateUser.php'">Create Users</button>
 			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/index.html'">Log Out</button>
-		</div>
+		</div> -->
 	</body>
 </html>
 

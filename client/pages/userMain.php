@@ -16,7 +16,7 @@
 <html>
  <head>
 	<title>User main page</title>
-	<link rel="stylesheet" href="../style/style.css">
+	<link rel="stylesheet" type="text/css" href="../style/style.css">
  </head>
 	<style>
 	h1{text-align: center;}
@@ -87,11 +87,11 @@
 		<img class="logo" src="" alt="logo">
 		<nav>
 			<ul class="nav_links">
-				<li><b href="/capstone-project-mohcamanagement/client/pages/userUpdateAvailabilty.php">userUpdateAvailability</b></li>
-				<li><b href="/capstone-project-mohcamanagement/client/pages/userRequestOff.php">userRequestOff</b></li>
+				<NavButton class="button NavButton" onclick="location.href='/capstone-project-mohcamanagement/client/pages/userUpdateAvailabilty.php' ">Update Availability</NavButton>
+				<NavButton class="button NavButton" onclick="location.href='/capstone-project-mohcamanagement/client/pages/userRequestOff.php' ">Request Off</NavButton>
 			</ul>
 		</nav>
-		<b class="cta" href="#"><button0>Log out</button0></b>
+		<button0 class="button button0" onclick="location.href='/capstone-project-mohcamanagement/client/index.html'">Log Out</button0>
 	</header>
 	<body>
 <<<<<<< HEAD
@@ -103,7 +103,7 @@
 >>>>>>> 01a8e8de2a947cc06424435501adf5d42d846463
 		<div class="square1">Schedule Placeholder</div>
 		<div class="square2">Suggested Inventory / Writeoffs Placeholder</div>
-		<div class="centerHorz">
+		<!-- <div class="centerHorz">
 			<button class="button button1">Inventory Suggestions</button>
 			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/pages/userUpdateAvailabilty.php'"> Update Availability</button>
 			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/pages/userRequestOff.php'">Request Off</button>
@@ -113,7 +113,7 @@
 </html>
 =======
 			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/index.html'">Log Out</button>
-		</div>
+		</div> -->
 	</body>
 </html>
 >>>>>>> 01a8e8de2a947cc06424435501adf5d42d846463

@@ -1,9 +1,20 @@
 <?php
 	/*Insert Code here*/
 	include("../includes/dbConnection.php");
+	
+	/*These are the entries from the last page so we can access them later.*/
+	// $companyName = $_COOKIE['companyName'];
+	// $companyType = $_COOKIE['companyType'];
+	// $email = $_COOKIE['email'];
+	// $irsNum = $_COOKIE['irsNum'];
+	// $phoneNo = $_COOKIE['phoneNo'];
+	// $address = $_COOKIE['address'];
+	// $city = $_COOKIE['city'];
+	// $state = $_COOKIE['state'];
+	// $zipCode = $_COOKIE['zipCode'];
 
 	// Checks the request method so that the error will only show if the request method is POST
-	if($_SERVER['REQUEST_METHOD'] == 'POST'){
+	if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["Create"])){
 		// checking to see if the username info was passed to the page from the form
 		if(!empty($_POST["Username"]) && !empty($_POST['Pin'])){
 			// if POST array has the variables in it then we save the variables 
@@ -67,22 +78,96 @@
 <html lang="en">
 	<head>
 		<title>Admin Creation Page</title>
+
+		<link rel="stylesheet" type="text/css" href="../style/style.css">
 	</head>
 
 	<body>
 		<!-- Form to collect the info -->
-		<form method="post" action="adminCreation.php">
-				<input type="text" name="Username" placeholder="Enter Username"></input>
-				<input type="text" name="Pin" placeholder="Enter Pin"></input>
-				<input type="text" name="Monday" placeholder="Enter Hours for Monday"></input>
-				<input type="text" name="Tuesday" placeholder="Enter Hours for Tuesday"></input>
-				<input type="text" name="Wednesday" placeholder="Enter Hours for Wednesday"></input>
-				<input type="text" name="Thursday" placeholder="Enter Hours for Thursday"></input>
-				<input type="text" name="Friday" placeholder="Enter Hours for Friday"></input>
-				<input type="text" name="Saturday" placeholder="Enter Hours for Saturday"></input>
-				<input type="text" name="Sunday" placeholder="Enter Hours for Sunday"></input>
-				<input type="text" name="YearsWorked" placeholder="Enter Years Worked"></input>
-				<input type="Submit" name="Submit"></input>
-		</form>
+		<table class="userCreationTable">
+			<form method="post" action="adminCreation.php">
+				<tr>
+					<td style="padding: 2px;">
+						<input size="22px" type="text" name="Username" placeholder="Enter Username" class="inputBox"></input>
+					</td>
+
+					<td class="required">
+						<span>*</span>
+					</td>
+				</tr>
+
+				<tr>
+					<td style="padding: 2px;">
+						<input size="22px" type="text" name="Pin" placeholder="Enter Pin" class="inputBox"></input>
+					</td>
+
+					<td class="required">
+						<span>*</span>
+					</td>
+				</tr>
+
+				<tr>	
+					<td style="padding: 2px;">
+						<input size="22px" type="text" name="Monday" placeholder="Enter Hours for Monday" class="inputBox"></input>
+					</td>
+				</tr>	
+
+				<tr>
+					<td style="padding: 2px;">
+						<input size="22px" type="text" name="Tuesday" placeholder="Enter Hours for Tuesday" class="inputBox"></input>
+					</td>
+				</tr>
+
+				<tr>
+					<td style="padding: 2px;">
+						<input size="22px" type="text" name="Wednesday" placeholder="Enter Hours for Wednesday" class="inputBox"></input>
+					</td>
+				</tr>
+
+				<tr>
+					<td style="padding: 2px;">
+						<input size="22px" type="text" name="Thursday" placeholder="Enter Hours for Thursday" class="inputBox"></input>
+					</td>
+				</tr>
+
+				<tr>
+					<td style="padding: 2px;">
+						<input size="22px" type="text" name="Friday" placeholder="Enter Hours for Friday" class="inputBox"></input>
+					</td>
+				</tr>
+
+				<tr>
+					<td style="padding: 2px;">
+						<input size="22px" type="text" name="Saturday" placeholder="Enter Hours for Saturday" class="inputBox"></input>
+					</td>
+				</tr>
+
+				<tr>
+					<td style="padding: 2px;">
+						<input size="22px" type="text" name="Sunday" placeholder="Enter Hours for Sunday" class="inputBox"></input>
+					</td>
+				</tr>
+
+				<tr>
+					<td style="padding: 2px;">
+						<input size="22px" type="text" name="YearsWorked" placeholder="Enter Years Worked" class="inputBox"></input>
+					</td>
+				</tr>
+
+				<tr>
+					<td style="text-align: center; padding: 2px;">
+						<input style="background-color: #343131;  color: #969595;" type="Submit" name="Create" value="Create"></input>
+					</td>
+				</tr>
+			</form>
+
+			<form method="post" action="../index.html">
+				<tr>
+					<td style="text-align: center; padding: 2px;">
+						<input type="Submit" name="Submit" value="Back" style="background-color: #343131;  color: #969595;"></input>
+					</td>
+				</tr>
+			</form>
+		</table>
 </body>
 </html>
