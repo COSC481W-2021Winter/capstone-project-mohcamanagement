@@ -3,15 +3,15 @@
 	/*db connection needed if in seperate file */
 	include_once ('../includes/dbConnection.php');
 	// $conn is the conection to database
-<<<<<<< HEAD
-=======
+
+
 	
 	// checking to see if the cookie array is empty
 	if(isset($_COOKIE["Username"])) {
 		// if not empty then we store the cookie into a variable
 		$userCookie = $_COOKIE["Username"];
 	}
->>>>>>> 01a8e8de2a947cc06424435501adf5d42d846463
+
 ?>
 
 <html>
@@ -70,10 +70,7 @@
 		background-color: white; 
 		color: black; 
 		border: 2px solid #800000;
-<<<<<<< HEAD
-		onclick: /capstone-project-mohcamanagement/client/pages/inventoryLog.php";
-=======
->>>>>>> 01a8e8de2a947cc06424435501adf5d42d846463
+
 	}
 	
 	.button1:hover {
@@ -93,13 +90,10 @@
 		<b class="cta" href="#"><button0>Log out</button0></b>
 	</header>
 	<body>
-<<<<<<< HEAD
-		<h1>Hello Username</h1>
-=======
 		<?php 
 		echo "<h1>Welcome $userCookie</h1>";
 		 ?>
->>>>>>> 01a8e8de2a947cc06424435501adf5d42d846463
+
 		<div class="square1">Schedule Placeholder</div>
 		<div class="square2">Suggested Inventory / Writeoffs Placeholder</div>
 		<div class="square2">Employee Updates / Request Offs Placeholder</div>
@@ -108,13 +102,8 @@
 			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/pages/scheduleGeneration.php'">Schedule</button>
 			<button class="button button1">Employees</button>
 			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/pages/adminCreateUser.php'">Create Users</button>
-<<<<<<< HEAD
-		</div>
-	</body>
-</html>
-=======
 			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/index.html'">Log Out</button>
 		</div>
 	</body>
 </html>
->>>>>>> 01a8e8de2a947cc06424435501adf5d42d846463
+
