@@ -23,7 +23,9 @@ You must select to install MySQL, PHP, and Apache.
 15. Click the `Allow access` button to allow the app through the Windows Firewall (if applicable).
 16. Click the `Finish` button.
 
-## Running XAMPP
+## Running XAMPP on Windows
+
+## Running XAMPP on Mac OS X
 
 1. Launch App
 2. In the General tab, click `start`
@@ -55,7 +57,7 @@ You must select to install MySQL, PHP, and Apache.
 
 3. Open the `index.html` file in a text editor.
 
-4. On line 55, add `<li class="">< target="_blank" href="your repo link here">Repo Name</a></li>`
+4. On line 55, add `<li class=""><a target="_blank" href="your repo link here">Repo Name</a></li>`
 
 When you're at the webpage for xampp, your `Repo Name` should be in the navbar now for quick access.
 
