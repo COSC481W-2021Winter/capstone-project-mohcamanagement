@@ -13,7 +13,7 @@ In addition, these instructions have been tested to work for XAMPP version 7.3.2
 6. XAMPP offers a variety of components that you can install, such as MySQL, phpMyAdmin, PHP, Apache, and more.
 You must select to install MySQL, PHP, and Apache.
 7. Click the `Next` button.
-8. Use the default installed location. (Or choose another folder to install the software in the ìSelect a folderî field.)
+8. Use the default installed location. (Or choose another folder to install the software in the Select a folder field.)
 9. Click the `Next` button.
 10. Select the language for the XAMPP Control Panel.
 11. Click the `Next` button.
@@ -24,6 +24,7 @@ You must select to install MySQL, PHP, and Apache.
 16. Click the `Finish` button.
 
 ## Running XAMPP on Windows
+
 1. Launch the XAMPP control pannel.
 2. Click `start` for both Apache and MySQL
 3. Click on Explorer.
@@ -35,7 +36,6 @@ It should look like: cd C:\xampp\htdocs
 8. Use the dir or ls command to list all files in the directory and cd into the repository folder.
 9. At this point you can now edit the files for the project and make changes as well as push and pull from github.
 10. To view the webpage, simply type `localhost` in your browser of choice.
-
 
 ## Running XAMPP on Mac OS X
 
