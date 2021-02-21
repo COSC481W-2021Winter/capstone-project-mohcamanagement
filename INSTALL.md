@@ -24,6 +24,18 @@ You must select to install MySQL, PHP, and Apache.
 16. Click the `Finish` button.
 
 ## Running XAMPP on Windows
+1. Launch the XAMPP control pannel.
+2. Click `start` for both Apache and MySQL
+3. Click on Explorer.
+4. Navigate to the htdocs folder in this directory.
+5. Copy the path name of the htdocs folder. (Can be copied from the path bar at the top).
+6. Paste the path name preceding with cd into your windows terminal such as command prompt.
+It should look like: cd C:\xampp\htdocs
+7. Clone the github repository by using the git clone command: `git clone https://github-repo-link.com`
+8. Use the dir or ls command to list all files in the directory and cd into the repository folder.
+9. At this point you can now edit the files for the project and make changes as well as push and pull from github.
+10. To view the webpage, simply type `localhost` in your browser of choice.
+
 
 ## Running XAMPP on Mac OS X
 
