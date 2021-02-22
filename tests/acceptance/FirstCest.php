@@ -4,7 +4,7 @@ class FirstCest
 {
     public function frontpageWorks(AcceptanceTester $I)
     {
-        $I->amOnPage('/client');
+        $I->amOnPage('/src');
         $I->see('Mohca');
     }
 }
