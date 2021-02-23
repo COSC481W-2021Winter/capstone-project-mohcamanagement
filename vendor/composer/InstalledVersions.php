@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'a8a1a1f85edb51bc5ee2d6b32ce10af36dfc5303',
+    'reference' => 'fa8069232910adbbbbad5ac3707435343aab6944',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'a8a1a1f85edb51bc5ee2d6b32ce10af36dfc5303',
+      'reference' => 'fa8069232910adbbbbad5ac3707435343aab6944',
     ),
     'behat/gherkin' => 
     array (

@@ -4,8 +4,8 @@ class FirstCest
 {
     public function frontpageWorks(AcceptanceTester $I)
     {
-        $I->amOnPage('/client');
-        $I->see('Mohca');
+        $I->amOnPage('http://localhost:8080/capstone-project-mohcamanagement/src/index.html');
+        $I->see('Mocha');
     }
 }
 //test result:
