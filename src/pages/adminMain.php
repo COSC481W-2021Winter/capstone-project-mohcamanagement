@@ -76,13 +76,23 @@
 	<header>
 		<img class="logo" src="" alt="logo">
 		<nav>
-			<ul class="nav_links">
-				<button class="button NavButton" onclick="location.href='/capstone-project-mohcamanagement/src/pages/inventoryLog.php'">Inventory Log</button>
-				<button class="button NavButton" onclick="location.href='/capstone-project-mohcamanagement/src/pages/scheduleGeneration.php'">Schedule Generation</button>
-				<button class="button NavButton" onclick="location.href='/capstone-project-mohcamanagement/src/pages/adminCreateUser.php'">Create Users</button>
-			</ul>
+				<form method="post" action="/capstone-project-mohcamanagement/src/pages/inventoryLog.php">
+					<button class="button NavButton" >Inventory Log</button>
+				</form>
+
+				<form method="post" action="/capstone-project-mohcamanagement/src/pages/scheduleGeneration.php">
+					<button class="button NavButton" >Schedule Generation</button>
+				</form>
+
+				<form method="post" action="/capstone-project-mohcamanagement/src/pages/adminCreateUser.php">
+					<button class="button NavButton" >Create Users</button>
+				</form>
+
 		</nav>
-		<button class="button button0" onclick="location.href='/capstone-project-mohcamanagement/src/index.html'">Log Out</button0>
+
+		<form method="post" action="/capstone-project-mohcamanagement/src/index.html">
+			<button class="button button0" onclick="location.href='/capstone-project-mohcamanagement/src/index.html'">Log Out</button>
+		</form>
 	</header>
 	<body>
 		<?php 

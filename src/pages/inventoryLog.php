@@ -151,7 +151,9 @@
 
 			<tr>
 				<td colspan="3" style="text-align: center;">
-					<button type="button" onclick="location.href='adminMain.php'" style='background-color: #343131;  color: #969595;'>Back</button>
+					<form method="post" action="/capstone-project-mohcamanagement/src/pages/adminMain.php">
+					<button type="button" style='background-color: #343131;  color: #969595;'>Back</button>
+					</form>
 				</td>
 			</tr>
 		</table>
