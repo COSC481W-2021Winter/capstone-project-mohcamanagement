@@ -168,7 +168,7 @@
 				<form method="post" action="../index.html">
 				<tr>
 					<td style="text-align: center; padding: 2px;">
-						<input type="Submit" name="Submit" value="Back" style="background-color: #343131;  color: #969595;"></input>
+						<button type="Submit" name="Submit" value="Back" style="background-color: #343131;  color: #969595;">Back</button>
 					</td>
 				</tr>
 			</form>
