@@ -8,6 +8,6 @@ actor: AcceptanceTester
 modules:
     enabled:
         - PhpBrowser:
-            url: http://localhost/capstone-project-mohcamanagement
+            url: http://localhost:8080/capstone-project-mohcamanagement/src/
         - \Helper\Acceptance
 step_decorators: ~        
