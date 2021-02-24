@@ -1,5 +1,5 @@
 <?php
-// Test Command: vendor\bin\codecept.bat run tests\acceptance\LoginCest.php
+// Test Command: vendor\bin\codecept.bat run tests\functional\LoginCest.php
 
 
 
