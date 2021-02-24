@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'fa8069232910adbbbbad5ac3707435343aab6944',
+    'reference' => '3fbe665e5b09e0c739458eb6a5c19da38682d0c1',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'fa8069232910adbbbbad5ac3707435343aab6944',
+      'reference' => '3fbe665e5b09e0c739458eb6a5c19da38682d0c1',
     ),
     'behat/gherkin' => 
     array (
@@ -88,6 +88,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '59374f2fef0cabb9e8ddb53277e85cdca74328de',
+    ),
+    'codeception/module-db' => 
+    array (
+      'pretty_version' => '1.1.0',
+      'version' => '1.1.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '8c8076cd05d4db95798acd7dba2a56578210982c',
     ),
     'codeception/module-phpbrowser' => 
     array (

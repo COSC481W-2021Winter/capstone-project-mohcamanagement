@@ -33,7 +33,7 @@
 
 				<tr>
 					<td style="text-align: center; padding: 2px;">
-						<Button type="Submit" name="Submit" style="background-color: #343131;  color: #969595;">Submit</Button>
+						<input type="Submit" name="Submit" style="background-color: #343131;  color: #969595;"></input>
 					</td>
 				</tr>
 			</form>
@@ -41,7 +41,7 @@
 			<form method="post" action="../index.html">
 				<tr>
 					<td style="text-align: center; padding: 2px;">
-						<Button type="Submit" name="Submit" value="Back" style="background-color: #343131;  color: #969595;">Back</Button>
+						<input type="Submit" name="Submit" value="Back" style="background-color: #343131;  color: #969595;"></input>
 					</td>
 				</tr>
 			</form>

@@ -7,4 +7,14 @@ modules:
     enabled:
         - Asserts
         - \Helper\Unit
+        - Db:
+    config:
+        - DB:
+          dsn: 'mysql:host=localhost;dbname=Overseer'
+          user: 'root'
+          password: ''
+          dump: ''
+          populate: false # run populator before all tests
+          cleanup: false # run populator before each test
+          # populator: 'mysql -u $user -h $host $dbname < $dump'
     step_decorators: ~        

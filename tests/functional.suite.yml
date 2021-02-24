@@ -9,5 +9,7 @@ actor: FunctionalTester
 modules:
     enabled:
         # add a framework module here
+        - PhpBrowser:
+            url: http://localhost:8080/capstone-project-mohcamanagement/src/
         - \Helper\Functional
     step_decorators: ~        

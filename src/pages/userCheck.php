@@ -43,7 +43,7 @@
 	<body>
 		<?php 
 
-		echo "<script>alert('Credentials entered were invalid.')</script>";
+		echo "<script id='failCredCheck'>alert('Credentials entered were invalid.')</script>";
 		}
 		 ?>
 		<table class="userCreationTable">
