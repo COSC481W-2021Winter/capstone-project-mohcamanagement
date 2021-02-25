@@ -82,17 +82,17 @@
 	</style>
 	<header>
 		<img class="logo" src="" alt="logo">
-			<form method="post" action="/capstone-project-mohcamanagement/src/pages/userUpdateAvailabilty.php ">
-				<button class="button NavButton" >Update Availability</NavButton>
+			<form method="post" action="/capstone-project-mohcamanagement/src/pages/userUpdateAvailabilty.php">
+				<button class="button NavButton" >Update Availability</button>
 			</form>
 
 			<form method="post" action="/capstone-project-mohcamanagement/src/pages/userRequestOff.php">
 				<button class="button NavButton" >Request Off</button>
 			</form>
 
-		<form method="post" action="/capstone-project-mohcamanagement/src/index.html">
-			<button class="button button0">Log Out</button>
-		</form>
+			<form method="post" action="/capstone-project-mohcamanagement/src/index.html">
+				<button class="button button0">Log Out</button>
+			</form>
 	</header>
  <!-- <header>
 		<img class="logo" src="" alt="logo">

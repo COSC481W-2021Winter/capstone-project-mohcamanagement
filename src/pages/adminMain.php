@@ -88,11 +88,9 @@
 				<button class="button NavButton" >Create Users</button>
 			</form>
 
-
-
-		<form method="post" action="/capstone-project-mohcamanagement/src/index.html">
-			<button class="button button0" onclick="location.href='/capstone-project-mohcamanagement/src/index.html'">Log Out</button>
-		</form>
+			<form method="post" action="/capstone-project-mohcamanagement/src/index.html">
+				<button class="button button0" onclick="location.href='/capstone-project-mohcamanagement/src/index.html'">Log Out</button>
+			</form>
 	</header>
 	<body>
 		<?php 
