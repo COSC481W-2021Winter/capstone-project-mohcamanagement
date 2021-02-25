@@ -50,42 +50,42 @@ class AdminNavButtonsCest
    
 }
 
-// class UserNavButtonsCest
-// {
-//     public function NavButtonWorks(AcceptanceTester $I)
-//     {
-//         $this-> UserLoginWorks($I);
+class UserNavButtonsCest
+{
+    public function UserNavWorks(AcceptanceTester $I)
+    {
+        $this-> UserLoginWorks($I);
         
-//         $I->see('Welcome JDoe');
-//         $I->amOnPage('adminMain.php');
+        $I->see('Welcome JDoe');
+        $I->amOnPage('userMain.php');
 
-//         // $I->see('Update Availability');
-//         // $I->click('Update Availability');
-//         // $I->click('Back');
+        $I->see('Request Off');
+        $I->click('Request Off');
+        $I->click('Back');
 
-//         $I->see('Request Off');
-//         $I->click('Request Off');
-//         $I->click('Back');
+        // $I->see('Update Availability');
+        // $I->click('Update Availability');
+        // $I->click('Cancel');
 
-//         $I->see('Log Out');
-//         $I->click('Log Out');
+        $I->see('Log Out');
+        $I->click('Log Out');
      
-//         $I->amOnPage('index.html');
+        $I->amOnPage('index.html');
 
-//     }
+    }
     
-//     public function UserLoginWorks(AcceptanceTester $I)
-//     {
-//         $I->amOnPage('index.html');
+    public function UserLoginWorks(AcceptanceTester $I)
+    {
+        $I->amOnPage('index.html');
 
-//         $I->see('Login');
-//         $I->click('Login');
-//         $I->fillField('Username', 'JDoe');
-//         $I->fillField('Pin', '1234');
-//         $I->see('Submit');
-//         $I->click('Submit');
+        $I->see('Login');
+        $I->click('Login');
+        $I->fillField('Username', 'JDoe');
+        $I->fillField('Pin', '1234');
+        $I->see('Submit');
+        $I->click('Submit');
 
-//     }
+    }
    
-// }
+}
 ?>

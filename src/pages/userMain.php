@@ -80,18 +80,31 @@
 		color: black;
 	}
 	</style>
- <header>
+	<header>
+		<img class="logo" src="" alt="logo">
+			<form method="post" action="/capstone-project-mohcamanagement/src/pages/userUpdateAvailabilty.php ">
+				<button class="button NavButton" >Update Availability</NavButton>
+			</form>
+
+			<form method="post" action="/capstone-project-mohcamanagement/src/pages/userRequestOff.php">
+				<button class="button NavButton" >Request Off</button>
+			</form>
+		</nav>
+
+		<form method="post" action="/capstone-project-mohcamanagement/src/index.html">
+			<button class="button button0">Log Out</button>
+		</form>
+	</header>
+ <!-- <header>
 		<img class="logo" src="" alt="logo">
 		<nav>
 			<ul class="nav_links">
-				<form>
-					<NavButton class="button NavButton" onclick="location.href='/capstone-project-mohcamanagement/src/pages/userUpdateAvailabilty.php' ">Update Availability</NavButton>
-					<NavButton class="button NavButton" onclick="location.href='/capstone-project-mohcamanagement/src/pages/userRequestOff.php' ">Request Off</NavButton>
-				</form>
+				<button class="button NavButton" onclick="location.href='/capstone-project-mohcamanagement/src/pages/userUpdateAvailabilty.php' ">Update Availability</NavButton>
+				<button class="button NavButton" onclick="location.href='/capstone-project-mohcamanagement/src/pages/userRequestOff.php' ">Request Off</NavButton>
 			</ul>
 		</nav>
 		<button class="button button0" onclick="location.href='/capstone-project-mohcamanagement/src/index.html'">Log Out</button0>
-	</header>
+	</header> -->
 	<body>
 		<?php 
 		echo "<h1>Welcome $userCookie</h1>";

@@ -76,17 +76,17 @@
 	<header>
 		<img class="logo" src="" alt="logo">
 		<nav>
-				<form method="post" action="/capstone-project-mohcamanagement/src/pages/inventoryLog.php">
-					<button class="button NavButton" >Inventory Log</button>
-				</form>
+			<form method="post" action="/capstone-project-mohcamanagement/src/pages/inventoryLog.php">
+				<button class="button NavButton" >Inventory Log</button>
+			</form>
 
-				<form method="post" action="/capstone-project-mohcamanagement/src/pages/scheduleGeneration.php">
-					<button class="button NavButton" >Schedule Generation</button>
-				</form>
+			<form method="post" action="/capstone-project-mohcamanagement/src/pages/scheduleGeneration.php">
+				<button class="button NavButton" >Schedule Generation</button>
+			</form>
 
-				<form method="post" action="/capstone-project-mohcamanagement/src/pages/adminCreateUser.php">
-					<button class="button NavButton" >Create Users</button>
-				</form>
+			<form method="post" action="/capstone-project-mohcamanagement/src/pages/adminCreateUser.php">
+				<button class="button NavButton" >Create Users</button>
+			</form>
 
 		</nav>
 
