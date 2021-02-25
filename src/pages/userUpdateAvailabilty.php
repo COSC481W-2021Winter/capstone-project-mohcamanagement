@@ -62,9 +62,9 @@
 		$query = "UPDATE Users SET Monday='$monday', Tuesday='$tuesday', Wednesday='$wednesday', Thursday='$thursday', Friday='$friday', Saturday='$saturday', Sunday='$sunday' WHERE Username='$username'";
 		mysqli_query($conn, $query);
 
-		echo '<script type="text/javascript"> alert("Schedule Updated") </script>';
-		// header() changes the page to the location listed
-		header("Location: userMain.php");
+		// echo '<script type="text/javascript"> alert("Schedule Updated") </script>';
+		// // header() changes the page to the location listed
+		// header("Location: userMain.php");
 		
 	}
 ?>
