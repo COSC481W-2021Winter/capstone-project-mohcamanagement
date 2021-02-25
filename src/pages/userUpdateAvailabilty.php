@@ -99,6 +99,20 @@
 				width: 100%;
 				clear: both;
 			}
+			a.cancel{
+				height: 5%;
+				border: 4px;
+				border-radius: 5px;
+				padding: 2px 40% 10px 40%;
+				margin: 10px;
+				box-shadow: 1px 1px 1px 1px grey;
+				width: 100%;
+				background-color: gray;
+				font-size: 20px;
+				text-align: center;
+				clear: both;
+				
+			}
 		</style>
 	</head>
 	<body>
@@ -123,6 +137,7 @@
 					<input type="text" name="sunday" placeholder="Update Hours"/><br/>
 
 					<input type="submit" name="update" value="UPDATE SCHEDULE"/>
+					<a class="cancel" href="/capstone-project-mohcamanagement/src/pages/userMain.php">Cancel</a>
 				</form> 
 		</div>
 		</center>

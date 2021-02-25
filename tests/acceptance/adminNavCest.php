@@ -63,9 +63,9 @@ class UserNavButtonsCest
         $I->click('Request Off');
         $I->click('Back');
 
-        // $I->see('Update Availability');
-        // $I->click('Update Availability');
-        // $I->click('Cancel');
+        $I->see('Update Availability');
+        $I->click('Update Availability');
+        $I->click('Cancel');
 
         $I->see('Log Out');
         $I->click('Log Out');
