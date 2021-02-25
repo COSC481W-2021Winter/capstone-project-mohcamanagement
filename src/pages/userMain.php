@@ -89,7 +89,6 @@
 			<form method="post" action="/capstone-project-mohcamanagement/src/pages/userRequestOff.php">
 				<button class="button NavButton" >Request Off</button>
 			</form>
-		</nav>
 
 		<form method="post" action="/capstone-project-mohcamanagement/src/index.html">
 			<button class="button button0">Log Out</button>

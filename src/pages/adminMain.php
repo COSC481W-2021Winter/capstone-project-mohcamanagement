@@ -75,7 +75,7 @@
 	</style>
 	<header>
 		<img class="logo" src="" alt="logo">
-		<nav>
+		
 			<form method="post" action="/capstone-project-mohcamanagement/src/pages/inventoryLog.php">
 				<button class="button NavButton" >Inventory Log</button>
 			</form>
@@ -88,7 +88,7 @@
 				<button class="button NavButton" >Create Users</button>
 			</form>
 
-		</nav>
+
 
 		<form method="post" action="/capstone-project-mohcamanagement/src/index.html">
 			<button class="button button0" onclick="location.href='/capstone-project-mohcamanagement/src/index.html'">Log Out</button>
