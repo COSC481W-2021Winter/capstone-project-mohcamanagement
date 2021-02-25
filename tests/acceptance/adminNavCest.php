@@ -5,7 +5,7 @@
   */
 
 
-  //check to see if simple buttons work
+  //Testing both navbars
   
 class AdminNavButtonsCest
 {
