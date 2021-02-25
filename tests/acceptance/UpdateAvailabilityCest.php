@@ -7,13 +7,19 @@
 
   //check to see if simple buttons work
   
-class AdminNavButtonsCest
+class UpDateScheduleCest
 {
-    public function NavButtonWorks(AcceptanceTester $I)
+    public function Input_ButtonWorks(AcceptanceTester $I)
     {
-        $I->amOnPage('userUpdateAvailabilty.php');
-        $I->fillField('Username', 'DKilroy');
-        $I->fillField('Pin', '1117');
+        $I->amOnPage('/pages/userUpdateAvailabilty.php');
+        $I->see('Update');
+        $I->fillField('monday', 'off');
+        $I->fillField('tuesday', '7:11-9:11');
+        $I->fillField('thursday', 'off');
+        $I->fillField('friday', '11:00-11:00');
+        $I->click('UPDATE SCHEDULE');
+        $I->click('Cancel');
+        $I->see('Welcome');
     }
 }
 ?>
