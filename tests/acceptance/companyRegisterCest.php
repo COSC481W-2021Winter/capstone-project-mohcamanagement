@@ -22,6 +22,39 @@ class companyRegisterCest
         $I->amOnPage('http://localhost:8080/capstone-project-mohcamanagement/src/pages/adminCreation.php');
         
     }
+
+    // Tests to see if an alert box pops up when no information is entered.
+    public function companyRegisterTestFail(AcceptanceTester $I)
+    {
+        $I->amOnPage('http://localhost:8080/capstone-project-mohcamanagement/src/pages/companyRegister.php');
+        $I->fillField('companyName', '');
+        $I->fillField('email', '');
+        $I->fillField('irsNum', '');
+        $I->fillField('phoneNo', '');
+        $I->fillField('address', '');
+        $I->fillField('city', '');
+        $I->fillField('zipCode', '');
+        $I->click('Submit');
+
+        // Checking popup does not work yet, figuring it out.
+
+        //$I->seeElement('#alert');     
+        //$I->see('Error all values need to be entered');
+        //$I->click('OK');
+        /*if ($I->tryToSeeElement('.alert')) {
+            $I->waitForText('Error all values need to be entered');
+            $I->click('OK');
+        }*/
+    }
+
+    // Tests to see if the back button takes user to main page
+    public function companyRegisterBackButton(AcceptanceTester $I)
+    {
+        $I->amOnPage('http://localhost:8080/capstone-project-mohcamanagement/src/pages/companyRegister.php');
+        $I->click('Back');
+        $I->amOnPage('http://localhost:8080/capstone-project-mohcamanagement/src/index.html');
+    }
+
 }
 
 
