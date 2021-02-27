@@ -32,7 +32,7 @@ class adminCreateUserCest
         $I->fillField('Username', '');
         $I->fillField('Pin', '');
         $I->click('Submit');
-        //$I->seeElement('#alert'); // Does not work yet, figuring it out.
+        $I->expect('Error Username and Pin must be entered.'); 
     }
     
 
