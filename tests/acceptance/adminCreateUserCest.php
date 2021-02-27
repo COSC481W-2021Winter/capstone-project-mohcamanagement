@@ -1,6 +1,6 @@
 <?php
 // To run on mac: $codecept run tests/acceptance/adminCreateUserCest.php --steps
-// To run on Windows: >vendor\bin\codecept.bat run tests\acceptance\companyRegisterCest.php
+// To run on Windows: >vendor\bin\codecept.bat run tests\acceptance\adminCreateUserCest.php
 
 class adminCreateUserCest
 {
@@ -36,7 +36,7 @@ class adminCreateUserCest
     }
     
 
-   // Tests to see if the back button takes user to main page
+    // Tests to see if the back button takes user to main page
     public function adminCreateUserBackButton(AcceptanceTester $I)
     {
         $I->amOnPage('http://localhost:8080/capstone-project-mohcamanagement/src/pages/adminCreateUser.php');        

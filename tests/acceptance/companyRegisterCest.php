@@ -34,17 +34,9 @@ class companyRegisterCest
         $I->fillField('address', '');
         $I->fillField('city', '');
         $I->fillField('zipCode', '');
-        $I->click('Submit');
-
-        // Checking popup does not work yet, figuring it out.
-
-        //$I->seeElement('#alert');     
-        //$I->see('Error all values need to be entered');
-        //$I->click('OK');
-        /*if ($I->tryToSeeElement('.alert')) {
-            $I->waitForText('Error all values need to be entered');
-            $I->click('OK');
-        }*/
+        $I->click('Submit');    
+        $I->expect('Error all values need to be entered');
+        
     }
 
     // Tests to see if the back button takes user to main page
