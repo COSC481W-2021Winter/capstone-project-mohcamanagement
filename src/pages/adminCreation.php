@@ -69,7 +69,7 @@
 			header("Location: adminMain.php");
 		}
 		else{
-			echo "<script>alert('Error Username and Pin must be entered.')</script>";
+			echo "<script id='requireEntries'>alert('Error Username and Pin must be entered.')</script>";
 		}
 	}
 ?>
