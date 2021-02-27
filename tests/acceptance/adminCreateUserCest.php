@@ -5,7 +5,7 @@
 class adminCreateUserCest
 {
     // Tests to see when all the info is entered in and hitting the submit button takes you to adminCreation page
-    public function adminCreateUserTest(AcceptanceTester $I)
+    public function CreateUserTest(AcceptanceTester $I)
     {
         $I->amOnPage('http://localhost:8080/capstone-project-mohcamanagement/src/pages/adminCreateUser.php');
         $I->see('Create User');
@@ -25,7 +25,7 @@ class adminCreateUserCest
     }
 
     // Tests to see if an alert box pops up when no information is entered.
-    public function adminCreateUserTestFail(AcceptanceTester $I)
+    public function CreateUserTestFail(AcceptanceTester $I)
     {
         $I->amOnPage('http://localhost:8080/capstone-project-mohcamanagement/src/pages/adminCreateUser.php');
         $I->see('Create User');
@@ -35,6 +35,16 @@ class adminCreateUserCest
         $I->expect('Error Username and Pin must be entered.'); 
     }
     
+    // Tests to see if an alert box pops up when no information is entered.
+    public function TestDuplicateInfoFail(AcceptanceTester $I)
+    {
+        $I->amOnPage('http://localhost:8080/capstone-project-mohcamanagement/src/pages/adminCreateUser.php');
+        $I->see('Create User');
+        $I->fillField('Username', 'DKilroy');
+        $I->fillField('Pin', '1117');
+        $I->click('Submit');
+        $I->expect('Error Username and Pin already in database.'); 
+    }
 
     // Tests to see if the back button takes user to main page
     public function adminCreateUserBackButton(AcceptanceTester $I)
