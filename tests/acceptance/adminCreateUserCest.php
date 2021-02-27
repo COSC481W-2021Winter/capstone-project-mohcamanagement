@@ -35,7 +35,7 @@ class adminCreateUserCest
         $I->expect('Error Username and Pin must be entered.'); 
     }
     
-    // Tests to see if an alert box pops up when no information is entered.
+    // Tests to see if an alert box pops up when duplicate information from the database is entered.
     public function TestDuplicateInfoFail(AcceptanceTester $I)
     {
         $I->amOnPage('http://localhost:8080/capstone-project-mohcamanagement/src/pages/adminCreateUser.php');
