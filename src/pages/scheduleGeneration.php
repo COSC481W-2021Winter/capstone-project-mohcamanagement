@@ -20,7 +20,7 @@
 			echo "<td class='schedBorder'><h3>Employee</h3></td>";					
 			echo "<td class='schedBorder' ><h3>Monday </h3></td>";
 			echo "<td class='schedBorder'><h3>Tuesday </h3></td>";
-			echo "<td class='schedBorder'><h3>Wednsday </h3></td>";
+			echo "<td class='schedBorder'><h3>Wednesday </h3></td>";
 			echo "<td class='schedBorder'><h3>Thursday </h3></td>";
 			echo "<td class='schedBorder'><h3>Friday </h3></td>";
 			echo "<td class='schedBorder'><h3>Saturday </h3></td>";
@@ -40,7 +40,7 @@
 			//grabs the current row of data so you can display or manipulate
 			$row = mysqli_fetch_assoc($result);
 			echo "<tr>";
-			echo "<td class='schedBorder'>".($row['Username'])."</td>";
+			echo "<td class='schedBorder'name='user'>".($row['Username'])."</td>";
 			echo "<td class='schedBorder'>".$row['Monday']."</td>";
 			echo "<td class='schedBorder'>".$row['Tuesday']."</td>";
 			echo "<td class='schedBorder'>".$row['Wednesday']."</td>";
