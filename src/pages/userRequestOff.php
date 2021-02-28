@@ -2,6 +2,17 @@
 	/*db connection needed if in seperate file */
 	include_once ('../includes/dbConnection.php');
 	// $conn is the conection to database
+	if(isset($_COOKIE["Username"])) {
+		// if not empty then we store the cookie into a variable
+		$userCookie = $_COOKIE["Username"];
+	}
+
+	// TODO finsih connection to database upon table creation for requests off
+	if (!empty($_POST['send'])) {
+		header('Location: userMain.php');
+   		die();
+	}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +46,11 @@
 </head>
 
 <body>
-	<h1>Request Off</h1>
+	<h1>Request Off <?php echo "$userCookie";?></h1>
+	<!-- <h3 style="text-align:center"><?php 
+		// echo "$userCookie";
+		?></h3> -->
+		<br>
 	<table class="userCreationTable">
 		<?php
 		//TODO be changed to whoever is logged in
@@ -48,13 +63,13 @@
 		// }
 		?>
 		<!-- TODO fix placment of form on screen -->
-		<form method="post" onsubmit="myFunction()">
+		<form onsubmit="myFunction()" method="post">
 			<tr>
 				<td style="text-align: center;">Start Date</td>
 			</tr>
 
 			<tr>
-				<td><input type="date" value="<?php echo date('Y-m-d');?>" class="inputBox"></td>
+				<td><input id="from" type="date" value="<?php echo date('Y-m-d');?>" class="inputBox"></td>
 			</tr>
 
 			<tr>
@@ -62,7 +77,7 @@
 			</tr>
 
 			<tr>
-				<td><input type="date" value="<?php echo date('Y-m-d');?>" class="inputBox"></td>
+				<td><input id="until" type="date" value="<?php echo date('Y-m-d');?>" class="inputBox"></td>
 			</tr>
 
 			<tr>
@@ -74,7 +89,7 @@
 			</tr>
 
 			<tr>
-				<td style="text-align: center;"><input type="Submit" name="Submit" value="Submit"></input></td>
+				<td style="text-align: center;"><input type="Submit" name="send" value="Submit"></input></td>
 			</tr>
 		</form>
 
@@ -88,10 +103,20 @@
 	
 	<script>
 	function myFunction(){
-		window.alert("Manager has been notified");
-	
+		// alert("Manager has been notified");
+		var txtOne = document.getElementById('from').value;
+		var txtTwo = document.getElementById('until').value;
+		var option= confirm("are the dates correct "+txtOne+" until "+txtTwo);
+		if(option==true){
+			alert('Manager has been notified');
+		}else{
+
+		}
+		// window.location='../userMain.php';
+		// window.location.replace("userMain.php");
 		//TODO redirect to a page when submitted
-		document.location.href = "userMain.php";
+		// document.location= "userMain.php";
+		// window.location="userMain.php";
 	}
 	</script>
  </body>
