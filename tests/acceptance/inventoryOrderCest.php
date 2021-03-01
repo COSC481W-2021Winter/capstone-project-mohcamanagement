@@ -5,7 +5,7 @@ class inventoryOrderCest
 	public function inventoryOrderAcceptanceTest(AcceptanceTester $I)
 	{
 		$I->amOnPage('/pages/inventoryOrder.php');
-		$I->see('Inventory Log');
+		$I->see('Inventory Order');
 	}
 
 	public function backButtonTest(AcceptanceTester $I)
