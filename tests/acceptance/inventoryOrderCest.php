@@ -8,15 +8,14 @@ class inventoryOrderCest
 		$I->see('Inventory Log');
 	}
 
-	public function backButtonUserTest(AcceptanceTester $I)
+	public function backButtonTest(AcceptanceTester $I)
 	{
-
-	}
-
-
-	public function backButtonAdminTest(AcceptanceTester $I)
-	{
-
+		$I->amOnPage('/pages/inventoryOrder.php');
+		$I->setCookie('Username', 'John');
+		$I->click('Back');
+		$I->grabCookie('Username');
+        $name = $I->seeCookie('Username');
+		$I->see('Welcome '.$name);
 	}
 
 	public function amountVerificationTest(AcceptanceTester $I)
@@ -29,9 +28,10 @@ class inventoryOrderCest
 
 	}
 
-	public function verifyTableEntriesTest(AcceptanceTester $I)
+	public function verifyTableExistsTest(AcceptanceTester $I)
 	{
-
+		$I->amOnPage('/pages/inventoryOrder.php');
+		$I->seeElement('#orderTable');
 	}
 }
 
