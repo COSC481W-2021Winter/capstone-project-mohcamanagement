@@ -49,7 +49,7 @@
 
 	<body>
 		<h1><?php echo getUserName(); ?></h1>
-		<table class="userCreationTable">
+		<table class="userCreationTable" id="orderTable">
 			<tr>
 				<th>Item</th>
 				<th>Quantity to Order</th>
