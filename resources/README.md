@@ -1,0 +1,1 @@
+This directory holds extra resources used for our project.
