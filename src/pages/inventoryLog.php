@@ -103,7 +103,10 @@
 			<tr>
 				<td colspan="3" style="text-align: center;">
 					<select name="inventory" id="inventory">
-						<option value="type">Inventory Type</option>
+						<option selected disabled>Inventory Type</option>
+						<option value="front" selected>Front of House</option> <!-- Default option. -->
+						<option value="kitchen">Kitchen</option>
+						<option value="coffee">Coffee</option>
 						<?php
 							generateOptions();
 						?>
