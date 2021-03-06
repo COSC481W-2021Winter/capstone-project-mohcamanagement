@@ -15,13 +15,24 @@
 		if($conn->connect_error){
 			die("Connection failed: " . $conn->connect_error);
 		}
-		$sql = "SELECT * FROM Inventory";
+		$sql;
+		if ($_POST) {
+			
+			$typeT=$_POST['type'];
+			if($typeT=="all")
+				$sql = "SELECT * FROM Items";
+			else
+				$sql = "SELECT * FROM Items where Type='".$typeT."'";
+			// echo '<script>alert("Changed")</script>'; 
+		}else{
+			$sql = "SELECT * FROM Items";
+		}
 		$result = $conn->query($sql);
 
 		if($result->num_rows > 0){
 			while($row = $result->fetch_assoc()){
-				echo "<tr><td style='text-align:center;'>".$row["Item"]."</td><td style='text-align:center;'>".$row["Par"]."</td>";
-				echo "<td style='text-align:center;'><input type=\"number\" id=\"".$row["Item"]."\" name=\"".$row["Item"]."\"></td></tr>";
+				echo "<tr><td style='text-align:center;'>".$row["ItemName"]."</td><td style='text-align:center;'>".$row["Par"]."</td>";
+				echo "<td style='text-align:center;'><input type=\"number\" id=\"".$row["ItemName"]."\" name=\"".$row["ItemName"]."\"></td></tr>";
 			}
 		}
 		else{
@@ -30,7 +41,25 @@
 	}
 
 	function generateOptions(){
-		return;
+		$conn = getInclude();
+		$sql = "SELECT * FROM InventoryType";
+		$result = $conn->query($sql);
+		while($row = $result->fetch_assoc()){
+			echo'<option value="'.$row["Type"].'">'.$row["Type"].'</option>';
+		}
+	}
+
+
+	function selectInventory(){
+		$conn = getInclude();
+		$sql = "SELECT * FROM Inventory";
+		$result = $conn->query($sql);
+		while($row = $result->fetch_assoc()){
+			if(selection.value == $row["Item"]) {
+				alert('If you choose this option, you can not receive any infomation');
+			}
+	}
+
 	}
 
 	function addItemToTable($itemEntry, $expectedPar){
@@ -102,8 +131,9 @@
 		<table id="itemTable" class="userCreationTable">
 			<tr>
 				<td colspan="3" style="text-align: center;">
-					<select name="inventory" id="inventory">
+					<select name="inventory" id="inventory" onchange="newTable(this)">
 						<option value="type">Inventory Type</option>
+						<option value="all">All</option>
 						<?php
 							generateOptions();
 						?>
@@ -111,7 +141,7 @@
 				</td>
 			</tr>
 
-			<form action="inventoryOrder.php" method="post"	>
+			<form id="inputForm"action="inventoryOrder.php" method="post"	>
 					<tr>
 						<th>Item</th>
 						<th>Par</th>
@@ -119,6 +149,7 @@
 					</tr>
 					<?php
 						generateTableData();
+						
 					?>
 				<tr>
 					<td colspan="3" style="text-align: center;">
@@ -151,11 +182,22 @@
 
 			<tr>
 				<td colspan="3" style="text-align: center;">
-					<form method="post" action="/capstone-project-mohcamanagement/src/pages/adminMain.php">
-					<button type="button" style='background-color: #343131;  color: #969595;'>Back</button>
+					<form method="post" action="adminMain.php">
+					<button type="Submit" style='background-color: #343131;  color: #969595;'>Back</button>
 					</form>
 				</td>
 			</tr>
 		</table>
+		<form id="secret"action="inventoryLog.php"method="POST">
+		<input type="hidden" id="secretVal" name="type" value="">
+		</form>
+		<script>
+			function newTable(tableValue){
+			var val = document.getElementById('inventory');
+			var something = document.getElementById('secretVal').value = val.value;
+			var frm = document.getElementById("secret");
+			frm.submit();
+			}
+		</script>
 	</body>
 </html>
