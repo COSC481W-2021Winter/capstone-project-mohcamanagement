@@ -75,29 +75,50 @@
 		<link rel="stylesheet" type="text/css" href="../style/style.css">
 
 		<style>
-			h1{
-				padding: 20px 0px;
-			}
-			input{
-				width: 40%;
+
+	table{
+		margin-left: auto;
+		margin-right: auto;
+		font-family: arial, sans-serif;
+		border-collapse: collapse;
+		height: 200px;
+		width: 25%;
+	}
+	a{
+		color: #000000;
+	}
+	.table1{
+		margin-left: auto;
+		margin-right: auto;
+		font-family: arial, sans-serif;
+		border-collapse: collapse;
+		height: 200px;
+		width: 65%;
+	}
+	td, th {
+	  border: 1px solid #dddddd;
+	  text-align: left;
+	  padding: 8px;
+	  width:500px;
+	}
+	.container{
+		width: 400px;
+		height: 650px;
+	}
+	a.buttons{
 				height: 5%;
+				width: 100%;
 				border: 4px;
 				border-radius: 5px;
-				padding: 10px 15px;
+				padding: 6px 40% 10px 40%;
 				margin: 10px;
 				box-shadow: 1px 1px 1px 1px grey;
-			}
-			label{
-				font-size: 25px;
-			}
-			.container{
-				width: 500px;
+				background-color: #efefef;
+				font-size: 18px;
+				text-align: center;
 				clear: both;
-				align-items:center;
-			}
-			.container input{
-				width: 100%;
-				clear: both;
+				text-decoration:none;
+				display:inline-block;
 			}
 			/*
 				This is all the code for the update and cancel buttons
@@ -133,12 +154,12 @@
 			#select{
 				width:300px;
 				font-size: 15px;
-				height:50px;
+				height:100px;
 				text-align-last:center;
 			}
 			#select option{
 			  width:250px;
-			  height:100px;   
+			  height:30px;   
 			}
 			
 			/*
@@ -219,101 +240,105 @@
 			.popup:hover{
 				color: gray;
 			}
-		</style>
-	</head>
-	<script>
+</style>
+<script>
 	//This is the JavaScript code for the pop up on the update button.
-		// When the user clicks on div, open the popup
+	// When the user clicks on div, open the popup
 		function myFunction() {
 		  var popup = document.getElementById("myPopup");
 		  popup.classList.toggle("show");
 		  if(popup.classList.contains("show")) // Check if the popup is shown
 		  setTimeout(() => popup.classList.remove("show"), 2000) // If yes hide it after 10000 milliseconds
+		  //PHP code to send information to database here
 		}
-		</script>
-	<body>
-		<center>
+</script>
+<center>
+
+</br>
+<h1><u>Update Your Weekly Work Schedule</u></h1>
+</br>
+
+<h3>Shift Information</h3>
+
+</br>
+<table>
+	<tr>
+		<th>Shifts</th>
+		<th>In</th>
+		<th>Out</th>
+	</tr>
+	<tr>
+		<td> Shift 1
+		<td> Time in
+		<td> Time out
+	</tr>
+	<tr>
+		<td> Shift 2
+		<td> Time in
+		<td> Time out
+	</tr>
+	<tr>
+		<td> Shift 3
+		<td> Time in
+		<td> Time out
+	</tr>
+</table>
+</br></br></br></br></br></br></br>
+<h3>Choose your personal availability</h3>
+</br>
+<table class="table1">
+	<tr>
+		<th><u>Monday</u></th>
+		<th><u>Tuesday</u></th>
+		<th><u>Wednesday</u></th>
+		<th><u>Thursday</u></th>
+		<th><u>Friday</u></th>
+		<th><u>Saturday</u></th>
+		<th><u>Sunday</u></th>
+	</tr>
+	<tr>
+		<td> <input type="checkbox" name="M-1" value="check-1" id="check-1" > First Shift</br>
+			 <input type="checkbox" name="M-2" value="check-1" id="check-1" > Second Shift</br>
+			 <input type="checkbox" name="M-3" value="check-1" id="check-1" > Third Shift</br>
+			 <input type="checkbox" name="M-0" value="check-1" id="check-1" > OFF
+		</td>
+		<td> <input type="checkbox" name="Tu-1" value="check-1" id="check-1" > First Shift</br>
+			 <input type="checkbox" name="Tu-2" value="check-1" id="check-1" > Second Shift</br>
+			 <input type="checkbox" name="Tu-3" value="check-1" id="check-1" > Third Shift</br>
+			 <input type="checkbox" name="Tu-0" value="check-1" id="check-1" > OFF
+		</td>
+		<td> <input type="checkbox" name="W-1" value="check-1" id="check-1" > First Shift</br>
+			 <input type="checkbox" name="W-2" value="check-1" id="check-1" > Second Shift</br>
+			 <input type="checkbox" name="W-3" value="check-1" id="check-1" > Third Shift</br>
+			 <input type="checkbox" name="W-0" value="check-1" id="check-1" > OFF
+		</td>
+		<td> <input type="checkbox" name="Th-1" value="check-1" id="check-1" > First Shift</br>
+			 <input type="checkbox" name="Th-2" value="check-1" id="check-1" > Second Shift</br>
+			 <input type="checkbox" name="Th-3" value="check-1" id="check-1" > Third Shift</br>
+			 <input type="checkbox" name="Th-0" value="check-1" id="check-1" > OFF
+		</td>                             
+		<td> <input type="checkbox" name="F-1" value="check-1" id="check-1" > First Shift</br>
+			 <input type="checkbox" name="F-1" value="check-1" id="check-1" > Second Shift</br>
+			 <input type="checkbox" name="F-2" value="check-1" id="check-1" > Third Shift</br>
+			 <input type="checkbox" name="F-0" value="check-1" id="check-1" > OFF
+		</td>
+		<td> <input type="checkbox" name="Sat-1" value="check-1" id="check-1" > First Shift</br>
+			 <input type="checkbox" name="Sat-2" value="check-1" id="check-1" > Second Shift</br>
+			 <input type="checkbox" name="Sat-3" value="check-1" id="check-1" > Third Shift</br>
+			 <input type="checkbox" name="Sat-0" value="check-1" id="check-1" > OFF
+		</td>
+		<td> <input type="checkbox" name="Sun-1" value="check-1" id="check-1" > First Shift</br>
+			 <input type="checkbox" name="Sun-2" value="check-1" id="check-1" > Second Shift</br>
+			 <input type="checkbox" name="Sun-3" value="check-1" id="check-1" > Third Shift</br>
+			 <input type="checkbox" name="Sun-0" value="check-1" id="check-1" > OFF
+		</td>
+	</tr>
+</table>
 		<div class="container">
-			<h1>Update Your Weekly Work Schedule</h1>
-				<form action="userUpdateAvailabilty.php" method="POST" >
-					<label for="monday">Monday</label>
-						<div class="select">
-						  <select name = "select" id="select">
-							<option selected disabled>Select your Schedule</option>
-							<option value="Option 1">Morning: 8:00am - 2:00pm</option>
-							<option value="Option 2">Mid-Shift: 12:00pm - 6:00pm</option>
-							<option value="Option 3">Closing Shift: 4:00pm - 10:00pm</option>
-						  </select>
-						</div>
-						<br/>
-					<label for="tuesday">Tuesday</label>
-						<div class="select">
-						  <select name = "select" id="select">
-							<option selected disabled>Select your Schedule</option>
-							<option value="Option 1">Morning: 8:00am - 2:00pm</option>
-							<option value="Option 2">Mid-Shift: 12:00pm - 6:00pm</option>
-							<option value="Option 3">Closing Shift: 4:00pm - 10:00pm</option>
-						  </select>
-						</div>
-						<br/>
-					<label for="wednesday">Wednesday</label>
-						<div class="select">
-						  <select name = "select" id="select">
-							<option selected disabled>Select your Schedule</option>
-							<option value="Option 1">Morning: 8:00am - 2:00pm</option>
-							<option value="Option 2">Mid-Shift: 12:00pm - 6:00pm</option>
-							<option value="Option 3">Closing Shift: 4:00pm - 10:00pm</option>
-						  </select>
-						</div>
-						<br/>
-					<label for="thursday">Thursday</label>
-						<div class="select">
-						  <select name = "select" id="select">
-							<option selected disabled>Select your Schedule</option>
-							<option value="Option 1">Morning: 8:00am - 2:00pm</option>
-							<option value="Option 2">Mid-Shift: 12:00pm - 6:00pm</option>
-							<option value="Option 3">Closing Shift: 4:00pm - 10:00pm</option>
-						  </select>
-						</div>
-						<br/>
-					<label for="friday">Friday  </label>
-						<div class="select">
-						  <select name = "select" id="select">
-							<option selected disabled>Select your Schedule</option>
-							<option value="Option 1">Morning: 8:00am - 2:00pm</option>
-							<option value="Option 2">Mid-Shift: 12:00pm - 6:00pm</option>
-							<option value="Option 3">Closing Shift: 4:00pm - 10:00pm</option>
-						  </select>
-						</div>
-						<br/>
-					<label for="saturday">Saturday</label>
-						<div class="select">
-						  <select name = "select" id="select">
-							<option selected disabled>Select your Schedule</option>
-							<option value="Option 1">Morning: 8:00am - 2:00pm</option>
-							<option value="Option 2">Mid-Shift: 12:00pm - 6:00pm</option>
-							<option value="Option 3">Closing Shift: 4:00pm - 10:00pm</option>
-						  </select>
-						</div>
-						<br/>
-					<label for="sunday">Sunday</label>
-						<div class="select">
-						  <select name = "select" id="select">
-							<option selected disabled>Select your Schedule</option>
-							<option value="Option 1">Morning: 8:00am - 2:00pm</option>
-							<option value="Option 2">Mid-Shift: 12:00pm - 6:00pm</option>
-							<option value="Option 3">Closing Shift: 4:00pm - 10:00pm</option>
-						  </select>
-						</div>
-						<br/>
-				</div>
-			<div class="container">
-					<div class="popup" onclick="myFunction()">UPDATE
-						<span class="popuptext" id="myPopup">Updates sent to Manager!</span>
-					</div>
-					<a class="buttons" href="/capstone-project-mohcamanagement/src/pages/userMain.php">CANCEL</a>
-				</form> 
+			<div class="popup" onclick="myFunction()">UPDATE
+				<span class="popuptext" id="myPopup">Updates sent to Manager!</span>
 			</div>
-		</center>
-	</body>
+			<a class="buttons" a href="/capstone-project-mohcamanagement/src/pages/userMain.php">CANCEL</a>
+		</div>
+</center>
 </html>
