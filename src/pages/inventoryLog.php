@@ -39,7 +39,7 @@
 		$sql = "SELECT * FROM InventoryType";
 		$result = $conn->query($sql);
 
-		// For now, has the last Type in the array as the default value
+		// For now, has the last Type as the default value
 		while ($row = $result->fetch_assoc()) {
 			echo '<option value="'.$row['Type'].'"selected>'.$row['Type'].'</option>';
 		 }
@@ -62,18 +62,21 @@
 		addItemToTable($itemEntry, $expectedPar);
 	}
 
+	// Add new types
 	function addInventoryTypeToTable($Type, $Name){
-		$conn = getInclude();
+        $conn = getInclude();
 
-		$query = "INSERT INTO InventoryType VALUES($Type, '$Name')"; 
-		mysqli_query($conn, $query);
-	}
+        $query = "INSERT INTO InventoryType VALUES('$Type', '$Name')"; 
+        mysqli_query($conn, $query);
+    }
 
-	if(isset($_POST["Type"]) && isset($_POST["Name"])) {
-		$Type = $_POST["Type"];
-		$Name = $_POST['Name'];
-		addInventoryTypeToTable($Type, $Name);
-	}
+    if(isset($_POST["Type"]) && isset($_POST["Name"])) {
+        $Type = $_POST["Type"];
+        $Name = $_POST["Name"];
+        addInventoryTypeToTable($Type, $Name);
+    }
+
+	
 ?>
 
 <!-- <script>
@@ -181,8 +184,8 @@
 			</tr>
 		</form>
 
-	<!-- Add Inventory Type -->	
-	<form method="post" action="inventoryLog.php">
+		<!-- Add Inventory Type -->	
+		<form method="post" action="inventoryLog.php">
 			<tr>
 				<td style="padding-top: 10px;">
 					<input type="text" id="Type" name="Type" placeholder="Inventory Type"/>	
