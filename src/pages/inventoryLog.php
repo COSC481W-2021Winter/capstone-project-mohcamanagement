@@ -29,7 +29,23 @@
 		}
 	}
 
+	// Add types in drop-down menu 
 	function generateOptions(){
+		$conn = getInclude();
+		if($conn->connect_error){
+			die("Connection failed: " . $conn->connect_error);
+		}
+
+		$sql = "SELECT * FROM InventoryType";
+		$result = $conn->query($sql);
+
+		// For now, has the last Type in the array as the default value
+		while ($row = $result->fetch_assoc()) {
+			echo '<option value="'.$row['Type'].'"selected>'.$row['Type'].'</option>';
+		 }
+		 
+		 echo '</select>';
+	
 		return;
 	}
 
@@ -44,6 +60,19 @@
 		$itemEntry = $_POST["itemEntry"];
 		$expectedPar = $_POST['expectedPar'];
 		addItemToTable($itemEntry, $expectedPar);
+	}
+
+	function addInventoryTypeToTable($Type, $Name){
+		$conn = getInclude();
+
+		$query = "INSERT INTO InventoryType VALUES($Type, '$Name')"; 
+		mysqli_query($conn, $query);
+	}
+
+	if(isset($_POST["Type"]) && isset($_POST["Name"])) {
+		$Type = $_POST["Type"];
+		$Name = $_POST['Name'];
+		addInventoryTypeToTable($Type, $Name);
 	}
 ?>
 
@@ -102,11 +131,11 @@
 		<table id="itemTable" class="userCreationTable">
 			<tr>
 				<td colspan="3" style="text-align: center;">
-					<select name="inventory" id="inventory">
+					<select name="Type" id="Type">
 						<option selected disabled>Inventory Type</option>
-						<option value="front" selected>Front of House</option> <!-- Default option. -->
-						<option value="kitchen">Kitchen</option>
-						<option value="coffee">Coffee</option>
+						<!-- <option value="FOH" selected>Front of House</option>  Default option. -->
+						<!-- <option value="Kitchen">Kitchen</option> -->
+						<!-- <option value="Coffee">Coffee</option> -->
 						<?php
 							generateOptions();
 						?>
@@ -143,8 +172,8 @@
 				<td style="padding-top: 40px;">
 					<input type="number" id="expectedPar" name="expectedPar" value=1 min=1 max=99/>
 				</td>
+				
 			</tr>
-
 			<tr>
 				<td colspan="3" style="text-align: center;">
 					<input type="submit" value="Add Item" style='background-color: #343131;  color: #969595;'/>
@@ -152,6 +181,22 @@
 			</tr>
 		</form>
 
+	<!-- Add Inventory Type -->	
+	<form method="post" action="inventoryLog.php">
+			<tr>
+				<td style="padding-top: 10px;">
+					<input type="text" id="Type" name="Type" placeholder="Inventory Type"/>	
+				</td>
+				<td style="padding-top: 10px;">
+					<input type="text" id="Name" name="Name" placeholder="Company Name"/>
+				</td>
+				<td style="padding-top: 10px;" colspan="3" style="text-align: center;">
+					<input type="submit" value="Add Type" style='background-color: #343131;  color: #969595;'/>
+				</td>
+			</tr>
+		</form>
+
+			<!-- Back Button -->	
 			<tr>
 				<td colspan="3" style="text-align: center;">
 					<form method="post" action="/capstone-project-mohcamanagement/src/pages/adminMain.php">
