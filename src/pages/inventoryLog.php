@@ -62,7 +62,7 @@
 		addItemToTable($itemEntry, $expectedPar);
 	}
 
-	// Add new types
+	// Add new types in database
 	function addInventoryTypeToTable($Type, $Name){
         $conn = getInclude();
 
@@ -136,9 +136,6 @@
 				<td colspan="3" style="text-align: center;">
 					<select name="Type" id="Type">
 						<option selected disabled>Inventory Type</option>
-						<!-- <option value="FOH" selected>Front of House</option>  Default option. -->
-						<!-- <option value="Kitchen">Kitchen</option> -->
-						<!-- <option value="Coffee">Coffee</option> -->
 						<?php
 							generateOptions();
 						?>
