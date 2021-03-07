@@ -411,7 +411,7 @@
 	<table style="margin-top: 10px; padding: 2px;">
 		<tr>
 			<th>Select Day</th>
-			<th>Select an Availability</th>
+			<th>Select Shifts</th>
 		</tr>
 
 		<tr>
@@ -428,9 +428,7 @@
 				</select>
 			</td>
 			<td>
-				<select name="ShiftNamesSelection">
-					<option selected disabled>Shift Selection</option>
-
+				
 					<?php
 					$query = "SELECT * FROM ShiftTimes";
 					$result = mysqli_query($conn, $query);
@@ -439,11 +437,11 @@
 					for($i = 0; $i<$numOfRows; $i++) {
 						$row = mysqli_fetch_assoc($result);
 						$shiftName = $row['ShiftName'];
-						echo "<option value='$shiftName'>$shiftName</option>";
+						echo "<input type='checkbox' name='$i' value='$shiftName'> $shiftName</br> </input>";
 					}
 					?>
 
-				</select>
+		
 			</td>
 		</tr>
 	</table>
