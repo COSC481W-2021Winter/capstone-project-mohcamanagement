@@ -16,7 +16,7 @@
 
 		$username = $row["Username"];
 		$pin = $row["Pin"];
-		$isManager = $row["isManager"];
+		$isManager = $row["IsManager"];
 
 		if($usernameEntered == $username && $pinEntered == $pin) {
 			$valid = true;
