@@ -40,8 +40,10 @@
 		}
 	}
 
+	// Add types in drop-down menu 
 	function generateOptions(){
 		$conn = getInclude();
+
 		$sql = "SELECT * FROM InventoryType";
 		$result = $conn->query($sql);
 		while($row = $result->fetch_assoc()){
@@ -74,6 +76,22 @@
 		$expectedPar = $_POST['expectedPar'];
 		addItemToTable($itemEntry, $expectedPar);
 	}
+
+	// Add new types in database
+	function addInventoryTypeToTable($Type, $Name){
+        $conn = getInclude();
+
+        $query = "INSERT INTO InventoryType VALUES('$Type', '$Name')"; 
+        mysqli_query($conn, $query);
+    }
+
+    if(isset($_POST["Type"]) && isset($_POST["Name"])) {
+        $Type = $_POST["Type"];
+        $Name = $_POST["Name"];
+        addInventoryTypeToTable($Type, $Name);
+    }
+
+	
 ?>
 
 <!-- <script>
@@ -171,8 +189,8 @@
 				<td style="padding-top: 40px;">
 					<input type="number" id="expectedPar" name="expectedPar" value=1 min=1 max=99/>
 				</td>
+				
 			</tr>
-
 			<tr>
 				<td colspan="3" style="text-align: center;">
 					<input type="submit" value="Add Item" style='background-color: #343131;  color: #969595;'/>
@@ -180,6 +198,22 @@
 			</tr>
 		</form>
 
+		<!-- Add Inventory Type -->	
+		<form method="post" action="inventoryLog.php">
+			<tr>
+				<td style="padding-top: 10px;">
+					<input type="text" id="Type" name="Type" placeholder="Inventory Type"/>	
+				</td>
+				<td style="padding-top: 10px;">
+					<input type="text" id="Name" name="Name" placeholder="Company Name"/>
+				</td>
+				<td style="padding-top: 10px;" colspan="3" style="text-align: center;">
+					<input type="submit" value="Add Type" style='background-color: #343131;  color: #969595;'/>
+				</td>
+			</tr>
+		</form>
+
+			<!-- Back Button -->	
 			<tr>
 				<td colspan="3" style="text-align: center;">
 					<form method="post" action="adminMain.php">

@@ -302,7 +302,7 @@
 	<table style="margin-top: 10px; padding: 2px;">
 		<tr>
 			<th>Select Day</th>
-			<th>Select an Availability</th>
+			<th>Select Shifts</th>
 		</tr>
 
 		<tr>
