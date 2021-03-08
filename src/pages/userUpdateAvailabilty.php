@@ -11,29 +11,26 @@
 		$numOfRows = mysqli_num_rows($result);
 
 		
-		if(!empty($_POST['DaySelection'])) {
+		if(!empty($_POST['DaySelection']) && !empty($_POST['shift'])) {
 			$daySelected = $_POST['DaySelection'];
 
 			$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = '$daySelected'"; 
 			mysqli_query($conn, $query);
 
-			if(!empty($_POST['shift'])){
+			$check = $_POST['shift'];
+			$size = count($check);
 
-				$check = $_POST['shift'];
-				$size = count($check);
+			for($i = 0; $i<$size; $i++) {
+				$shiftToInsert = $check[$i];
+				$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+				mysqli_query($conn, $query);
 
-				for($i = 0; $i<$size; $i++) {
-					$shiftToInsert = $check[$i];
-					$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+				if($shiftToInsert == "Off") {
+					$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = '$daySelected'"; 
 					mysqli_query($conn, $query);
 
-					if($shiftToInsert == "Off") {
-						$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = '$daySelected'"; 
-						mysqli_query($conn, $query);
-
-						$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
-						mysqli_query($conn, $query);
-					}
+					$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+					mysqli_query($conn, $query);
 				}
 			}
 		}
