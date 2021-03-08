@@ -16,9 +16,9 @@
 			die("Connection failed: " . $conn->connect_error);
 		}
 		$sql;
-		if ($_POST) {
+		if (!empty ($_POST['inventory'])) {
 			
-			$typeT=$_POST['type'];
+			$typeT=$_POST['inventory'];
 			if($typeT=="all")
 				$sql = "SELECT * FROM Items";
 			else
@@ -64,17 +64,21 @@
 
 	}
 
-	function addItemToTable($itemEntry, $expectedPar){
+	function addItemToTable($itemEntry, $expectedPar, $expectedType){
 		$conn = getInclude();
 
-		$query = "INSERT INTO Inventory Values('$itemEntry', $expectedPar, 0)";
+		echo $itemEntry." ".$expectedPar." ".$expectedType;
+
+		$query = "INSERT INTO Items Values('$itemEntry', '$expectedPar', 0, '$expectedType', 'Songbird')";
 		mysqli_query($conn, $query);
 	}
 
-	if(isset($_POST["expectedPar"]) && isset($_POST["itemEntry"])) {
+	if(isset($_POST["expectedPar"]) && isset($_POST["itemEntry"]) && isset($_POST["invType"])) {
 		$itemEntry = $_POST["itemEntry"];
 		$expectedPar = $_POST['expectedPar'];
-		addItemToTable($itemEntry, $expectedPar);
+		$expectedType = $_POST['invType'];
+
+		addItemToTable($itemEntry, $expectedPar, $expectedType);
 	}
 
 	// Add new types in database
@@ -149,8 +153,8 @@
 		<table id="itemTable" class="userCreationTable">
 			<tr>
 				<td colspan="3" style="text-align: center;">
-					<select name="inventory" id="inventory" onchange="newTable(this)">
-						<option value="type">Inventory Type</option>
+					<select name="inventory" id="inventory" onchange="newTable(this, 'inventory')">
+						<option selected disabled>Inventory Type</option>
 						<option value="all">All</option>
 						<?php
 							generateOptions();
@@ -176,6 +180,8 @@
 				</tr>
 			</form>
 
+
+		<!-- Add Item -->	
 		<form method="post" action="inventoryLog.php">
 			<tr>
 				<td style="padding-top: 40px;">
@@ -189,11 +195,19 @@
 				<td style="padding-top: 40px;">
 					<input type="number" id="expectedPar" name="expectedPar" value=1 min=1 max=99/>
 				</td>
+				<td colspan="3" style="text-align: center;">
+					<select name="invType" id="invType">
+						<option selected disabled>Inventory Type</option>
+						<?php
+							generateOptions();
+						?>
+					</select>
+				</td>
 				
 			</tr>
 			<tr>
 				<td colspan="3" style="text-align: center;">
-					<input type="submit" value="Add Item" style='background-color: #343131;  color: #969595;'/>
+					<input type="submit" name="addItem" value="Add Item" style='background-color: #343131;  color: #969595;'/>
 				</td>
 			</tr>
 		</form>
@@ -226,8 +240,8 @@
 		<input type="hidden" id="secretVal" name="type" value="">
 		</form>
 		<script>
-			function newTable(tableValue){
-			var val = document.getElementById('inventory');
+			function newTable(tableValue, tableName){
+			var val = document.getElementById(tableName);
 			var something = document.getElementById('secretVal').value = val.value;
 			var frm = document.getElementById("secret");
 			frm.submit();
