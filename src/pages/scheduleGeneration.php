@@ -3,7 +3,8 @@
 	include_once ('../includes/dbConnection.php');
 	// $conn is the conection to database
 ?>
- <html>
+<!DOCTYPE html>
+ <html lang="en">
  <head>
 	<title>Work Schedule</title>
 	<link rel="stylesheet" href="../style/style.css">
@@ -14,8 +15,6 @@
 		<?php
 		// plan to add an automated date with the weekdays to make shcdule easier to read
 		//ex Monday 15
-		// $startDate=strtotime("Monday") ;
-		// $endDate=strtotime("+1 days","Sunday");
 		echo "<tr>";
 			echo "<td class='schedBorder'><h3>Employee</h3></td>";					
 			echo "<td class='schedBorder' ><h3>Monday </h3></td>";
@@ -41,13 +40,6 @@
 			$row = mysqli_fetch_assoc($result);
 			echo "<tr>";
 			echo "<td class='schedBorder'name='user'>".($row['Username'])."</td>";
-			echo "<td class='schedBorder'>".$row['Monday']."</td>";
-			echo "<td class='schedBorder'>".$row['Tuesday']."</td>";
-			echo "<td class='schedBorder'>".$row['Wednesday']."</td>";
-			echo "<td class='schedBorder'>".$row['Thursday']."</td>";
-			echo "<td class='schedBorder'>".$row['Friday']."</td>";
-			echo "<td class='schedBorder'>".$row['Saturday']."</td>";
-			echo "<td class='schedBorder'>".$row['Sunday']."</td>";
 			echo "</tr>";
 		}
 		?>

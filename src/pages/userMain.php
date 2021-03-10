@@ -9,12 +9,14 @@
 		$userCookie = $_COOKIE["Username"];
 	}
 ?>
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
  <head>
 	<title>User main page</title>
 	<link rel="stylesheet" type="text/css" href="../style/style.css">
  </head>
+
+ 	<!-- CSS might want to add this to the style sheet -->
 	<style>
 	h1{text-align: center;}
 	
@@ -80,8 +82,10 @@
 		color: black;
 	}
 	</style>
+
+	<!-- Navbar -->
 	<header>
-		<img class="logo" src="" alt="logo">
+		<img class="logo" src="../../resources/OverseerTransparent.png" style="width: 10%;" alt="logo">
 			<form method="post" action="/capstone-project-mohcamanagement/src/pages/userUpdateAvailabilty.php">
 				<button class="button NavButton" >Update Availability</button>
 			</form>
@@ -94,27 +98,12 @@
 				<button class="button button0">Log Out</button>
 			</form>
 	</header>
- <!-- <header>
-		<img class="logo" src="" alt="logo">
-		<nav>
-			<ul class="nav_links">
-				<button class="button NavButton" onclick="location.href='/capstone-project-mohcamanagement/src/pages/userUpdateAvailabilty.php' ">Update Availability</NavButton>
-				<button class="button NavButton" onclick="location.href='/capstone-project-mohcamanagement/src/pages/userRequestOff.php' ">Request Off</NavButton>
-			</ul>
-		</nav>
-		<button class="button button0" onclick="location.href='/capstone-project-mohcamanagement/src/index.html'">Log Out</button0>
-	</header> -->
+
 	<body>
 		<?php 
 		echo "<h1>Welcome $userCookie</h1>";
 		 ?>
 		<div class="square1">Schedule Placeholder</div>
 		<div class="square2">Suggested Inventory / Writeoffs Placeholder</div>
-		<!-- <div class="centerHorz">
-			<button class="button button1">Inventory Suggestions</button>
-			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/pages/userUpdateAvailabilty.php'"> Update Availability</button>
-			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/pages/userRequestOff.php'">Request Off</button>
-			<button class="button button1" onclick="location.href='/capstone-project-mohcamanagement/client/index.html'">Log Out</button>
-		</div> -->
 	</body>
 </html>

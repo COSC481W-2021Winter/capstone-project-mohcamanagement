@@ -24,7 +24,7 @@
 				$row = mysqli_fetch_assoc($result);
 
 				// Finding that the entries are already in the table so set the bools to false
-				if($row["Username"] == $username && $row["Pin"] == $pin){
+				if($row["Username"] == $username && $row["Pin"] == $pin) {
 					$userUnique = 0;
 					$pinUnique = 0;
 					break;

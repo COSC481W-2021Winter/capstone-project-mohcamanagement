@@ -1,7 +1,7 @@
 <?php
 	/*Insert Code here*/
 
-	function getInclude(){
+	function getInclude() {
 		$dbHost = "localhost";
 		$dbUser = "root";
 		$dbPass = "";
@@ -10,31 +10,31 @@
 		return mysqli_connect($dbHost, $dbUser, $dbPass, $db);
 	}
 
-	function getUserName(){
+	function getUserName() {
 		return "&lt;Distributor Name>";
 	}
 
-	function generateTableData(){
+	function generateTableData() {
 		$conn = getInclude();
-		if($conn->connect_error){
+		if($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
 		}
 
 		$sql = "SELECT * FROM Inventory";
 		$result = $conn->query($sql);
 
-		if($result->num_rows > 0){
-			while($row = $result->fetch_assoc()){
+		if($result->num_rows > 0) {
+			while($row = $result->fetch_assoc()) {
 				echo "<tr><td style='text-align:center;'>".$row["Item"]."</td>";
-				if($_POST[$row['Item']] == null){
+				if($_POST[$row['Item']] == null) {
 					echo "<td style='text-align:center;'>".$row['Par']."</td></tr>";
 				}
 				else
 					echo "<td>".($row["Par"] - $_POST[$row["Item"]])."</td></tr>";
 			}
 		}
-		else{
-			echo "Error!";
+		else {
+			echo "<script>alert('Error!')</script>";
 		}
 	}
 ?>
@@ -63,8 +63,5 @@
 				</td>
 			</tr>
 		</table>
-
-		
-
 	</body>
 </html>
