@@ -8,12 +8,13 @@
 
 		<link rel="stylesheet" type="text/css" href="../style/style.css">
 	</head>
+
 	<body>
 		<table class="userCreationTable">
 			<form method="post" action="userCheck.php">
 				<tr>
 					<td style="padding: 2px;">
-						<input type="text" name="Username" placeholder="Enter Username" class="inputBox"></input>
+						<input type="text" name="Username" placeholder="Enter Username" class="inputBox"/>
 					</td>
 
 					<td class="required">
@@ -23,7 +24,7 @@
 
 				<tr>
 					<td style="padding: 2px;">
-						<input type="text" name="Pin" placeholder="Enter Pin" class="inputBox"></input>
+						<input type="text" name="Pin" placeholder="Enter Pin" class="inputBox"/>
 					</td>
 
 					<td class="required">
