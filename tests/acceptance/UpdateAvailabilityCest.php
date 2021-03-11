@@ -48,6 +48,14 @@ class UpDateScheduleCest
       $I->seeCheckboxIsChecked('#shift4');
       $I->click('Add');
       $I->see('Off');
+       //test to see if when you click a shift and "off" simultaneously, it updates that day as "off"
+       $option = $I->grabTextFrom('select option:nth-child(2)');
+       $I->selectOption("DaySelection", $option);
+       $I->checkOption('#shift1');
+       $I->checkOption('#shift4');
+       $I->click('Add');
+       $I->see('off');
+       
       //Test to see if error message shows up if you don't select a shift
       $option = $I->grabTextFrom('select option:nth-child(5)');
       $I->selectOption("DaySelection", $option);
@@ -60,7 +68,7 @@ class UpDateScheduleCest
       $I->seeCheckboxIsChecked('#shift4');
       $I->click('Add');
       $I->seeElement('#failCheck');
-      
+    
 
 
 
