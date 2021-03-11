@@ -35,7 +35,7 @@
 			}
 		}
 		else {
-			echo "<script>alert('Error both selection need input.')</script>";
+			echo "<script id='failCheck'>alert('Error both selection need input.')</script>";
 		}
 	}
 ?>

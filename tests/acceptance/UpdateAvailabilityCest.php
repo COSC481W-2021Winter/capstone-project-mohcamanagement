@@ -9,17 +9,66 @@
   
 class UpDateScheduleCest
 {
+
     public function Input_ButtonWorks(AcceptanceTester $I)
     {
-        $I->amOnPage('/pages/userUpdateAvailabilty.php');
-        $I->see('Update');
-        $I->fillField('monday', 'off');
-        $I->fillField('tuesday', '7:11-9:11');
-        $I->fillField('thursday', 'off');
-        $I->fillField('friday', '11:00-11:00');
-        $I->click('UPDATE SCHEDULE');
-        $I->click('Cancel');
-        $I->see('Welcome');
+      //Login
+       $I->amOnPage('index.html');
+        $I->see('Login');
+        $I->click('Login');
+        $I->fillField('Username', 'JBond');
+        $I->fillField('Pin', '5555');
+        $I->see('Submit');
+        $I->click('Submit');
+        $I->see('Welcome JBond');
+      //Tests
+      //$I->amOnPage('/pages/userUpdateAvailabilty.php');
+      $I->click('Update Availability');
+      $I->see('Shift Information');
+      //Check that shift times are displayed on the table
+      $I->see('1st');
+      $I->see('6:30');
+      $I->see('1:30');
+      // Test to see if user availability is updated and that check boxes and drop down work
+      $I->see('Day Selection');
+      $option = $I->grabTextFrom('select option:nth-child(5)');
+      $I->selectOption("DaySelection", $option);
+      $I->seeElement('#shift1');
+      $I->dontSeeCheckboxIsChecked('#shift1');
+      $I->checkOption('#shift1');
+      $I->seeCheckboxIsChecked('#shift1');
+      $I->click('Add');
+      $I->see('Friday');
+      //see if taking a day off the table works
+      $option = $I->grabTextFrom('select option:nth-child(5)');
+      $I->selectOption("DaySelection", $option);
+      $I->seeElement('#shift4');
+      $I->dontSeeCheckboxIsChecked('#shift4');
+      $I->checkOption('#shift4');
+      $I->seeCheckboxIsChecked('#shift4');
+      $I->click('Add');
+      $I->see('Off');
+      //Test to see if error message shows up if you don't select a shift
+      $option = $I->grabTextFrom('select option:nth-child(5)');
+      $I->selectOption("DaySelection", $option);
+      $I->click('Add');
+      $I->seeElement('#failCheck');
+      //Test to see if error message shows up if you don't select a day
+      $I->seeElement('#shift4');
+      $I->dontSeeCheckboxIsChecked('#shift4');
+      $I->checkOption('#shift4');
+      $I->seeCheckboxIsChecked('#shift4');
+      $I->click('Add');
+      $I->seeElement('#failCheck');
+      
+
+
+
+      
+
+
+
+    
     }
 }
 ?>
