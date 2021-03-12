@@ -13,11 +13,8 @@
 		if($conn->connect_error) {
 			die("Connection failed: " . $conn->connect_error);
 		}
-
 		$sql;
-
 		if(!empty ($_POST['inventory'])) {
-			
 			$typeT=$_POST['inventory'];
 			if($typeT=="all")
 				$sql = "SELECT * FROM Items";
@@ -27,7 +24,6 @@
 		else {
 			$sql = "SELECT * FROM Items";
 		}
-
 		$result = $conn->query($sql);
 
 		if($result->num_rows > 0) {
@@ -47,15 +43,6 @@
 	// Add types in drop-down menu 
 	function generateOptions() {
 		$selected;
-		//changes whats selected depending on option picked
-		if(!empty ($_POST['inventory'])) {
-		$selected=$_POST['inventory'];
-		}
-		if($selected=='all'){
-			echo'<option selected value="all">All</option>';
-		}else{
-			echo'<option value="all">All</option>';
-		}
 		$conn = getInclude();
 
 		$sql = "SELECT * FROM InventoryType";
@@ -99,18 +86,20 @@
 	}
 
 	// Add new types in database
-	function addInventoryTypeToTable($Type, $Name) {
+	// , $Name
+	function addInventoryTypeToTable($Type) {
         $conn = getInclude();
 
         $Name = "Songbird";
-        $query = "INSERT INTO InventoryType VALUES('$Type', '$Name')"; 
+        $query = "INSERT INTO InventoryType VALUES('".$Type."', '".$Name."')"; 
         mysqli_query($conn, $query);
     }
-
-    if(isset($_POST["Type"]) && isset($_POST["Name"])) {
-        $Type = $_POST["Type"];
-        $Name = $_POST["Name"];
-        addInventoryTypeToTable($Type, $Name);
+	// && isset($_POST["Name"])
+    if(isset($_POST["newType"])) {
+        $Type = $_POST["newType"];
+		// $Name = $_POST["Name"];
+		// , $Name
+        addInventoryTypeToTable($Type);
     }
 ?>
 
@@ -120,29 +109,6 @@
 		<title>Page Title</title>
 
 		<link rel="stylesheet" type="text/css" href="../style/style.css">
-
-		<style>
-			.button {
-			  border: none;
-			  color: white;
-			  padding: 15px 32px;
-			  text-align: center;
-			  text-decoration: none;
-			  display: inline-block;
-			  font-size: 16px;
-			  margin: 4px 2px;
-			  cursor: pointer;
-			}
-
-			.button1 {
-				background-color: #c29c9b; /* Green */
-				border-radius: 50%;
-			} 
-			.button2 {
-				background-color: #a88f8f; /* Blue */
-				border-radius: 50%;
-			}
-		</style>
 	</head>
 
 	<body>
@@ -155,6 +121,14 @@
 					<td colspan="4" style="text-align: center;">
 						<select name="inventory" id="inventory" onchange="this.form.submit()">
 							<?php
+							if(!empty ($_POST['inventory'])) {
+								$selected=$_POST['inventory'];
+								}
+								if($selected=='all'){
+									echo'<option selected value="all">All</option>';
+								}else{
+									echo'<option value="all">All</option>';
+								}
 								generateOptions();
 							?>
 						</select>
@@ -199,7 +173,6 @@
 
 					<td style="text-align: center; padding-top: 40px;">
 						<select name="invType" id="invType">
-							<option selected disabled>Inventory Type</option>
 							<?php
 								generateOptions();
 							?>
@@ -216,10 +189,10 @@
 			</form>
 
 			<!-- Add Inventory Type -->	
-			<form method="post" action="inventoryLog.php">
+			<form method="POST" action="inventoryLog.php">
 				<tr>
 					<td style="padding-top: 10px;" colspan="2">
-						<input type="text" id="Type" name="Type" placeholder="Inventory Type"/>	
+						<input type="text" id="newType" name="newType" placeholder="Inventory Type"/>	
 					</td>
 
 					<td style="padding-top: 10px;" colspan="2" style="text-align: center;">

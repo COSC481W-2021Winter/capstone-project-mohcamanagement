@@ -9,7 +9,20 @@
 
 		return mysqli_connect($dbHost, $dbUser, $dbPass, $db);
 	}
+// to update table with the values we have
+	$newConn = getInclude();
+	$newSql = "SELECT * FROM Items";
+	$newResult = $newConn->query($newSql);
+	while($row = $newResult->fetch_assoc()) {
+		if(isset($_POST[$row["ItemName"]])){
+			$number=$_POST[$row["ItemName"]];
+			$query = "UPDATE Items SET OnHand=$number";
+			mysqli_query($newConn, $query);
+		}
+	}
 
+
+// ------------------
 	function getUserName() {
 		return "&lt;Distributor Name>";
 	}
@@ -26,7 +39,7 @@
 		if($result->num_rows > 0) {
 			while($row = $result->fetch_assoc()) {
 				echo "<tr><td style='text-align:center;'>".$row["ItemName"]."</td>";
-				if($_POST[$row['Item']] == null) {
+				if($row['OnHand'] == 0) {
 					echo "<td style='text-align:center;'>".$row['Par']."</td></tr>";
 				}
 				else
