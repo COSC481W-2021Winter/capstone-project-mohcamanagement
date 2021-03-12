@@ -46,12 +46,26 @@
 
 	// Add types in drop-down menu 
 	function generateOptions() {
+		$selected;
+		//changes whats selected depending on option picked
+		if(!empty ($_POST['inventory'])) {
+		$selected=$_POST['inventory'];
+		}
+		if($selected=='all'){
+			echo'<option selected value="all">All</option>';
+		}else{
+			echo'<option value="all">All</option>';
+		}
 		$conn = getInclude();
 
 		$sql = "SELECT * FROM InventoryType";
 		$result = $conn->query($sql);
 		while($row = $result->fetch_assoc()) {
-			echo'<option value="'.$row["Type"].'">'.$row["Type"].'</option>';
+			if($selected==$row["Type"]){
+				echo'<option selected value="'.$row["Type"].'">'.$row["Type"].'</option>';
+			}else{
+				echo'<option value="'.$row["Type"].'">'.$row["Type"].'</option>';
+			}
 		}
 	}
 
@@ -134,12 +148,12 @@
 	<body>
 		<table id="itemTable" class="userCreationTable">
 			<form method="post" action="inventoryLog.php">
+			<tr><td colspan="4" style="text-align: center;">Inventory Type</td></tr>
+
 				<tr>
-					<!-- Still working on this. Will pick it up after work. -Dillon -->
+				
 					<td colspan="4" style="text-align: center;">
 						<select name="inventory" id="inventory" onchange="this.form.submit()">
-							<option selected disabled>Inventory Type</option>
-							<option value="all">All</option>
 							<?php
 								generateOptions();
 							?>
@@ -222,19 +236,6 @@
 					</form>
 				</td>
 			</tr>
-		</table>
-
-		<form id="secret"action="inventoryLog.php"method="POST">
-			<input type="hidden" id="secretVal" name="type" value="">
-		</form>
-
-		<script>
-			function newTable(tableValue, tableName) {
-				var val = document.getElementById(tableName);
-				var something = document.getElementById('secretVal').value = val.value;
-				var frm = document.getElementById("secret");
-				frm.submit();
-			}
-		</script>
+		</table>	
 	</body>
 </html>
