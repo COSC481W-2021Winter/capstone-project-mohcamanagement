@@ -58,10 +58,10 @@
 
 	function selectInventory() {
 		$conn = getInclude();
-		$sql = "SELECT * FROM Inventory";
+		$sql = "SELECT * FROM Item";
 		$result = $conn->query($sql);
 		while($row = $result->fetch_assoc()) {
-			if(selection.value == $row["Item"]) {
+			if(selection.value == $row["ItemName"]) {
 				alert('If you choose this option, you can not receive any infomation');
 			}
 		}
@@ -88,6 +88,7 @@
 	function addInventoryTypeToTable($Type, $Name) {
         $conn = getInclude();
 
+        $Name = "Songbird";
         $query = "INSERT INTO InventoryType VALUES('$Type', '$Name')"; 
         mysqli_query($conn, $query);
     }
@@ -132,19 +133,22 @@
 
 	<body>
 		<table id="itemTable" class="userCreationTable">
-			<tr>
-				<td colspan="4" style="text-align: center;">
-					<select name="inventory" id="inventory" onchange="newTable(this, 'inventory')">
-						<option selected disabled>Inventory Type</option>
-						<option value="all">All</option>
-						<?php
-							generateOptions();
-						?>
-					</select>
-				</td>
-			</tr>
-
-			<form id="inputForm"action="inventoryOrder.php" method="post">
+			<form method="post" action="inventoryLog.php">
+				<tr>
+					<!-- Still working on this. Will pick it up after work. -Dillon -->
+					<td colspan="4" style="text-align: center;">
+						<select name="inventory" id="inventory" onchange="this.form.submit()">
+							<option selected disabled>Inventory Type</option>
+							<option value="all">All</option>
+							<?php
+								generateOptions();
+							?>
+						</select>
+					</td>
+				</tr>
+			</form>
+			<!-- Inventory Order -->
+			<form id="inputForm" action="inventoryOrder.php" method="post">
 				<tr>
 					<th>Item</th>
 					<th>Par</th>
@@ -200,15 +204,11 @@
 			<!-- Add Inventory Type -->	
 			<form method="post" action="inventoryLog.php">
 				<tr>
-					<td style="padding-top: 10px;">
+					<td style="padding-top: 10px;" colspan="2">
 						<input type="text" id="Type" name="Type" placeholder="Inventory Type"/>	
 					</td>
 
-					<td style="padding-top: 10px;">
-						<input type="text" id="Name" name="Name" placeholder="Company Name"/>
-					</td>
-
-					<td style="padding-top: 10px;" colspan="3" style="text-align: center;">
+					<td style="padding-top: 10px;" colspan="2" style="text-align: center;">
 						<input type="submit" value="Add Type" style='background-color: #343131;  color: #969595;'/>
 					</td>
 				</tr>
@@ -216,7 +216,7 @@
 
 			<!-- Back Button -->	
 			<tr>
-				<td colspan="3" style="text-align: center;">
+				<td colspan="4" style="text-align: center;">
 					<form method="post" action="adminMain.php">
 						<button type="Submit" style='background-color: #343131;  color: #969595;'>Back</button>
 					</form>
