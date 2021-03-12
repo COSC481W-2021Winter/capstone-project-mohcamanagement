@@ -54,12 +54,12 @@ class inventoryLogCest
 	*/	
 	
 
-	// Test to see if there is a default in the drop-down menu
+    // Test to see if there is a default in the drop-down menu
     public function verifyDefaultOption(AcceptanceTester $I)
     {
         $I->amOnPage('/pages/inventoryLog.php');
-		$I->seeOptionIsSelected('inventory', 'Inventory Type'); 
-		//Default in drop-down is 'Inventory Type', when it should be 'All', because thats what actually shows; Bug?
+	$I->seeOptionIsSelected('inventory', 'Inventory Type'); 
+	//Default in drop-down is 'Inventory Type', when it should be 'All', because thats what actually shows; Bug?
 
     }
 
@@ -70,7 +70,7 @@ class inventoryLogCest
         $I->fillField('Type', 'BOH');
         $I->fillField('Name', 'Songbird');
         $I->click('addType');
-		$I->amOnPage('/pages/inventoryLog.php');
+	$I->amOnPage('/pages/inventoryLog.php');
         $I->see('BOH');
 
     }
