@@ -20,17 +20,17 @@
 			die("Connection failed: " . $conn->connect_error);
 		}
 
-		$sql = "SELECT * FROM Inventory";
+		$sql = "SELECT * FROM Items";
 		$result = $conn->query($sql);
 
 		if($result->num_rows > 0) {
 			while($row = $result->fetch_assoc()) {
-				echo "<tr><td style='text-align:center;'>".$row["Item"]."</td>";
+				echo "<tr><td style='text-align:center;'>".$row["ItemName"]."</td>";
 				if($_POST[$row['Item']] == null) {
 					echo "<td style='text-align:center;'>".$row['Par']."</td></tr>";
 				}
 				else
-					echo "<td>".($row["Par"] - $_POST[$row["Item"]])."</td></tr>";
+					echo "<td>".($row["Par"] - $row["OnHand"])."</td></tr>";
 			}
 		}
 		else {
