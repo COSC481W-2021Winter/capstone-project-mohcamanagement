@@ -31,7 +31,7 @@
 				echo "<tr>";
 				echo "<td style='text-align:center;'>".$row["ItemName"]."</td>";
 				echo "<td style='text-align:center;'>".$row["Par"]."</td>";
-				echo "<td style='text-align:center;' colspan='2'><input type=\"number\" id=\"".$row["ItemName"]."\" name=\"".$row["ItemName"]."\"></td>";
+				echo "<td style='text-align:center;' colspan='2'><input type=\"number\" id=\"".$row["ItemName"]."\" name=\"".$row["ItemName"]."\" value=0></td>";
 				echo "</tr>";
 			}
 		}

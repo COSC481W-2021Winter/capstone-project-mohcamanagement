@@ -16,7 +16,7 @@
 	while($row = $newResult->fetch_assoc()) {
 		if(isset($_POST[$row["ItemName"]])){
 			$number=$_POST[$row["ItemName"]];
-			$query = "UPDATE Items SET OnHand=$number";
+			$query = "UPDATE Items SET OnHand=$number WHERE ItemName='".$row['ItemName']."' ";
 			mysqli_query($newConn, $query);
 		}
 	}
@@ -42,12 +42,23 @@
 				if($row['OnHand'] == 0) {
 					echo "<td style='text-align:center;'>".$row['Par']."</td></tr>";
 				}
-				else
-					echo "<td>".($row["Par"] - $row["OnHand"])."</td></tr>";
+				else{
+					echo "<td style='text-align:center;'>".($row["Par"] - $row["OnHand"])."</td>";
+				}
+				echo "</tr>";
 			}
 		}
 		else {
 			echo "<script>alert('Error!')</script>";
+		}
+	}
+	function zeroOut(){
+		$newConn = getInclude();
+		$newSql = "SELECT * FROM Items";
+		$newResult = $newConn->query($newSql);
+		while($row = $newResult->fetch_assoc()) {
+				$query = "UPDATE Items SET OnHand=0";
+				mysqli_query($newConn, $query);
 		}
 	}
 ?>
@@ -72,7 +83,7 @@
 			?>
 			<tr>
 				<td colspan="3" style="text-align: center;">
-					<button type="button" onclick="location.href='adminMain.php'" style='background-color: #343131;  color: #969595;'>Back</button>
+					<button type="button" onclick="location.href='adminMain.php';<?php zeroOut();?>" style='background-color: #343131;  color: #969595;'>Back</button>
 				</td>
 			</tr>
 		</table>
