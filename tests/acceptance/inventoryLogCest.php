@@ -19,15 +19,17 @@ class inventoryLogCest
 	}
 
 	public function verifyItemAddedTest(AcceptanceTester $I)
-	{
-		$I->amOnPage('/pages/inventoryLog.php');
-		$I->fillField('itemEntry', 'Pizza');
-		$I->fillField('expectedPar', '3');
-		$I->selectOption('invType', 'FOH');
-		$I->click('addItem');
-		$I->amOnPage('/pages/inventoryLog.php');
-		$I->see('Pizza');
-	}
+    {
+        $I->amOnPage('/pages/inventoryLog.php');
+        $I->fillField('itemEntry', 'Muffin');
+        $I->fillField('expectedPar', '2');
+        $I->selectOption('invType', 'FOH');
+        $I->click('addItem');
+        $I->amOnPage('/pages/inventoryLog.php');
+        $I->selectOption('inventory', 'FOH');
+        //$I->see('Muffin');
+    }
+
 
 	/*
 	// These test fail because they check the database, don't think acceptance tests can test those
@@ -54,24 +56,24 @@ class inventoryLogCest
 	*/	
 	
 
-    // Test to see if there is a default in the drop-down menu
-    public function verifyDefaultOption(AcceptanceTester $I)
-    {
-        $I->amOnPage('/pages/inventoryLog.php');
-		$I->seeOptionIsSelected('inventory', 'All'); 
-    }
+   // Test to see if there is a default in the drop-down menu
+   public function verifyDefaultOption(AcceptanceTester $I)
+   {
+	   $I->amOnPage('/pages/inventoryLog.php');
+	   $I->seeOptionIsSelected('inventory', 'Select Item Category'); 
+   }
 
-    // Test to see if you can add different types in the drop-down
-    public function verifyAddType(AcceptanceTester $I)
-    {
-        $I->amOnPage('/pages/inventoryLog.php');
-        $I->fillField('Type', 'BOH');
-        $I->fillField('Name', 'Songbird');
-        $I->click('addType');
-		$I->amOnPage('/pages/inventoryLog.php');
-        $I->see('BOH');
+   // Test to see if you can add different types in the drop-down
+   public function verifyAddType(AcceptanceTester $I)
+   {
+	   $I->amOnPage('/pages/inventoryLog.php');
+	   $I->fillField('newType', 'BOH');
+	   $I->click('addItem');
+	   $I->amOnPage('/pages/inventoryLog.php');
+	   $I->see('BOH');
 
-    }
+   }
+
 
 }
 
