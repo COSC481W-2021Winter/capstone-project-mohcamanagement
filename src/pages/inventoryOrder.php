@@ -11,7 +11,14 @@
 	}
 
 	function getUserName() {
-		return "&lt;Distributor Name>";
+	if(isset($_COOKIE['inventoryType'])) {
+		if($_COOKIE['inventoryType'] != 'all') {
+			$inventoryType = $_COOKIE['inventoryType'];
+		}
+		else 
+			$inventoryType = 'All';
+	}	
+		return $inventoryType;
 	}
 
 	function generateTableData() {
@@ -20,17 +27,27 @@
 			die("Connection failed: " . $conn->connect_error);
 		}
 
-		$sql = "SELECT * FROM Inventory";
+		if(isset($_COOKIE['inventoryType'])) {
+			if($_COOKIE['inventoryType'] != 'all') {
+				$inventoryType = $_COOKIE['inventoryType'];
+				$sql = "SELECT * FROM Items WHERE Type='$inventoryType'";
+			}
+			else {
+				$sql = "SELECT * FROM Items";
+			}
+		}
+
+		
 		$result = $conn->query($sql);
 
 		if($result->num_rows > 0) {
 			while($row = $result->fetch_assoc()) {
-				echo "<tr><td style='text-align:center;'>".$row["Item"]."</td>";
-				if($_POST[$row['Item']] == null) {
+				echo "<tr><td style='text-align:center;'>".$row["ItemName"]."</td>";
+				if($_POST[$row['ItemName']] == null) {
 					echo "<td style='text-align:center;'>".$row['Par']."</td></tr>";
 				}
 				else
-					echo "<td>".($row["Par"] - $_POST[$row["Item"]])."</td></tr>";
+					echo "<td style='text-align:center;'>".($row["Par"] - $row["OnHand"])."</td></tr>";
 			}
 		}
 		else {
