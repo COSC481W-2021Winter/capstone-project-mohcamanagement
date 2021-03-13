@@ -215,8 +215,10 @@
 						<input type="text" id="newType" name="newType" placeholder="Inventory Type"/>	
 					</td>
 
+
 					<td style="padding-top: 10px;" colspan="2" style="text-align: center;">
-						<input type="submit" value="Add Type" style='background-color: #343131;  color: #969595;'/>
+						<input type="submit" name="addType" value="Add Type" style='background-color: #343131;  color: #969595;'/>
+
 					</td>
 				</tr>
 			</form>
