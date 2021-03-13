@@ -58,9 +58,7 @@ class inventoryLogCest
     public function verifyDefaultOption(AcceptanceTester $I)
     {
         $I->amOnPage('/pages/inventoryLog.php');
-	$I->seeOptionIsSelected('inventory', 'Inventory Type'); 
-	//Default in drop-down is 'Inventory Type', when it should be 'All', because thats what actually shows; Bug?
-
+		$I->seeOptionIsSelected('inventory', 'All'); 
     }
 
     // Test to see if you can add different types in the drop-down
@@ -70,7 +68,7 @@ class inventoryLogCest
         $I->fillField('Type', 'BOH');
         $I->fillField('Name', 'Songbird');
         $I->click('addType');
-	$I->amOnPage('/pages/inventoryLog.php');
+		$I->amOnPage('/pages/inventoryLog.php');
         $I->see('BOH');
 
     }
