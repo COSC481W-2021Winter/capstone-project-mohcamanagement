@@ -27,7 +27,6 @@ class inventoryLogCest
         $I->click('addItem');
         $I->amOnPage('/pages/inventoryLog.php');
         $I->selectOption('inventory', 'FOH');
-        //$I->see('Muffin');
     }
 
 
@@ -68,7 +67,7 @@ class inventoryLogCest
    {
 	   $I->amOnPage('/pages/inventoryLog.php');
 	   $I->fillField('newType', 'BOH');
-	   $I->click('addItem');
+	   $I->click('addType');
 	   $I->amOnPage('/pages/inventoryLog.php');
 	   $I->see('BOH');
 
