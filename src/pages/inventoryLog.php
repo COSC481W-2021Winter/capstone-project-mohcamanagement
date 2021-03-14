@@ -33,7 +33,7 @@
 				}
 				echo "<tr>";
 				echo "<td colspan='4' style='text-align: center;'>";
-				echo "<input type='submit' style='background-color: #343131;  color: #969595;'>";
+				echo "<input type='submit' name='submit' style='background-color: #343131;  color: #969595;'/>";
 				echo "</td>";
 				echo "</tr>";
 			}
