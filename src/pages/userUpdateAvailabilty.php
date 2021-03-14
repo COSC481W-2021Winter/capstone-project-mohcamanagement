@@ -265,12 +265,10 @@
 				$result = mysqli_query($conn, $query);
 				$numOfRows = mysqli_num_rows($result);
 
-				$shiftNamesArr = array();
 				for($i = 0; $i<$numOfRows; $i++) {
 					$row = mysqli_fetch_assoc($result);
 
 					$shiftName = $row['ShiftName'];
-					array_push($shiftNamesArr, $shiftName);
 
 					$startTime = $row['StartTime'];
 					$endTime = $row['EndTime'];
@@ -285,7 +283,7 @@
 			 ?>
 		</table>
 
-		<!-- Displays the availabiblity already entered by a user -->
+		<!-- Fills the correct arrays with the availability for each day. For sorting purposes. -->
 		<h3>Current Availability</h3>
 		<table style="margin-top: 10px; margin-bottom: 10px;">
 			<tr>
@@ -302,18 +300,140 @@
 				$query = "SELECT * from Availability where Pin='$userPin'";
 				$result = mysqli_query($conn, $query);
 				$numOfRows = mysqli_num_rows($result);
+				$monArr = array();
+				$tueArr = array();
+				$wedArr = array();
+				$thurArr = array();
+				$friArr = array();
+				$satArr = array();
+				$sunArr = array();
 
 				for($i = 0; $i<$numOfRows; $i++) {
 					$row = mysqli_fetch_assoc($result);
 
 					$day = $row['Day'];
 					$shiftName = $row['ShiftName'];
-
-					echo "<tr>";
-					echo "<td>$day</td>";
-					echo "<td>$shiftName</td>";
-					echo "</tr>";
+					if($day == 'Monday'){
+						array_push($monArr, $shiftName);
+					}
+					else if($day == 'Tuesday'){
+						array_push($tueArr, $shiftName);
+					}
+					else if($day == 'Wednesday'){
+						array_push($wedArr, $shiftName);
+					}
+					else if($day == 'Thursday'){
+						array_push($thurArr, $shiftName);
+					}
+					else if($day == 'Friday'){
+						array_push($friArr, $shiftName);
+					}
+					else if($day == 'Saturday'){
+						array_push($satArr, $shiftName);
+					}
+					else if($day == 'Sunday'){
+						array_push($sunArr, $shiftName);
+					}
 				}
+
+				// Each of the days are printed in the table with the respective availability for each day. If the day array is empty then we just output off.
+				echo "<tr>";
+				echo "<td>Monday</td>";
+				echo "<td>";
+				if(count($monArr) != 0){
+					for($i = 0; $i < count($monArr); $i++) {
+						echo "$monArr[$i]<br>";
+					}
+				}
+				else
+					echo "Off";
+
+				echo "</td>";
+				echo "</tr>";
+
+				echo "<tr>";
+				echo "<td>Tuesday</td>";
+				echo "<td>";
+				if(count($tueArr) != 0){
+					for($i = 0; $i < count($tueArr); $i++) {
+						echo "$tueArr[$i]<br>";
+					}
+				}
+				else
+					echo "Off";
+
+				echo "</td>";
+				echo "</tr>";
+
+				echo "<tr>";
+				echo "<td>Wednesday</td>";
+				echo "<td>";
+				if(count($wedArr) != 0){
+					for($i = 0; $i < count($wedArr); $i++) {
+						echo "$wedArr[$i]<br>";
+					}
+				}
+				else
+					echo "Off";
+
+				echo "</td>";
+				echo "</tr>";
+
+				echo "<tr>";
+				echo "<td>Thursday</td>";
+				echo "<td>";
+				if(count($thurArr) != 0){
+					for($i = 0; $i < count($thurArr); $i++) {
+						echo "$thurArr[$i]<br>";
+					}
+				}
+				else
+					echo "Off";
+
+				echo "</td>";
+				echo "</tr>";
+
+				echo "<tr>";
+				echo "<td>Friday</td>";
+				echo "<td>";
+				if(count($friArr) != 0){
+					for($i = 0; $i < count($friArr); $i++) {
+						echo "$friArr[$i]<br>";
+					}
+				}
+				else
+					echo "Off";
+
+				echo "</td>";
+				echo "</tr>";
+
+				echo "<tr>";
+				echo "<td>Saturday</td>";
+				echo "<td>";
+				if(count($satArr) != 0){
+					for($i = 0; $i < count($satArr); $i++) {
+						echo "$satArr[$i]<br>";
+					}
+				}
+				else
+					echo "Off";
+
+				echo "</td>";
+				echo "</tr>";
+
+				echo "<tr>";
+				echo "<td>Sunday</td>";
+				echo "<td>";
+				if(count($sunArr) != 0){
+					for($i = 0; $i < count($sunArr); $i++) {
+						echo "$sunArr[$i]<br>";
+					}
+				}
+				else
+					echo "Off";
+
+				echo "</td>";
+				echo "</tr>";
 			 ?>
 		</table>
 
