@@ -42,7 +42,6 @@
 
 	// Add types in drop-down menu 
 	function generateOptions() {
-		echo "Function executed";
 		if(!empty($_POST['inventory'])) {
 			$selected= $_POST['inventory'];
 			setcookie("inventoryType", $selected);
@@ -53,10 +52,8 @@
 		$result = $conn->query($sql);
 		while($row = $result->fetch_assoc()) {
 			if($selected==$row["Type"]){
-				echo "Success";
 				echo'<option selected value="'.$row["Type"].'">'.str_replace("_", " ", $row["Type"]).'</option>';
 			}else{
-				echo "Error";
 				echo'<option value="'.$row["Type"].'">'.str_replace("_", " ", $row["Type"]).'</option>';
 			}
 		}
@@ -75,7 +72,6 @@
 	function addItemToTable($itemEntry, $expectedPar, $expectedType) {
 		$conn = getInclude();
 
-		echo $expectedType;
 		$query = "INSERT INTO Items Values('$itemEntry', '$expectedPar', 0, '$expectedType', 'Songbird')";
 		mysqli_query($conn, $query);
 	}
@@ -94,7 +90,6 @@
 	}
 
 	// Add new types in database
-	// , $Name
 	function addInventoryTypeToTable($Type) {
         $conn = getInclude();
 
@@ -102,11 +97,9 @@
         $query = "INSERT INTO InventoryType VALUES('".str_replace(" ", "_", $Type)."', '".$Name."')"; 
         mysqli_query($conn, $query);
     }
-	// && isset($_POST["Name"])
+
     if(isset($_POST["newType"])) {
         $Type = $_POST["newType"];
-		// $Name = $_POST["Name"];
-		// , $Name
         addInventoryTypeToTable($Type);
     }
 ?>
@@ -159,12 +152,6 @@
 					generateTableData();
 					
 				?>
-
-				<!-- <tr>
-					<td colspan="4" style="text-align: center;">
-						<input type="submit" style="background-color: #343131;  color: #969595;">
-					</td>
-				</tr> -->
 			</form>
 
 
