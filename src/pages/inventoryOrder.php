@@ -10,10 +10,10 @@
 		return mysqli_connect($dbHost, $dbUser, $dbPass, $db);
 	}
 
-	function getUserName() {
+	function getInventoryName() {
 	if(isset($_COOKIE['inventoryType'])) {
 		if($_COOKIE['inventoryType'] != 'all') {
-			$inventoryType = $_COOKIE['inventoryType'];
+			$inventoryType = str_replace("_", " ", $_COOKIE['inventoryType']);
 		}
 		else 
 			$inventoryType = 'All';
@@ -42,7 +42,7 @@
 
 		if($result->num_rows > 0) {
 			while($row = $result->fetch_assoc()) {
-				echo "<tr><td style='text-align:center;'>".$row["ItemName"]."</td>";
+				echo "<tr><td style='text-align:center;'>".str_replace("_", " ", $row["ItemName"])."</td>";
 				if($_POST[$row['ItemName']] == null) {
 					echo "<td style='text-align:center;'>".$row['Par']."</td></tr>";
 				}
@@ -65,7 +65,7 @@
 	</head>
 
 	<body>
-		<h1><?php echo getUserName(); ?></h1>
+		<h1><?php echo getInventoryName(); ?></h1>
 		<table class="userCreationTable" id="orderTable">
 			<tr>
 				<th>Item</th>
