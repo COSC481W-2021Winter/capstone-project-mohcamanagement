@@ -55,14 +55,14 @@ class inventoryLogCest
 	*/
 	
 
-   Test to see if there is a default in the drop-down menu
+   // Test to see if there is a default in the drop-down menu
    public function verifyDefaultOption(AcceptanceTester $I)
    {
 	   $I->amOnPage('/pages/inventoryLog.php');
 	   $I->seeOptionIsSelected('inventory', 'Select Item Category'); 
    }
 
-   Test to see if you can add different types in the drop-down
+   // Test to see if you can add different types in the drop-down
    public function verifyAddType(AcceptanceTester $I)
    {
 	   $I->amOnPage('/pages/inventoryLog.php');
