@@ -26,7 +26,7 @@
 			if($result->num_rows > 0) {
 				while($row = $result->fetch_assoc()) {
 					echo "<tr>";
-					echo "<td style='text-align:center;'>".$row["ItemName"]."</td>";
+					echo "<td style='text-align:center;'>".str_replace("_", " ", $row["ItemName"])."</td>";
 					echo "<td style='text-align:center;'>".$row["Par"]."</td>";
 					echo "<td style='text-align:center;' colspan='2'><input type=\"number\" id=\"".$row["ItemName"]."\" name=\"".$row["ItemName"]."\" value=0></td>";
 					echo "</tr>";
@@ -42,6 +42,7 @@
 
 	// Add types in drop-down menu 
 	function generateOptions() {
+		echo "Function executed";
 		if(!empty($_POST['inventory'])) {
 			$selected= $_POST['inventory'];
 			setcookie("inventoryType", $selected);
@@ -52,9 +53,11 @@
 		$result = $conn->query($sql);
 		while($row = $result->fetch_assoc()) {
 			if($selected==$row["Type"]){
-				echo'<option selected value="'.$row["Type"].'">'.$row["Type"].'</option>';
+				echo "Success";
+				echo'<option selected value="'.$row["Type"].'">'.str_replace("_", " ", $row["Type"]).'</option>';
 			}else{
-				echo'<option value="'.$row["Type"].'">'.$row["Type"].'</option>';
+				echo "Error";
+				echo'<option value="'.$row["Type"].'">'.str_replace("_", " ", $row["Type"]).'</option>';
 			}
 		}
 	}
@@ -65,34 +68,23 @@
 		$sql = "SELECT * FROM InventoryType";
 		$result = $conn->query($sql);
 		while($row = $result->fetch_assoc()) {
-			echo'<option value="'.$row["Type"].'">'.$row["Type"].'</option>';
-		}
-	}
-
-
-	function selectInventory() {
-		$conn = getInclude();
-		$sql = "SELECT * FROM Item";
-		$result = $conn->query($sql);
-		while($row = $result->fetch_assoc()) {
-			if(selection.value == $row["ItemName"]) {
-				alert('If you choose this option, you can not receive any infomation');
-			}
+			echo'<option value="'.str_replace("_", " ", $row["Type"]).'">'.str_replace("_", " ", $row["Type"]).'</option>';
 		}
 	}
 
 	function addItemToTable($itemEntry, $expectedPar, $expectedType) {
 		$conn = getInclude();
 
+		echo $expectedType;
 		$query = "INSERT INTO Items Values('$itemEntry', '$expectedPar', 0, '$expectedType', 'Songbird')";
 		mysqli_query($conn, $query);
 	}
 
 	if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["addItem"])) {
 		if(!empty($_POST["expectedPar"]) && !empty($_POST["itemEntry"]) && !empty($_POST["invType"])) {
-			$itemEntry = $_POST["itemEntry"];
+			$itemEntry = str_replace(" ", "_", $_POST["itemEntry"]);
 			$expectedPar = $_POST['expectedPar'];
-			$expectedType = $_POST['invType'];
+			$expectedType = str_replace(" ", "_", $_POST['invType']);
 		
 			addItemToTable($itemEntry, $expectedPar, $expectedType);
 		}
@@ -107,7 +99,7 @@
         $conn = getInclude();
 
         $Name = "Songbird";
-        $query = "INSERT INTO InventoryType VALUES('".$Type."', '".$Name."')"; 
+        $query = "INSERT INTO InventoryType VALUES('".str_replace(" ", "_", $Type)."', '".$Name."')"; 
         mysqli_query($conn, $query);
     }
 	// && isset($_POST["Name"])
@@ -125,6 +117,7 @@
 		<title>Page Title</title>
 
 		<link rel="stylesheet" type="text/css" href="../style/style.css">
+
 	</head>
 
 	<body>
@@ -186,8 +179,9 @@
 						<label for="expectedPar">Item Par</label>
 					</td>
 
+					<!-- change to text to accomodate maximum values. Need to implement regex for checks-->
 					<td style="padding-top: 40px;">
-						<input type="number" id="expectedPar" name="expectedPar" value=1 min=1 max=99/>
+						<input type="number" id="expectedPar" name="expectedPar" value=1 min=1 Maxlength="99"/>
 					</td>
 
 					<td style="text-align: center; padding-top: 40px;">
