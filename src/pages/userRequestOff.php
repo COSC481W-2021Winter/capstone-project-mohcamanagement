@@ -34,14 +34,25 @@
 <html lang="en">
 	<head>
 		<title>Request Off</title>
-		<link rel="stylesheet" type="text/css" href="../style/style.css">
+		<link rel="stylesheet" href="../style/style.css">
 	</head>
-
+	
+	<style>
+	table{
+		margin-left: auto;
+		margin-right: auto;
+		border-style: solid;
+		border-color: black;
+		padding: 5px;
+		background-color: #C2C0C0;
+		margin-top: 10px;
+	}
+	</style>
 
 	<body>
 		<h1 style="text-align:center;">Request Off <?php echo "$userCookie";?></h1>
 
-		<table style="margin-top: 10px;" class="userCreationTable">
+		<table class="userTable">
 			<?php
 			//TODO be changed to whoever is logged in
 			$query = "SELECT * FROM Users";
