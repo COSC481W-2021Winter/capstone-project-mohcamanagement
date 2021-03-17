@@ -8,44 +8,38 @@
 	}
 
 	// TODO finsih connection to database upon table creation for requests off
-	if (!empty($_POST['send'])) {
-		header('Location: userMain.php');
-   		die();
+	if (isset($_POST['send']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+		$query = "SELECT * FROM Users WHERE Username = '$userCookie'";
+		$result = mysqli_query($conn, $query);
+		$row = mysqli_fetch_assoc($result);
+		$userPin = $row['Pin'];
+		
+		if(!empty($_POST['from']) && !empty($_POST['until']) && !empty($_POST['type'])){
+			$from = $_POST['from'];
+			$until = $_POST['until'];
+			$mandatory = $_POST['type'];
+			if($mandatory == 'mandatory'){
+				$mandatory = 1;
+			}
+			else{
+				$mandatory = 0;
+			}
+			$query = "INSERT INTO RequestOff VALUES ('$from', '$until', $mandatory,'$userPin')";
+			mysqli_query($conn, $query);
+		}
 	}
-
 ?>
 <!DOCTYPE html>
+
 <html lang="en">
 	<head>
 		<title>Request Off</title>
-		<link rel="stylesheet" href="../style/style.css">
-
-		<style>	
-			.btn {
-				border: none;
-				background-color: inherit;
-				width:100%;
-				height:100%;
-				cursor: pointer;
-				display: inline-block;
-				color:white;
-			}
-			.btn:hover {
-				color: black;
-				background-color:black;
-			}
-			table.center {
-				margin-left:auto; 
-		    	margin-right:auto;
-		  	}
-		</style>
-		
-
 		<link rel="stylesheet" type="text/css" href="../style/style.css">
 	</head>
 
+
 	<body>
-		<h1>Request Off <?php echo "$userCookie";?></h1>
+		<h1 style="text-align:center;">Request Off <?php echo "$userCookie";?></h1>
 
 		<table style="margin-top: 10px;" class="userCreationTable">
 			<?php
@@ -59,14 +53,14 @@
 			// }
 			?>
 			<!-- TODO fix placment of form on screen -->
-			<form onsubmit="myFunction()" method="post">
+			<form action="userRequestOff.php" method="post">
 				<tr>
 					<td style="text-align: center;">Start Date</td>
 				</tr>
 
 				<tr>
 					<td>
-						<input id="from" type="date" value="<?php echo date('Y-m-d');?>" class="inputBox"/>
+						<input id="from" name="from" type="date" value="<?php echo date('Y-m-d');?>" class="inputBox"/>
 					</td>
 				</tr>
 
@@ -76,13 +70,13 @@
 
 				<tr>
 					<td>
-						<input id="until" type="date" value="<?php echo date('Y-m-d');?>" class="inputBox"/>
+						<input id="until" name="until" type="date" value="<?php echo date('Y-m-d');?>" class="inputBox"/>
 					</td>
 				</tr>
 
 				<tr>
 					<td style="text-align: center;">
-						<input type="radio" name="type" value="mandatory">&nbsp;Mandatory</input>
+						<input type="radio" checked name="type" value="mandatory">&nbsp;Mandatory</input>
 					</td>
 				</tr>
 
@@ -107,21 +101,5 @@
 				</tr>
 			</form>
 		</table>
-
-		
-		<script>
-		function myFunction() {
-			var txtOne = document.getElementById('from').value;
-			var txtTwo = document.getElementById('until').value;
-			var option= confirm("are the dates correct "+txtOne+" until "+txtTwo);
-			if(option==true) {
-				alert('Manager has been notified');
-			}
-			// what is this else for??
-			else {
-
-			}
-		}
-		</script>
 	 </body>
  </html>
