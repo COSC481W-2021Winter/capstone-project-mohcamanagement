@@ -32,52 +32,235 @@
 			}
 			// If entries are unique we can add them to the table
 			if($userUnique == 1 && $pinUnique == 1) {
-				if(!empty($_POST['Monday']))
-					$monday = $_POST['Monday'];
-				else
-					$monday = "Off";
-
-				if(!empty($_POST['Tuesday']))
-					$tuesday = $_POST['Tuesday'];
-				else
-					$tuesday = "Off";
-
-				if(!empty($_POST['Wednesday']))
-					$wednesday = $_POST['Wednesday'];
-				else
-					$wednesday = "Off";
-
-				if(!empty($_POST['Thursday']))
-					$thursday = $_POST['Thursday'];
-				else
-					$thursday = "Off";
-
-				if(!empty($_POST['Friday']))
-					$friday = $_POST['Friday'];
-				else
-					$friday = "Off";
-
-				if(!empty($_POST['Saturday']))
-					$saturday = $_POST['Saturday'];
-				else
-					$saturday = "Off";
-
-				if(!empty($_POST['Sunday']))
-					$sunday = $_POST['Sunday'];
-				else
-					$sunday = "Off";
-
+				// check to see if the years worked value is null or not
+				// if not then save the post value in variable
 				if(!empty($_POST['YearsWorked']))
 					$yearsWorked = $_POST['YearsWorked'];
 				else
 					$yearsWorked = 0;
 
-				// Use the saved variables to insert into the Users table
-				$query = "INSERT INTO Users VALUES($pin, '$username', 0, '$monday', '$tuesday', '$wednesday', '$thursday', '$friday', '$saturday', '$sunday', $yearsWorked)";
+/************Use the saved variables to insert into the Users table********************/
+				$query = "INSERT INTO Users VALUES('$username', '$pin',0, '$yearsWorked', 'Songbird')";
 				mysqli_query($conn, $query);
+/**************************************************************************************/
 
-				// header() changes the page to the location listed
-				header("Location: adminMain.php");
+				
+/****************************For Monday Availability**********************************/
+				//day selected is for each day of the week
+				$daySelected = 'Monday'; 
+
+				if(!empty($_POST['monShift'])) {
+					$check = $_POST['monShift'];
+					$size = count($check);
+
+					for($i = 0; $i<$size; $i++) {
+						$shiftToInsert = $check[$i];
+						$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+						mysqli_query($conn, $query);
+
+						// checks to see if off is selected. If so removes all for that day and just puts off instead.
+						if($shiftToInsert == "Off") {
+							$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = 'Monday'"; 
+							mysqli_query($conn, $query);
+
+							$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+							mysqli_query($conn, $query);
+						}
+					}
+				}	
+				// if post array is empty then just insert off into table.
+				else {
+					$shiftToInsert = 'Off';
+					$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+					mysqli_query($conn, $query);
+				}
+/**************************************************************************************/
+				
+/****************************For Tuesday Availability**********************************/
+				//day selected is for each day of the week
+				$daySelected = 'Tuesday';	
+
+				if(!empty($_POST['tueShift'])) {
+					$check = $_POST['tueShift'];
+					$size = count($check);
+
+					for($i = 0; $i<$size; $i++) {
+						$shiftToInsert = $check[$i];
+						$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+						mysqli_query($conn, $query);
+
+						// checks to see if off is selected. If so removes all for that day and just puts off instead.
+						if($shiftToInsert == "Off") {
+							$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = 'Monday'"; 
+							mysqli_query($conn, $query);
+
+							$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+							mysqli_query($conn, $query);
+						}
+					}
+				}	
+				// if post array is empty then just insert off into table.
+				else {
+					$shiftToInsert = 'Off';
+					$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+					mysqli_query($conn, $query);
+				}
+/**************************************************************************************/
+
+/****************************For Wednesday Availability*******************************/
+				//day selected is for each day of the week
+				$daySelected = 'Wednesday';	
+
+				if(!empty($_POST['wedShift'])) {
+					$check = $_POST['wedShift'];
+					$size = count($check);
+
+					for($i = 0; $i<$size; $i++) {
+						$shiftToInsert = $check[$i];
+						$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+						mysqli_query($conn, $query);
+
+						// checks to see if off is selected. If so removes all for that day and just puts off instead.
+						if($shiftToInsert == "Off") {
+							$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = 'Monday'"; 
+							mysqli_query($conn, $query);
+
+							$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+							mysqli_query($conn, $query);
+						}
+					}
+				}	
+				// if post array is empty then just insert off into table.
+				else {
+					$shiftToInsert = 'Off';
+					$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+					mysqli_query($conn, $query);
+				}
+/**************************************************************************************/
+
+/****************************For Thursday Availability*********************************/
+				//day selected is for each day of the week
+				$daySelected = 'Thursday';
+
+				if(!empty($_POST['thurShift'])) {
+					$check = $_POST['thurShift'];
+					$size = count($check);
+
+					for($i = 0; $i<$size; $i++) {
+						$shiftToInsert = $check[$i];
+						$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+						mysqli_query($conn, $query);
+
+						// checks to see if off is selected. If so removes all for that day and just puts off instead.
+						if($shiftToInsert == "Off") {
+							$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = 'Monday'"; 
+							mysqli_query($conn, $query);
+
+							$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+							mysqli_query($conn, $query);
+						}
+					}
+				}	
+				// if post array is empty then just insert off into table.
+				else {
+					$shiftToInsert = 'Off';
+					$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+					mysqli_query($conn, $query);
+				}
+/**************************************************************************************/
+
+/****************************For Friday Availability**********************************/
+				//day selected is for each day of the week
+				$daySelected = 'Friday';
+
+				if(!empty($_POST['friShift'])) {
+					$check = $_POST['friShift'];
+					$size = count($check);
+
+					for($i = 0; $i<$size; $i++) {
+						$shiftToInsert = $check[$i];
+						$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+						mysqli_query($conn, $query);
+
+						// checks to see if off is selected. If so removes all for that day and just puts off instead.
+						if($shiftToInsert == "Off") {
+							$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = 'Monday'"; 
+							mysqli_query($conn, $query);
+
+							$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+							mysqli_query($conn, $query);
+						}
+					}
+				}
+				// if post array is empty then just insert off into table.	
+				else {
+					$shiftToInsert = 'Off';
+					$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+					mysqli_query($conn, $query);
+				}
+/**************************************************************************************/
+
+/****************************For Saturday Availability*********************************/
+				//day selected is for each day of the week
+				$daySelected = 'Saturday';	
+
+				if(!empty($_POST['satShift'])) {
+					$check = $_POST['satShift'];
+					$size = count($check);
+
+					for($i = 0; $i<$size; $i++) {
+						$shiftToInsert = $check[$i];
+						$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+						mysqli_query($conn, $query);
+
+						// checks to see if off is selected. If so removes all for that day and just puts off instead.
+						if($shiftToInsert == "Off") {
+							$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = 'Monday'"; 
+							mysqli_query($conn, $query);
+
+							$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+							mysqli_query($conn, $query);
+						}
+					}
+				}	
+				// if post array is empty then just insert off into table.
+				else {
+					$shiftToInsert = 'Off';
+					$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+					mysqli_query($conn, $query);
+				}
+/**************************************************************************************/
+
+/****************************For Sunday Availability***********************************/
+				//day selected is for each day of the week
+				$daySelected = 'Sunday';
+
+				if(!empty($_POST['sunShift'])) {
+					$check = $_POST['sunShift'];
+					$size = count($check);
+
+					for($i = 0; $i<$size; $i++) {
+						$shiftToInsert = $check[$i];
+						$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+						mysqli_query($conn, $query);
+
+						// checks to see if off is selected. If so removes all for that day and just puts off instead.
+						if($shiftToInsert == "Off") {
+							$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = 'Monday'"; 
+							mysqli_query($conn, $query);
+
+							$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+							mysqli_query($conn, $query);
+						}
+					}
+				}	
+				// if post array is empty then just insert off into table.
+				else {
+					$shiftToInsert = 'Off';
+					$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+					mysqli_query($conn, $query);
+				}
+/**************************************************************************************/
 			}
 			// Else print error saying that the entry is not unique
 			else {
@@ -127,43 +310,141 @@
 
 					<tr>	
 						<td style="padding: 2px;">
-							<input size="22px" type="text" name="Monday" placeholder="Enter Hours for Monday" class="inputBox"></input>
+							Availability for Monday
+						</td>
+						<td>
+							<?php 
+							$query = "SELECT * FROM ShiftTimes";
+							$result = mysqli_query($conn, $query);
+							$numOfRows = mysqli_num_rows($result);
+
+							for($i = 1; $i<$numOfRows+1; $i++) {
+								$row = mysqli_fetch_assoc($result);
+								$shiftName = $row['ShiftName'];
+								echo "<input type='checkbox' id='shift$i' name='monShift[]' value='$shiftName'>$shiftName<br></input>";
+								// can have a tag that lets the box be checked or unchecked
+							}
+							 ?>
 						</td>
 					</tr>	
 
 					<tr>
 						<td style="padding: 2px;">
-							<input size="22px" type="text" name="Tuesday" placeholder="Enter Hours for Tuesday" class="inputBox"></input>
+							Availability for Tuesday
+						</td>
+						<td>
+							<?php 
+							$query = "SELECT * FROM ShiftTimes";
+							$result = mysqli_query($conn, $query);
+							$numOfRows = mysqli_num_rows($result);
+
+							for($i = 1; $i<$numOfRows+1; $i++) {
+								$row = mysqli_fetch_assoc($result);
+								$shiftName = $row['ShiftName'];
+								echo "<input type='checkbox' id='shift$i' name='tueShift[]' value='$shiftName'>$shiftName<br></input>";
+								// can have a tag that lets the box be checked or unchecked
+							}
+							 ?>
 						</td>
 					</tr>
 
 					<tr>
 						<td style="padding: 2px;">
-							<input size="22px" type="text" name="Wednesday" placeholder="Enter Hours for Wednesday" class="inputBox"></input>
+							Availability for Wednesday
+						</td>
+						<td>
+							<?php 
+							$query = "SELECT * FROM ShiftTimes";
+							$result = mysqli_query($conn, $query);
+							$numOfRows = mysqli_num_rows($result);
+
+							for($i = 1; $i<$numOfRows+1; $i++) {
+								$row = mysqli_fetch_assoc($result);
+								$shiftName = $row['ShiftName'];
+								echo "<input type='checkbox' id='shift$i' name='wedShift[]' value='$shiftName'>$shiftName<br></input>";
+								// can have a tag that lets the box be checked or unchecked
+							}
+							 ?>
 						</td>
 					</tr>
 
 					<tr>
 						<td style="padding: 2px;">
-							<input size="22px" type="text" name="Thursday" placeholder="Enter Hours for Thursday" class="inputBox"></input>
+							Availability for Thursday
+						</td>
+						<td>
+							<?php 
+							$query = "SELECT * FROM ShiftTimes";
+							$result = mysqli_query($conn, $query);
+							$numOfRows = mysqli_num_rows($result);
+
+							for($i = 1; $i<$numOfRows+1; $i++) {
+								$row = mysqli_fetch_assoc($result);
+								$shiftName = $row['ShiftName'];
+								echo "<input type='checkbox' id='shift$i' name='thurShift[]' value='$shiftName'>$shiftName<br></input>";
+								// can have a tag that lets the box be checked or unchecked
+							}
+							 ?>
 						</td>
 					</tr>
 
 					<tr>
 						<td style="padding: 2px;">
-							<input size="22px" type="text" name="Friday" placeholder="Enter Hours for Friday" class="inputBox"></input>
+							Availability for Friday
+						</td>
+						<td>
+							<?php 
+							$query = "SELECT * FROM ShiftTimes";
+							$result = mysqli_query($conn, $query);
+							$numOfRows = mysqli_num_rows($result);
+
+							for($i = 1; $i<$numOfRows+1; $i++) {
+								$row = mysqli_fetch_assoc($result);
+								$shiftName = $row['ShiftName'];
+								echo "<input type='checkbox' id='shift$i' name='friShift[]' value='$shiftName'>$shiftName<br></input>";
+								// can have a tag that lets the box be checked or unchecked
+							}
+							 ?>
 						</td>
 					</tr>
 
 					<tr>
 						<td style="padding: 2px;">
-							<input size="22px" type="text" name="Saturday" placeholder="Enter Hours for Saturday" class="inputBox"></input>
+							Availability for Saturday
+						</td>
+						<td>
+							<?php 
+							$query = "SELECT * FROM ShiftTimes";
+							$result = mysqli_query($conn, $query);
+							$numOfRows = mysqli_num_rows($result);
+
+							for($i = 1; $i<$numOfRows+1; $i++) {
+								$row = mysqli_fetch_assoc($result);
+								$shiftName = $row['ShiftName'];
+								echo "<input type='checkbox' id='shift$i' name='satShift[]' value='$shiftName'>$shiftName<br></input>";
+								// can have a tag that lets the box be checked or unchecked
+							}
+							 ?>
 						</td>
 					</tr>
 
 					<tr>
 						<td style="padding: 2px;">
-							<input size="22px" type="text" name="Sunday" placeholder="Enter Hours for Sunday" class="inputBox"></input>
+							Availability for Sunday
+						</td>
+						<td>
+							<?php 
+							$query = "SELECT * FROM ShiftTimes";
+							$result = mysqli_query($conn, $query);
+							$numOfRows = mysqli_num_rows($result);
+
+							for($i = 1; $i<$numOfRows+1; $i++) {
+								$row = mysqli_fetch_assoc($result);
+								$shiftName = $row['ShiftName'];
+								echo "<input type='checkbox' id='shift$i' name='sunShift[]' value='$shiftName'>$shiftName<br></input>";
+								// can have a tag that lets the box be checked or unchecked
+							}
+							 ?>
 						</td>
 					</tr>
 
