@@ -1,7 +1,36 @@
 <?php
 	/*db connection needed if in seperate file */
 	include_once ('../includes/dbConnection.php');
+	print_r($_POST);
 	// $conn is the conection to database
+	function getInclude() {
+        $dbHost = "localhost";
+        $dbUser = "root";
+        $dbPass = "";
+        $db = "Overseer";
+
+        return mysqli_connect($dbHost, $dbUser, $dbPass, $db);
+    }
+
+	$count=count($_POST);
+
+	if($_POST){
+		for($i=0;$i<=$_POST['userCount'];$i++){
+		//$useri = print('username' + $i);
+		$username='JBond';
+		$monday = $_POST['Monday'];
+		$tuesday = $_POST['Tuesday'];
+		$wednesday = $_POST['Wednesday'];
+		$thursday = $_POST['Thursday'];
+		$friday = $_POST['Friday'];
+		$saturday = $_POST['Saturday'];
+		$sunday = $_POST['Sunday'];
+		$sql="UPDATE WorkingSchedule SET Monday = '$monday', Tueday = '$tuesday', Wednesday = '$wednesday',Thursday = '$thursday',Friday = '$friday',Saturday = '$saturday',Sunday = '$sunday' WHERE Username = '$username'";
+		// mysqli_query($conn=getInclude(),$sql);
+		$conn=getInclude();
+		$conn->query($sql);
+		}
+	}
 ?>
 <!DOCTYPE html>
  <html lang="en">
@@ -35,26 +64,58 @@
 		// while($row=mysqli_fetch_assoc($result))
 		//which will iterate over every row
 		$temp=null;
+
+		echo "<form action='scheduleGeneration.php' method='POST'>";
+
+
+		function generateOptions(){
+		
+			$query = "SELECT * FROM ShiftTimes";
+			$result = mysqli_query($conn=getInclude(), $query);
+			while($row = $result->fetch_assoc()){
+				echo "<option value='".($row['ShiftName'])."'>".($row['StartTime'])." - ".($row['EndTime'])."</option>";
+			}	
+		}
+		$i=0;
 		while($row = $result->fetch_assoc()) {
 			//grabs the current row of data so you can display or manipulate
 			if($temp==$row["Username"])
 				break;
 			echo "<tr>";
 			echo "<td class='schedBorder'name='user'>".($row['Username'])."</td>";
-			echo "<td class='schedBorder'><h3>".($row['Monday'])."</h3></td>";					
-			echo "<td class='schedBorder' ><h3>".($row['Tuesday'])." </h3></td>";
-			echo "<td class='schedBorder'><h3>".($row['Wednesday'])." </h3></td>";
-			echo "<td class='schedBorder'><h3>".($row['Thursday'])." </h3></td>";
-			echo "<td class='schedBorder'><h3>".($row['Friday'])." </h3></td>";
-			echo "<td class='schedBorder'><h3>".($row['Saturday'])." </h3></td>";
-			echo "<td class='schedBorder'><h3>".($row['Sunday'])." </h3></td>";
-			echo "<td class='schedBorder'><form method='post' action='adminUpdateScedule.php'>
-											<input type='Hidden' name='userName'id='".($row['Username'])."' value='".($row['Username'])."'></input>
-											<input type='Submit' value='Edit'></input>
-										</form></td>";
+			echo "<td class='schedBorder'><select name='Monday' id='scheduleEdit'>";
+			generateOptions();
+			echo"</select></td>";		
+			echo "<td class='schedBorder' ><select name='Tuesday' id='scheduleEdit'>";
+			generateOptions();
+			echo"</select></td>";
+			echo "<td class='schedBorder'><select name='Wednesday' id='scheduleEdit'>";
+			generateOptions();
+			echo"</select></td>";
+			echo "<td class='schedBorder'><select name='Thursday' id='scheduleEdit'>";
+			generateOptions();
+			echo"</select></td>";
+			echo "<td class='schedBorder'><select name='Friday' id='scheduleEdit'>";
+			generateOptions();
+			echo"</select></td>";
+			echo "<td class='schedBorder'><select name='Saturday' id='scheduleEdit'>";
+			generateOptions();
+			echo"</select></td>";
+			echo "<td class='schedBorder'><select name='Sunday' id='scheduleEdit'>";
+			generateOptions();
+			echo"</select></td>";
+			
+				echo"<input type='Hidden' name='done' id='done' value='true'></input>";
+				echo"<input type='Hidden' name='user$i' id='Userdone' value='".($row['Username'])."'></input>";							
 			echo "</tr>";
+
+			$i++;
+			
 			$temp=$row["Username"];
 		}
+		echo"<input type='Hidden' name='userCount' id='userCount' value='$i'></input>";	
+		echo"<input type='Submit' value='EditSchedule'></input>";
+		echo "</form>";
 		?>
 	</table>
 
