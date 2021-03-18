@@ -33,8 +33,6 @@
 
     //Iterates through the shift table in the database
     function iterateShiftsTable($result, $pin, &$schedule){
-    	$numOfRows = mysqli_num_rows($result);
-
     	while($row = $result->fetch_assoc()){
     		if($row['Pin'] == $pin) fillScheduleArray($row, $pin, $schedule);
     	}
@@ -51,6 +49,45 @@
     		if(count($schedule[$i]) == 0)echo "<td class='schedBorder'> Off </td>";
     		else echo "<td class='schedBorder'>".$shifts."</td>";
     	}
+    }
+
+
+    function fillRequestOffTable($row){
+    	$startDate = $row['StartDate'];
+    	$endDate = $row['EndDate'];
+    	$isMandatory = $row['Mandatory'];
+
+    	echo "<td class='schedBorder'>".$startDate."</td>";
+    	echo "<td class='schedBorder'>".$endDate."</td>";
+
+    	if($isMandatory) echo "<td class='schedBorder'> Yes </td>";
+    	else echo "<td class='schedBorder'> No </td>";
+    }
+
+    function iterateRequestOffTable($result, $pin, $userName){
+
+    	$isNameSet = false;
+    	
+    	while($row = $result->fetch_assoc()){
+    		if($row['Pin'] == $pin){
+    			echo "<tr>";
+    			if(!$isNameSet){
+	    			echo "<td class='schedBorder'name='user'>".$userName."</td>";
+	    			$isNameSet = true;
+	    		}
+	    		else echo "<td class='schedBorder'> </td>";
+    			fillRequestOffTable($row, $userName);
+    		} 
+    		echo "</tr>";
+    	}
+    }
+
+    function getRequestsOff($conn, $pin, $userName){
+    	$query = "SELECT * FROM requestoff";
+    	$result = mysqli_query($conn, $query);
+
+    	iterateRequestOffTable($result, $pin, $userName);
+
     }
 
     //Main driver to generate shifts
@@ -103,6 +140,34 @@
             echo "<td class='schedBorder'name='user'>".($row['Username'])."</td>";
             generateShifts($conn, $row['Pin']);
             echo "</tr>";
+        }
+        ?>
+    </table>
+    <br>
+    <h1>Requests Off</h1>
+    <table style="center">
+        <?php
+        // plan to add an automated date with the weekdays to make shcdule easier to read
+        //ex Monday 15
+        echo "<tr>";
+            echo "<td class='schedBorder'><h3>Employee</h3></td>";
+            echo "<td class='schedBorder'><h3>Start Date </h3></td>";
+            echo "<td class='schedBorder'><h3>End Date </h3></td>";
+            echo "<td class='schedBorder'><h3>Mandatory </h3></td>";
+        echo "</tr>";
+        //Selects all the data from the Users Table for use in getting the schedules
+        $query = "SELECT * FROM Users";
+        //makes the connection to the database with the query and returns the result
+        $result = mysqli_query($conn, $query);
+        //how many rows of data was retunred from the database
+        $numOfRows = mysqli_num_rows($result);
+        // or you can put it into the loop directly
+        // while($row=mysqli_fetch_assoc($result))
+        //which will iterate over every row
+
+        while($row = mysqli_fetch_assoc($result)) {
+            //grabs the current row of data so you can display or manipulate
+            getRequestsOff($conn, $row['Pin'], $row['Username']);
         }
         ?>
     </table>
