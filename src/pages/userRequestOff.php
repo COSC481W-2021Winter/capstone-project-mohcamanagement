@@ -11,24 +11,28 @@
 		// from input
 		$from = new DateTime($_POST['from']);
 
-	
 		// new date
 		$date = new DateTime(date('Y-m-d' ));
+
+		// adding a week to date
 		$one_week = DateInterval::createFromDateString('1 week');
 		$date->add($one_week);
 
-
+		// grabbing start and end dates from the form
 		$fromCheck = $_POST['from'];
 		$untilCheck = $_POST['until'];
 
+		// if start date is not a week in advance
 		if(($date) > ($from))
 		{
 			echo "<script id='invalidDate'>alert('Date needs to be one week in advance.')</script>";
 		}
+		// if end date is before start date
 		elseif($untilCheck < $fromCheck)
 		{
 			echo "<script id='invalidDate1'>alert('Ending date can not be before start date.')</script>";
 		}
+		// if we got to this point, the dates are valid and can be entered into the database
 		else{
 			$query = "SELECT * FROM Users WHERE Username = '$userCookie'";
 			$result = mysqli_query($conn, $query);
