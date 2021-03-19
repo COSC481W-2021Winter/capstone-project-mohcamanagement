@@ -7,27 +7,51 @@
 		$userCookie = $_COOKIE["Username"];
 	}
 
-	// TODO finsih connection to database upon table creation for requests off
 	if (isset($_POST['send']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
-		$query = "SELECT * FROM Users WHERE Username = '$userCookie'";
-		$result = mysqli_query($conn, $query);
-		$row = mysqli_fetch_assoc($result);
-		$userPin = $row['Pin'];
+		// from input
+		$from = new DateTime($_POST['from']);
+
+	
+		// new date
+		$date = new DateTime(date('Y-m-d' ));
+		$one_week = DateInterval::createFromDateString('1 week');
+		$date->add($one_week);
+
+
+		$fromCheck = $_POST['from'];
+		$untilCheck = $_POST['until'];
+
+		if(($date) > ($from))
+		{
+			echo "<script id='invalidDate'>alert('Date needs to be one week in advance.')</script>";
+		}
+		elseif($untilCheck < $fromCheck)
+		{
+			echo "<script id='invalidDate1'>alert('Ending date can not be before start date.')</script>";
+		}
+		else{
+			$query = "SELECT * FROM Users WHERE Username = '$userCookie'";
+			$result = mysqli_query($conn, $query);
+			$row = mysqli_fetch_assoc($result);
+			$userPin = $row['Pin'];
 		
-		if(!empty($_POST['from']) && !empty($_POST['until']) && !empty($_POST['type'])){
-			$from = $_POST['from'];
-			$until = $_POST['until'];
-			$mandatory = $_POST['type'];
-			if($mandatory == 'mandatory'){
-				$mandatory = 1;
+			if(!empty($_POST['from']) && !empty($_POST['until']) && !empty($_POST['type'])){
+				$from = $_POST['from'];
+				$until = $_POST['until'];
+				$mandatory = $_POST['type'];
+				if($mandatory == 'mandatory'){
+					$mandatory = 1;
+				}
+				else{
+					$mandatory = 0;
+				}
+				$query = "INSERT INTO RequestOff VALUES ('$from', '$until', $mandatory,'$userPin')";
+				mysqli_query($conn, $query);
 			}
-			else{
-				$mandatory = 0;
-			}
-			$query = "INSERT INTO RequestOff VALUES ('$from', '$until', $mandatory,'$userPin')";
-			mysqli_query($conn, $query);
+			echo "<script id='validDate'>alert('Manager will be notified.')</script>";
 		}
 	}
+
 ?>
 <!DOCTYPE html>
 
