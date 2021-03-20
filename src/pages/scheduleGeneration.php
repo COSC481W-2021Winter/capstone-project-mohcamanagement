@@ -169,7 +169,7 @@
 		//which will iterate over every row
 		$temp=null;
 
-		echo "<form action='adminEditSchedule.php' method='POST'>";
+		echo "<form action='scheduleGeneration.php' method='POST'>";
 
 
 		function generateOptions(){
@@ -218,13 +218,13 @@
 			$temp=$row["Username"];
 		}
 		echo"<input type='Hidden' name='userCount' id='userCount' value='$i'></input>";	
-		echo"<input type='Submit' value='EditSchedule'></input>";
+		echo"<tr><td><input type='Submit' value='EditSchedule'></input></td></tr>";
 		echo "</form>";
 		?>
 	</table>
     <table>
         <h1>Add Custom Shifts</h1>
-        <form action="adminEditSchedule.php" method="POST">
+        <form action="scheduleGeneration.php" method="POST">
         <tr>
             <td>Name <input type="text" name="shiftName"></td>
             <td><select name="startTime">
