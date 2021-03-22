@@ -43,11 +43,16 @@
 		if($result->num_rows > 0) {
 			while($row = $result->fetch_assoc()) {
 				echo "<tr><td style='text-align:center;'>".str_replace("_", " ", $row["ItemName"])."</td>";
+				$temp = $_POST[$row["ItemName"]];
 				if($_POST[$row['ItemName']] == null) {
 					echo "<td style='text-align:center;'>".$row['Par']."</td></tr>";
 				}
 				else
-					echo "<td style='text-align:center;'>".($row["Par"] - $row["OnHand"])."</td></tr>";
+					$orderCalc = $row["Par"] - $temp;
+					if($orderCalc < 0)
+						echo "<td style='text-align:center;'>0</td></tr>";
+					else
+						echo "<td style='text-align:center;'>".($row["Par"] - $temp)."</td></tr>";
 			}
 		}
 		else {
