@@ -131,7 +131,7 @@
     }
 
     function getRequestsOff($conn, $pin, $userName){
-        $query = "SELECT * FROM requestoff";
+        $query = "SELECT * FROM RequestOff";
         $result = mysqli_query($conn, $query);
 
         iterateRequestOffTable($result, $pin, $userName);
