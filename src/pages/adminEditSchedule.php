@@ -51,7 +51,7 @@
  <html lang="en">
  <head>
 	<title>Work Schedule</title>
-	<link rel="stylesheet" href="../style/style.css">
+	<link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>">
  </head>
  <body>
 	<h1>Edit Next Weeks Schedule</h1>
