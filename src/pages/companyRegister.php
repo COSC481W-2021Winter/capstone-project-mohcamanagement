@@ -41,7 +41,7 @@
 	<head>
 		<title>Company Register</title>
   		
-  		<link href="../style/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>">
 	</head>
 
 	<body>

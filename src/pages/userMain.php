@@ -13,7 +13,7 @@
 <html lang="en">
  <head>
 	<title>User main page</title>
-	<link rel="stylesheet" type="text/css" href="../style/style.css">
+	<link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>">
  </head>
 
  	<!-- CSS might want to add this to the style sheet -->

@@ -109,9 +109,10 @@ header {
 	background-color: rgb(138, 135, 135);
 }
 table.userCreationTable {
-	position: absolute;
-	left: 40%;
-	top: 10%;
+	margin-top: 25px; 
+	margin-left: auto;
+	margin-right: auto;
+	
 	border-style: solid;
 	border-color: black;
 	padding: 5px;

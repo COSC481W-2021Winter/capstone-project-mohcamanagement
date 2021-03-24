@@ -14,7 +14,7 @@
 	<head>
 		<title>Admin Main Page</title>
 
-		<link rel="stylesheet" type="text/css" href="../style/style.css">
+		<link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>">
 	</head>
 
  	<!-- CSS might want to add to the style sheet -->

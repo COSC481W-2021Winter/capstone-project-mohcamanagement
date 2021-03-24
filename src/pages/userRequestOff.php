@@ -62,10 +62,10 @@
 <html lang="en">
 	<head>
 		<title>Request Off</title>
-		<link rel="stylesheet" href="../style/style.css">
+		<link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>">
 	</head>
 	
-	<style>
+<!-- 	<style>
 	table{
 		margin-left: auto;
 		margin-right: auto;
@@ -75,12 +75,12 @@
 		background-color: #C2C0C0;
 		margin-top: 10px;
 	}
-	</style>
+	</style> -->
 
 	<body>
 		<h1 style="text-align:center;">Request Off <?php echo "$userCookie";?></h1>
 
-		<table class="userTable">
+		<table class="userCreationTable">
 			<?php
 			//TODO be changed to whoever is logged in
 			$query = "SELECT * FROM Users";

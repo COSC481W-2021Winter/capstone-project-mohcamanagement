@@ -43,8 +43,8 @@
 <html lang="en">
 	<head>
 		<title>User Update Availability</title>
-		<link rel="stylesheet" type="text/css" href="../style/style.css">
-
+		<link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>">
+		
 		<style>
 
 			table {
