@@ -147,8 +147,8 @@
 
  </head>
  <body>
-    <h1>Work Schedule</h1>
-    <table style="center">
+    <h1>Availability</h1>
+    <table id="avail" style="center">
         <?php
         // plan to add an automated date with the weekdays to make shcdule easier to read
         //ex Monday 15
@@ -182,7 +182,7 @@
         ?>
     </table>
     <h1>Edit Next Weeks Schedule</h1>
-	<table style="center">
+	<table id="nextweekschedule" style="center">
 		<?php
 		// plan to add an automated date with the weekdays to make shcdule easier to read
 		//ex Monday 15
@@ -262,7 +262,7 @@
 	</table>
 
     <h1>Time Request Off</h1>
-    <table style="center">
+    <table id="requestOff" style="center">
         <?php
         // plan to add an automated date with the weekdays to make shcdule easier to read
         //ex Monday 15

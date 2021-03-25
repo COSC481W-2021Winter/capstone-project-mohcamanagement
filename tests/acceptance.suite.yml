@@ -10,4 +10,12 @@ modules:
         - PhpBrowser:
             url: http://localhost:8080/capstone-project-mohcamanagement/src/
         - \Helper\Acceptance
+       
+        - Db:
+            dsn: 'mysql:host=localhost;dbname=overseer'
+            user: 'root'
+            password: ''
+            dump: tests/_data/dumps.sql
+            cleanup: false # reload dump between tests
+            populate: false # load dump before all tests
 step_decorators: ~        
