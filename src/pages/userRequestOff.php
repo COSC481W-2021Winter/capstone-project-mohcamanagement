@@ -127,7 +127,7 @@
 
 				<tr>
 					<td style="text-align: center;">
-						<input type="Submit" name="send" value="Submit"/>
+						<input type="Submit" name="send" value="Submit"/></input> 
 					</td>
 				</tr>
 			</form>
@@ -135,7 +135,7 @@
 			<form method="post" action="userMain.php">
 				<tr>
 					<td style="text-align: center;">
-						<input type="Submit" name="back" value="Back"/>
+						<input type="Submit" name="back" value="Back"/></input>
 					</td>
 				</tr>
 			</form>
