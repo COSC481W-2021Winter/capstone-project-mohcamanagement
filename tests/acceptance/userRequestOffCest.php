@@ -68,5 +68,30 @@ public function scheduleWorks(AcceptanceTester $I)
         $I->seeElement('#invalidDate1');
 
     }
+    
+    public function validDate(AcceptanceTester $I)
+    {
+        // Login first as an employee
+        $I->amOnPage('index.html');
+        $I->click('Login');
+        $I->fillField('Username', 'JBond');
+        $I->fillField('Pin', '5555');
+        $I->click('Submit');
+        $I->see('Welcome JBond');
+
+        // Go to Request off page
+        $I->click('Request Off');
+
+        // Fill in dates here
+
+ 		$I->fillField('from', '06/01/2021');
+        $I->fillField('until', '06/20/2021');
+
+        // Submit form
+        $I->click('Submit');
+        $I->seeElement('#validDate');
+        
+    }
+    
 }
     ?>
