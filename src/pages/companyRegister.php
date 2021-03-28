@@ -17,18 +17,83 @@
 			$state = $_POST["state"];
 			$zipCode = $_POST["zipCode"];
 
-			setcookie("companyName", $companyName);
-			setcookie("companyType", $companyType);
-			setcookie("email", $email);
-			setcookie("irsNum", $irsNum);
-			setcookie("phoneNo", $phoneNo);
-			setcookie("address", $address);
-			setcookie("city", $city);
-			setcookie("state", $state);
-			setcookie("zipCode", $zipCode);
+/**************************************************************************************/
+			// all of these if-else check the 15 ways the errors could occur
+			if(preg_match("/^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/", $phoneNo) == 0 && preg_match("/^[a-z]+@[a-z]+\.(com|org|gov)$/i", $email) == 0 && preg_match("/^[0-9]{2}\-[0-9]{7}$/", $irsNum) == 0 && preg_match("/^[0-9]{5}$/", $zipCode) == 0) {
+				echo "<script>alert('Error phone number must follow format \"xxx-xxx-xxxx\". Email must be valid format. IRS Number must follow format \"xx-xxxxxxx\". Zip code must follow format \"xxxxx\".')</script>";
+			}
 
-			// header() changes the page to the location listed
-			header("Location: adminCreation.php");
+			elseif(preg_match("/^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/", $phoneNo) == 0 && preg_match("/^[a-z]+@[a-z]+\.(com|org|gov)$/i", $email) == 0 && preg_match("/^[0-9]{2}\-[0-9]{7}$/", $irsNum) == 0) {
+				echo "<script>alert('Error phone number must follow format \"xxx-xxx-xxxx\". Email must be valid format. IRS Number must follow format \"xx-xxxxxxx\".')</script>";
+			}
+
+			elseif(preg_match("/^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/", $phoneNo) == 0 && preg_match("/^[a-z]+@[a-z]+\.(com|org|gov)$/i", $email) == 0 && preg_match("/^[0-9]{5}$/", $zipCode) == 0) {
+				echo "<script>alert('Error phone number must follow format \"xxx-xxx-xxxx\". Email must be valid format. Zip code must follow format \"xxxxx\".')</script>";
+			}
+
+			elseif(preg_match("/^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/", $phoneNo) == 0 && preg_match("/^[0-9]{2}\-[0-9]{7}$/", $irsNum) == 0 && preg_match("/^[0-9]{5}$/", $zipCode) == 0) {
+				echo "<script>alert('Error phone number must follow format \"xxx-xxx-xxxx\". IRS Number must follow format \"xx-xxxxxxx\". Zip code must follow format \"xxxxx\".')</script>";
+			}
+
+			elseif(preg_match("/^[a-z]+@[a-z]+\.(com|org|gov)$/i", $email) == 0 && preg_match("/^[0-9]{2}\-[0-9]{7}$/", $irsNum) == 0 && preg_match("/^[0-9]{5}$/", $zipCode) == 0) {
+				echo "<script>alert('Error email must be valid format. IRS Number must follow format \"xx-xxxxxxx\". Zip code must follow format \"xxxxx\".')</script>";
+			}
+
+			elseif(preg_match("/^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/", $phoneNo) == 0 && preg_match("/^[a-z]+@[a-z]+\.(com|org|gov)$/i", $email) == 0) {
+				echo "<script>alert('Error phone number must follow format \"xxx-xxx-xxxx\". Email must be valid format.')</script>";
+			}
+
+			elseif(preg_match("/^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/", $phoneNo) == 0 && preg_match("/^[0-9]{5}$/", $zipCode) == 0) {
+				echo "<script>alert('Error phone number must follow format \"xxx-xxx-xxxx\". Zip code must follow format \"xxxxx\".')</script>";
+			}
+
+			elseif(preg_match("/^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/", $phoneNo) == 0 && preg_match("/^[0-9]{2}\-[0-9]{7}$/", $irsNum) == 0) {
+				echo "<script>alert('Error phone number must follow format \"xxx-xxx-xxxx\". IRS Number must follow format \"xx-xxxxxxx\".')</script>";
+			}
+
+			elseif(preg_match("/^[a-z]+@[a-z]+\.(com|org|gov)$/i", $email) == 0 && preg_match("/^[0-9]{2}\-[0-9]{7}$/", $irsNum) == 0) {
+				echo "<script>alert('Error email must be valid format. IRS Number must follow format \"xx-xxxxxxx\".')</script>";
+			}
+
+			elseif(preg_match("/^[a-z]+@[a-z]+\.(com|org|gov)$/i", $email) == 0 &&  preg_match("/^[0-9]{5}$/", $zipCode) == 0) {
+				echo "<script>alert('Error email must be valid format. Zip code must follow format \"xxxxx\".')</script>";
+			}
+
+			elseif(preg_match("/^[0-9]{2}\-[0-9]{7}$/", $irsNum) == 0 && preg_match("/^[0-9]{5}$/", $zipCode) == 0) {
+				echo "<script>alert('Error IRS Number must follow format \"xx-xxxxxxx\". Zip code must follow format \"xxxxx\".')</script>";
+			}
+
+			elseif(preg_match("/^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/", $phoneNo) == 0) {
+				echo "<script>alert('Error phone number must follow format \"xxx-xxx-xxxx\"')</script>";
+			}
+
+			elseif (preg_match("/^[a-z]+@[a-z]+\.(com|org|gov)$/i", $email) == 0) {
+				echo "<script>alert('Error must be valid email format.')</script>";
+			}
+
+			elseif (preg_match("/^[0-9]{2}\-[0-9]{7}$/", $irsNum) == 0) {
+				echo "<script>alert('Error IRS Number must follow format \"xx-xxxxxxx\"')</script>";
+			}
+
+			elseif (preg_match("/^[0-9]{5}$/", $zipCode) == 0) {
+				echo "<script>alert('Error zip code must follow format \"xxxxx\"')</script>";
+			}
+
+			else {
+				setcookie("companyName", $companyName);
+				setcookie("companyType", $companyType);
+				setcookie("email", $email);
+				setcookie("irsNum", $irsNum);
+				setcookie("phoneNo", $phoneNo);
+				setcookie("address", $address);
+				setcookie("city", $city);
+				setcookie("state", $state);
+				setcookie("zipCode", $zipCode);
+
+				// header() changes the page to the location listed
+				header("Location: adminCreation.php");
+			}
+/**************************************************************************************/
 		}
 		else {
 			echo "<script>alert('Error all values need to be entered')</script>";
