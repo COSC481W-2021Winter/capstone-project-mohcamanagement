@@ -22,6 +22,8 @@ public function scheduleWorks(AcceptanceTester $I)
         //   $I->amOnPage('pages/userMain.php');
     }
 
+
+    // Test that checks if error box pops up if the user enters a date that is not a week in advance.
     public function invalidDate(AcceptanceTester $I)
     {
         // Login first as an employee
@@ -35,13 +37,15 @@ public function scheduleWorks(AcceptanceTester $I)
         // Go to Request off page
         $I->click('Request Off');
         
-
-        // Fill form where start date is not a week in advance
+        // Submit form 
+        // Dates are prefilled with current date by default so you don't need to fill field
         $I->click('Submit');
         $I->seeElement('#invalidDate');
 
     }
 
+
+    // Test that checks if error box pops up if the user enters an end date that is before the start date.
     public function invalidDate1(AcceptanceTester $I)
     {
         // Login first as an employee
@@ -59,7 +63,7 @@ public function scheduleWorks(AcceptanceTester $I)
         $I->fillField('from', '05/01/2021');
         $I->fillField('until', '04/01/2021');
 
-        // Fill form where start date is not a week in advance
+        // Submit form
         $I->click('Submit');
         $I->seeElement('#invalidDate1');
 
