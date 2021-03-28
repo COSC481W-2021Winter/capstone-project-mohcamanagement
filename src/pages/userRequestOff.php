@@ -8,51 +8,58 @@
 	}
 
 	if (isset($_POST['send']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
-		// from input
-		$from = new DateTime($_POST['from']);
-
-		// new date
-		$date = new DateTime(date('Y-m-d' ));
-
-		// adding a week to date
-		$one_week = DateInterval::createFromDateString('1 week');
-		$date->add($one_week);
-
+		
 		// grabbing start and end dates from the form
 		$fromCheck = $_POST['from'];
 		$untilCheck = $_POST['until'];
 
-		// if start date is not a week in advance
-		if(($date) > ($from))
-		{
-			echo "<script id='invalidDate'>alert('Date needs to be one week in advance.')</script>";
+		// This regular expression sends an error if the user doen not enter the correct date format
+		if(preg_match("/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/", $fromCheck) == 0 || preg_match("/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/", $untilCheck) == 0) {
+			echo "<script id='invalidEntry'>alert('Entries needs to be a date in format \"yyyy-mm-dd\".')</script>";
 		}
-		// if end date is before start date
-		elseif($untilCheck < $fromCheck)
-		{
-			echo "<script id='invalidDate1'>alert('Ending date can not be before start date.')</script>";
-		}
-		// if we got to this point, the dates are valid and can be entered into the database
-		else{
-			$query = "SELECT * FROM Users WHERE Username = '$userCookie'";
-			$result = mysqli_query($conn, $query);
-			$row = mysqli_fetch_assoc($result);
-			$userPin = $row['Pin'];
-		
-			if(!empty($_POST['from']) && !empty($_POST['until']) && !empty($_POST['type'])){
-				$from = $_POST['from'];
-				$until = $_POST['until'];
-				$mandatory = $_POST['type'];
-				if($mandatory == 'mandatory'){
-					$mandatory = 1;
-				}
-				else{
-					$mandatory = 0;
-				}
-				$query = "INSERT INTO RequestOff VALUES ('$from', '$until', $mandatory,'$userPin')";
-				mysqli_query($conn, $query);
+
+		else {
+			$from = new DateTime($_POST['from']);
+
+			// new date
+			$date = new DateTime(date('Y-m-d' ));
+
+			// adding a week to date
+			$one_week = DateInterval::createFromDateString('1 week');
+			$date->add($one_week);
+
+			// if start date is not a week in advance
+			if(($date) > ($from))
+			{
+				echo "<script id='invalidDate'>alert('Date needs to be one week in advance.')</script>";
 			}
-			echo "<script id='validDate'>alert('Manager will be notified.')</script>";
+			// if end date is before start date
+			elseif($untilCheck < $fromCheck)
+			{
+				echo "<script id='invalidDate1'>alert('Ending date can not be before start date.')</script>";
+			}
+			// if we got to this point, the dates are valid and can be entered into the database
+			else{
+				$query = "SELECT * FROM Users WHERE Username = '$userCookie'";
+				$result = mysqli_query($conn, $query);
+				$row = mysqli_fetch_assoc($result);
+				$userPin = $row['Pin'];
+			
+				if(!empty($_POST['from']) && !empty($_POST['until']) && !empty($_POST['type'])){
+					$from = $_POST['from'];
+					$until = $_POST['until'];
+					$mandatory = $_POST['type'];
+					if($mandatory == 'mandatory'){
+						$mandatory = 1;
+					}
+					else{
+						$mandatory = 0;
+					}
+					$query = "INSERT INTO RequestOff VALUES ('$from', '$until', $mandatory,'$userPin')";
+					mysqli_query($conn, $query);
+				}
+				echo "<script id='validDate'>alert('Manager will be notified.')</script>";
+			}
 		}
 	}
 
