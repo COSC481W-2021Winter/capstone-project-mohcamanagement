@@ -1,6 +1,14 @@
 <?php
 	/*db connection needed if in seperate file */
 	include_once ('../includes/dbConnection.php');
+
+
+	function isValidDateCheck(){
+		$fromCheck = $_POST['from'];
+		$untilCheck = $_POST['until'];
+		return preg_match("/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/", $fromCheck) == 0 || preg_match("/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/", $untilCheck) == 0;
+	}
+
 	// $conn is the conection to database
 	if(isset($_COOKIE["Username"])) {
 		// if not empty then we store the cookie into a variable
@@ -10,11 +18,10 @@
 	if (isset($_POST['send']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 		// grabbing start and end dates from the form
-		$fromCheck = $_POST['from'];
-		$untilCheck = $_POST['until'];
+		
 
 		// This regular expression sends an error if the user doen not enter the correct date format
-		if(preg_match("/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/", $fromCheck) == 0 || preg_match("/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/", $untilCheck) == 0) {
+		if(isValidDateCheck()) {
 			echo "<script id='invalidEntry'>alert('Entries needs to be a date in format \"yyyy-mm-dd\".')</script>";
 		}
 
@@ -34,7 +41,7 @@
 				echo "<script id='invalidDate'>alert('Date needs to be one week in advance.')</script>";
 			}
 			// if end date is before start date
-			elseif($untilCheck < $fromCheck)
+			else if($untilCheck < $fromCheck)
 			{
 				echo "<script id='invalidDate1'>alert('Ending date can not be before start date.')</script>";
 			}
@@ -71,18 +78,6 @@
 		<title>Request Off</title>
 		<link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>">
 	</head>
-	
-<!-- 	<style>
-	table{
-		margin-left: auto;
-		margin-right: auto;
-		border-style: solid;
-		border-color: black;
-		padding: 5px;
-		background-color: #C2C0C0;
-		margin-top: 10px;
-	}
-	</style> -->
 
 	<body>
 		<h1 style="text-align:center;">Request Off <?php echo "$userCookie";?></h1>
