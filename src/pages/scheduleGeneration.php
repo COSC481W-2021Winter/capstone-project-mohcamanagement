@@ -10,21 +10,38 @@
 
         return mysqli_connect($dbHost, $dbUser, $dbPass, $db);
     }
-    if(!empty($_POST['Monday'])){
-		for($i=0;$i<=$_POST['userCount'];$i++){
-		//$useri = print('username' + $i);
-		$username='JBond';
-		$monday = $_POST['Monday'];
-		$tuesday = $_POST['Tuesday'];
-		$wednesday = $_POST['Wednesday'];
-		$thursday = $_POST['Thursday'];
-		$friday = $_POST['Friday'];
-		$saturday = $_POST['Saturday'];
-		$sunday = $_POST['Sunday'];
-		$sql="UPDATE WorkingSchedule SET Monday = '$monday', Tuesday = '$tuesday', Wednesday = '$wednesday',Thursday = '$thursday',Friday = '$friday',Saturday = '$saturday',Sunday = '$sunday' WHERE Username = '$username'";
-		// mysqli_query($conn=getInclude(),$sql);
-		$conn=getInclude();
-        $conn->query($sql);
+    if(!empty($_POST['Monday0'])){
+		$query = "SELECT * FROM Users WHERE isManager=0";
+		$result = mysqli_query($conn, $query);
+		$numOfRows = mysqli_num_rows($result);
+
+		for($i=0;$i<$numOfRows;$i++){
+			// $useri = print('username' + $i);
+			
+			// echo "\n";
+			$row = mysqli_fetch_assoc($result);
+			$username = $row['Username'];
+			
+			// $query2 = "SELECT * FROM WorkingSchedule";
+			// $result2 = mysqli_query($conn, $query2);
+			// $numOfRows2 = mysqli_num_rows($result2);
+
+			// $userToUpdate = $_POST["$username"];
+			$monday = $_POST['Monday'.$i];
+			$tuesday = $_POST['Tuesday'.$i];
+			$wednesday = $_POST['Wednesday'.$i];
+			$thursday = $_POST['Thursday'.$i];
+			$friday = $_POST['Friday'.$i];
+			$saturday = $_POST['Saturday'.$i];
+			$sunday = $_POST['Sunday'.$i];
+
+			$sql="UPDATE WorkingSchedule SET Monday = '$monday', Tuesday = '$tuesday',
+			Wednesday = '$wednesday',Thursday = '$thursday',Friday = '$friday',
+			Saturday = '$saturday',Sunday = '$sunday' WHERE Username = '$username'";
+			// mysqli_query($conn=getInclude(),$sql);
+			$conn=getInclude();
+			// mysqli_query($conn,$sql);
+			$conn->query($sql);
         }
     }
     if(!empty($_POST["startTime"])){
@@ -70,7 +87,6 @@
 
     //Iterates through the shift table in the database
     function iterateShiftsTable($result, $pin, &$schedule){
-
     	while($row = $result->fetch_assoc()){
     		if($row['Pin'] == $pin) fillScheduleArray($row, $pin, $schedule);
     	}
@@ -89,7 +105,7 @@
     	}
     }
 
-    //Main driver to generate shifts
+    //Main driver to generate shift Availability
     function generateShifts($conn, $pin){
     	$schedule = Array(Array(), Array(), Array(), Array(), Array(), Array(), Array());
 
@@ -129,15 +145,91 @@
             echo "</tr>";
         }
     }
-
+	//grabs the requested days off and displays it
     function getRequestsOff($conn, $pin, $userName){
         $query = "SELECT * FROM RequestOff";
         $result = mysqli_query($conn, $query);
 
         iterateRequestOffTable($result, $pin, $userName);
 
-    }
+	}
+	//makes the display time for next weeks schedule
+	function generateTimes($conn,$query,$day){
+		//first monday
+		$result=mysqli_query($conn,$query);
+		while($row = $result->fetch_assoc()){
+			if($row[$day]==$row['ShiftName']){
+				echo $row['StartTime']." - ".$row['EndTime'];
+			}
+		}
+	}
+	//makes the schedule for next week
+	function generateSchedule($conn,$user){
+		try{
+		$query="SELECT * FROM WorkingSchedule JOIN ShiftTimes WHERE Username='".$user."'";
+			echo "<td class='schedBorder'>";
+				echo generateTimes($conn,$query,"Monday");
+			echo "</td>";
+			echo "<td class='schedBorder'>";
+				echo generateTimes($conn,$query,'Tuesday');
+			echo "</td>";
+			echo "<td class='schedBorder'>";
+				echo generateTimes($conn,$query,'Wednesday');
+			echo "</td>";
+			echo "<td class='schedBorder'>";
+				echo generateTimes($conn,$query,'Thursday');
+			echo "</td>";
+			echo "<td class='schedBorder'>";
+				echo generateTimes($conn,$query,'Friday');
+			echo "</td>";
+			echo "<td class='schedBorder'>";
+				echo generateTimes($conn,$query,'Saturday');
+			echo "</td>";
+			echo "<td class='schedBorder'>";
+				echo generateTimes($conn,$query,'Sunday');
+			echo "</td>";
+		
+		}catch(exception $e){
 
+		}
+        
+	}
+	//makes the options for the shift selectin for next weeks schedule
+	
+	function generateOptions($day,$usernamE){
+		
+		$query = "SELECT * FROM WorkingSchedule NATURAL JOIN ShiftTimes WHERE Username='$usernamE'";
+		$result = mysqli_query($conn=getInclude(), $query);
+		
+		while($row = $result->fetch_assoc()){
+
+			if($row[$day]==$row["ShiftName"]){
+				echo "<option Selected value='".($row['ShiftName'])."'>".($row['StartTime'])." - ".($row['EndTime'])."</option>";
+
+			}
+			else{
+				echo "<option value='".($row['ShiftName'])."'>".($row['StartTime'])." - ".($row['EndTime'])."</option>";
+			}
+		}	
+	}
+	//makes the shift times for custom shifts
+	function generateCustomShift(){
+		$temp=0;
+		for($i=1;$i<24;$i++){
+			if($temp==$i){
+				echo"<option>$i:30</option>";
+				if($i==23){
+					echo"<option>24:00</option>";
+				}
+			}
+			else{
+				echo"<option>$i:00</option>";
+				$temp=$i;
+				$i=$i-1;
+			}
+		}
+
+	}
 ?>
 <!DOCTYPE html>
  <html lang="en">
@@ -147,8 +239,8 @@
 
  </head>
  <body>
-    <h1>Work Schedule</h1>
-    <table style="center">
+    <h1>Availability</h1>
+    <table id="avail" style="center">
         <?php
         // plan to add an automated date with the weekdays to make shcdule easier to read
         //ex Monday 15
@@ -175,14 +267,14 @@
         while($row = mysqli_fetch_assoc($result)) {
             //grabs the current row of data so you can display or manipulate
             echo "<tr>";
-            echo "<td class='schedBorder'name='user'>".($row['Username'])."</td>";
-            generateShifts($conn, $row['Pin']);
+            	echo "<td class='schedBorder'name='user'>".($row['Username'])."</td>";
+            	generateShifts($conn, $row['Pin']);
             echo "</tr>";
         }
         ?>
     </table>
     <h1>Edit Next Weeks Schedule</h1>
-	<table style="center">
+	<table id="nextweekschedule" style="center">
 		<?php
 		// plan to add an automated date with the weekdays to make shcdule easier to read
 		//ex Monday 15
@@ -197,72 +289,99 @@
 			echo "<td class='schedBorder'><h3>Sunday </h3></td>";
 		echo "</tr>";
 		//Selects all the data from the Users Table for use in getting the schedules
-		$query = "SELECT * FROM Users JOIN WorkingSchedule";
+		//$query = "SELECT * FROM Users JOIN WorkingSchedule";
 		//makes the connection to the database with the query and returns the result
-		$result = mysqli_query($conn, $query);
+		//$result = mysqli_query($conn, $query);
 		//how many rows of data was retunred from the database
-		$numOfRows = mysqli_num_rows($result);
+		//$numOfRows = mysqli_num_rows($result);
 		// or you can put it into the loop directly
-		// while($row=mysqli_fetch_assoc($result))
 		//which will iterate over every row
-		$temp=null;
+		//$temp=null;
 
+		$query = "SELECT * FROM Users WHERE isManager=0";
+		$result = mysqli_query($conn, $query);
+		$numOfRows = mysqli_num_rows($result);
+		
 		echo "<form action='scheduleGeneration.php' method='POST'>";
 
-
-		function generateOptions(){
+		// for($i=0;$i<$numOfRows;$i++){
+			// $row = mysqli_fetch_assoc($result);
+			// $username = $row["Username"];
+			// echo "<td class='schedBorder'name='user'>".$username."</td>";
+		// }
 		
-			$query = "SELECT * FROM ShiftTimes";
-			$result = mysqli_query($conn=getInclude(), $query);
-			while($row = $result->fetch_assoc()){
-				echo "<option value='".($row['ShiftName'])."'>".($row['StartTime'])." - ".($row['EndTime'])."</option>";
-			}	
-		}
-		$i=0;
-		while($row = $result->fetch_assoc()) {
+		//$i=0;
+		for($i=0;$i<$numOfRows;$i++){
 			//grabs the current row of data so you can display or manipulate
-			if($temp==$row["Username"])
-				break;
+			$row = mysqli_fetch_assoc($result);
+			$username = $row["Username"];
+			echo"<input type='Hidden' name='".$username."' id='".$username."' value='".$username."'></input>";	
 			echo "<tr>";
-			echo "<td class='schedBorder'name='user'>".($row['Username'])."</td>";
-			echo "<td class='schedBorder'><select name='Monday' id='scheduleEdit'>";
-			generateOptions();
-			echo"</select></td>";		
-			echo "<td class='schedBorder' ><select name='Tuesday' id='scheduleEdit'>";
-			generateOptions();
-			echo"</select></td>";
-			echo "<td class='schedBorder'><select name='Wednesday' id='scheduleEdit'>";
-			generateOptions();
-			echo"</select></td>";
-			echo "<td class='schedBorder'><select name='Thursday' id='scheduleEdit'>";
-			generateOptions();
-			echo"</select></td>";
-			echo "<td class='schedBorder'><select name='Friday' id='scheduleEdit'>";
-			generateOptions();
-			echo"</select></td>";
-			echo "<td class='schedBorder'><select name='Saturday' id='scheduleEdit'>";
-			generateOptions();
-			echo"</select></td>";
-			echo "<td class='schedBorder'><select name='Sunday' id='scheduleEdit'>";
-			generateOptions();
-			echo"</select></td>";
+				echo "<td class='schedBorder'name='$username'>".$username."</td>";
+				echo "<td class='schedBorder'><select name='Monday$i' id='scheduleEdit'>";
+					generateOptions("Monday",$username);
+				echo"</select></td>";		
+				echo "<td class='schedBorder' ><select name='Tuesday$i' id='scheduleEdit'>";
+					generateOptions("Tuesday",$username);
+				echo"</select></td>";
+				echo "<td class='schedBorder'><select name='Wednesday$i' id='scheduleEdit'>";
+					generateOptions("Wednesday",$username);
+				echo"</select></td>";
+				echo "<td class='schedBorder'><select name='Thursday$i' id='scheduleEdit'>";
+					generateOptions("Thursday",$username);
+				echo"</select></td>";
+				echo "<td class='schedBorder'><select name='Friday$i' id='scheduleEdit'>";
+					generateOptions("Friday",$username);
+				echo"</select></td>";
+				echo "<td class='schedBorder'><select name='Saturday$i' id='scheduleEdit'>";
+					generateOptions("Saturday",$username);
+				echo"</select></td>";
+				echo "<td class='schedBorder'><select name='Sunday$i' id='scheduleEdit'>";
+					generateOptions("Sunday",$username);
+				echo"</select></td>";
 			
-				echo"<input type='Hidden' name='done' id='done' value='true'></input>";
-				echo"<input type='Hidden' name='user$i' id='Userdone' value='".($row['Username'])."'></input>";							
+				//echo"<input type='Hidden' name='done' id='done' value='true'></input>";
+										
 			echo "</tr>";
 
-			$i++;
+			//$i++;
 			
-			$temp=$row["Username"];
+			//$temp=$row["Username"];
 		}
-		echo"<input type='Hidden' name='userCount' id='userCount' value='$i'></input>";	
+		// echo"<input type='Hidden' name='userCount' id='userCount' value='$i'></input>";	
 		echo"<tr><td><input type='Submit' value='EditSchedule'></input></td></tr>";
 		echo "</form>";
 		?>
 	</table>
+	<h1>Next Weeks Schedule</h1>
+	<table id="workSched">
+        <?php
+        echo "<tr>";
+            echo "<td class='schedBorder'><h3>Employee</h3></td>";
+            echo "<td class='schedBorder' ><h3>Monday </h3></td>";
+            echo "<td class='schedBorder'><h3>Tuesday </h3></td>";
+            echo "<td class='schedBorder'><h3>Wednesday </h3></td>";
+            echo "<td class='schedBorder'><h3>Thursday </h3></td>";
+            echo "<td class='schedBorder'><h3>Friday </h3></td>";
+            echo "<td class='schedBorder'><h3>Saturday </h3></td>";
+            echo "<td class='schedBorder'><h3>Sunday </h3></td>";
+		echo "</tr>";
+		
+        $query = "SELECT * FROM Users WHERE isManager=0";
+        $result = mysqli_query($conn, $query);
+        $numOfRows = mysqli_num_rows($result);
+
+        while($row = mysqli_fetch_assoc($result)) {
+            echo "<tr>";
+            echo "<td class='schedBorder'name='user'>".($row['Username'])."</td>";
+            generateSchedule($conn, $row['Username']);
+            echo "</tr>";
+        }
+        ?>
+    </table>
 
     <h1>Time Request Off</h1>
-    <table style="center">
+    <table id="requestOff" style="center">
         <?php
         // plan to add an automated date with the weekdays to make shcdule easier to read
         //ex Monday 15
@@ -279,7 +398,6 @@
         //how many rows of data was retunred from the database
         $numOfRows = mysqli_num_rows($result);
         // or you can put it into the loop directly
-        // while($row=mysqli_fetch_assoc($result))
         //which will iterate over every row
 
         while($row = mysqli_fetch_assoc($result)) {
@@ -294,45 +412,23 @@
         <form action="scheduleGeneration.php" method="POST">
         <tr>
             <td>Name <input type="text" name="shiftName"></td>
-            <td><select name="startTime">
-                <?php $temp=0;
-                for($i=1;$i<13;$i++){
-                    if($temp==$i){
-                        echo"<option>$i:30</option>";
-                        
-                    }
-                    else{
-                        echo"<option>$i:00</option>";
-                        $temp=$i;
-                        $i=$i-1;
-                    }
-                    
-                    if($temp>24){
-                        break;
-                    }
-                }
-                ?>
-            </select></td>
-            <td><select name="endTime">
-                <?php $temp=0;
-                for($i=1;$i<13;$i++){
-                    if($temp==$i){
-                        echo"<option>$i:30</option>";
-                        
-                    }
-                    else{
-                        echo"<option>$i:00</option>";
-                        $temp=$i;
-                        $i=$i-1;
-                    }
-                    
-                    if($temp>24){
-                        break;
-                    }
-                }
-                ?>
-            </select></td>
-            <td><input type='Submit' value='Submit'></input></td>
+            <td>
+				<select name="startTime">
+					<?php
+					generateCustomShift();
+					?>
+				</select>
+			</td>
+            <td>
+				<select name="endTime">
+					<?php 
+					generateCustomShift();
+					?>
+				</select>
+			</td>
+            <td>
+				<input type='Submit' value='Submit'></input>
+			</td>
         </tr>
         </form>
 
