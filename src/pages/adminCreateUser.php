@@ -60,234 +60,236 @@
 					if(!empty($_POST['YearsWorked']))
 						$yearsWorked = $_POST['YearsWorked'];
 
-						if(preg_match("/^[0-9]{2}$/", $yearsWorked) == 0) {
-							echo "<script>alert('Error years worked need to be a number.</script>";
-						}
 					else
 						$yearsWorked = 0;
 
 	/************Use the saved variables to insert into the Users table********************/
-					$query = "INSERT INTO Users VALUES('$username', '$pin', 0, '$yearsWorked', 'Songbird')";
-					mysqli_query($conn, $query);
-	/**************************************************************************************/
-					$query = "INSERT INTO WorkingSchedule VALUES ('$username','Off','Off','Off','Off','Off','Off','Off')";
-					mysqli_query($conn, $query);
-	/****************************For Monday Availability**********************************/
-					//day selected is for each day of the week
-					$daySelected = 'Monday'; 
+					if(preg_match("/^[0-9][0-9]?$/",$yearsWorked) == 0) {
+						echo "<script>alert('Error years worked need to be a number with either one or two digits.')</script>";
+					}
+					else {
+						$query = "INSERT INTO Users VALUES('$username', '$pin', 0, '$yearsWorked', 'Songbird')";
+						mysqli_query($conn, $query);
+		/**************************************************************************************/
+						$query = "INSERT INTO WorkingSchedule VALUES ('$username','Off','Off','Off','Off','Off','Off','Off')";
+						mysqli_query($conn, $query);
+		/****************************For Monday Availability**********************************/
+						//day selected is for each day of the week
+						$daySelected = 'Monday'; 
 
-					if(!empty($_POST['monShift'])) {
-						$check = $_POST['monShift'];
-						$size = count($check);
+						if(!empty($_POST['monShift'])) {
+							$check = $_POST['monShift'];
+							$size = count($check);
 
-						for($i = 0; $i<$size; $i++) {
-							$shiftToInsert = $check[$i];
-							$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
-							mysqli_query($conn, $query);
-
-							// checks to see if off is selected. If so removes all for that day and just puts off instead.
-							if($shiftToInsert == "Off") {
-								$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = 'Monday'"; 
-								mysqli_query($conn, $query);
-
+							for($i = 0; $i<$size; $i++) {
+								$shiftToInsert = $check[$i];
 								$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
 								mysqli_query($conn, $query);
+
+								// checks to see if off is selected. If so removes all for that day and just puts off instead.
+								if($shiftToInsert == "Off") {
+									$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = 'Monday'"; 
+									mysqli_query($conn, $query);
+
+									$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+									mysqli_query($conn, $query);
+								}
+							}
+						}	
+						// if post array is empty then just insert off into table.
+						else {
+							$shiftToInsert = 'Off';
+							$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+							mysqli_query($conn, $query);
+						}
+		/**************************************************************************************/
+						
+		/****************************For Tuesday Availability**********************************/
+						//day selected is for each day of the week
+						$daySelected = 'Tuesday';	
+
+						if(!empty($_POST['tueShift'])) {
+							$check = $_POST['tueShift'];
+							$size = count($check);
+
+							for($i = 0; $i<$size; $i++) {
+								$shiftToInsert = $check[$i];
+								$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+								mysqli_query($conn, $query);
+
+								// checks to see if off is selected. If so removes all for that day and just puts off instead.
+								if($shiftToInsert == "Off") {
+									$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = 'Monday'"; 
+									mysqli_query($conn, $query);
+
+									$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+									mysqli_query($conn, $query);
+								}
+							}
+						}	
+						// if post array is empty then just insert off into table.
+						else {
+							$shiftToInsert = 'Off';
+							$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+							mysqli_query($conn, $query);
+						}
+		/**************************************************************************************/
+
+		/****************************For Wednesday Availability*******************************/
+						//day selected is for each day of the week
+						$daySelected = 'Wednesday';	
+
+						if(!empty($_POST['wedShift'])) {
+							$check = $_POST['wedShift'];
+							$size = count($check);
+
+							for($i = 0; $i<$size; $i++) {
+								$shiftToInsert = $check[$i];
+								$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+								mysqli_query($conn, $query);
+
+								// checks to see if off is selected. If so removes all for that day and just puts off instead.
+								if($shiftToInsert == "Off") {
+									$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = 'Monday'"; 
+									mysqli_query($conn, $query);
+
+									$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+									mysqli_query($conn, $query);
+								}
+							}
+						}	
+						// if post array is empty then just insert off into table.
+						else {
+							$shiftToInsert = 'Off';
+							$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+							mysqli_query($conn, $query);
+						}
+		/**************************************************************************************/
+
+		/****************************For Thursday Availability*********************************/
+						//day selected is for each day of the week
+						$daySelected = 'Thursday';
+
+						if(!empty($_POST['thurShift'])) {
+							$check = $_POST['thurShift'];
+							$size = count($check);
+
+							for($i = 0; $i<$size; $i++) {
+								$shiftToInsert = $check[$i];
+								$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+								mysqli_query($conn, $query);
+
+								// checks to see if off is selected. If so removes all for that day and just puts off instead.
+								if($shiftToInsert == "Off") {
+									$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = 'Monday'"; 
+									mysqli_query($conn, $query);
+
+									$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+									mysqli_query($conn, $query);
+								}
+							}
+						}	
+						// if post array is empty then just insert off into table.
+						else {
+							$shiftToInsert = 'Off';
+							$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+							mysqli_query($conn, $query);
+						}
+		/**************************************************************************************/
+
+		/****************************For Friday Availability**********************************/
+						//day selected is for each day of the week
+						$daySelected = 'Friday';
+
+						if(!empty($_POST['friShift'])) {
+							$check = $_POST['friShift'];
+							$size = count($check);
+
+							for($i = 0; $i<$size; $i++) {
+								$shiftToInsert = $check[$i];
+								$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+								mysqli_query($conn, $query);
+
+								// checks to see if off is selected. If so removes all for that day and just puts off instead.
+								if($shiftToInsert == "Off") {
+									$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = 'Monday'"; 
+									mysqli_query($conn, $query);
+
+									$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+									mysqli_query($conn, $query);
+								}
 							}
 						}
+						// if post array is empty then just insert off into table.	
+						else {
+							$shiftToInsert = 'Off';
+							$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+							mysqli_query($conn, $query);
+						}
+		/**************************************************************************************/
+
+		/****************************For Saturday Availability*********************************/
+						//day selected is for each day of the week
+						$daySelected = 'Saturday';	
+
+						if(!empty($_POST['satShift'])) {
+							$check = $_POST['satShift'];
+							$size = count($check);
+
+							for($i = 0; $i<$size; $i++) {
+								$shiftToInsert = $check[$i];
+								$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+								mysqli_query($conn, $query);
+
+								// checks to see if off is selected. If so removes all for that day and just puts off instead.
+								if($shiftToInsert == "Off") {
+									$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = 'Monday'"; 
+									mysqli_query($conn, $query);
+
+									$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+									mysqli_query($conn, $query);
+								}
+							}
+						}	
+						// if post array is empty then just insert off into table.
+						else {
+							$shiftToInsert = 'Off';
+							$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+							mysqli_query($conn, $query);
+						}
+		/**************************************************************************************/
+
+		/****************************For Sunday Availability***********************************/
+						//day selected is for each day of the week
+						$daySelected = 'Sunday';
+
+						if(!empty($_POST['sunShift'])) {
+							$check = $_POST['sunShift'];
+							$size = count($check);
+
+							for($i = 0; $i<$size; $i++) {
+								$shiftToInsert = $check[$i];
+								$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+								mysqli_query($conn, $query);
+
+								// checks to see if off is selected. If so removes all for that day and just puts off instead.
+								if($shiftToInsert == "Off") {
+									$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = 'Monday'"; 
+									mysqli_query($conn, $query);
+
+									$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+									mysqli_query($conn, $query);
+								}
+							}
+						}	
+						// if post array is empty then just insert off into table.
+						else {
+							$shiftToInsert = 'Off';
+							$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+							mysqli_query($conn, $query);
+						}
+		/**************************************************************************************/
 					}	
-					// if post array is empty then just insert off into table.
-					else {
-						$shiftToInsert = 'Off';
-						$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
-						mysqli_query($conn, $query);
-					}
-	/**************************************************************************************/
-					
-	/****************************For Tuesday Availability**********************************/
-					//day selected is for each day of the week
-					$daySelected = 'Tuesday';	
-
-					if(!empty($_POST['tueShift'])) {
-						$check = $_POST['tueShift'];
-						$size = count($check);
-
-						for($i = 0; $i<$size; $i++) {
-							$shiftToInsert = $check[$i];
-							$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
-							mysqli_query($conn, $query);
-
-							// checks to see if off is selected. If so removes all for that day and just puts off instead.
-							if($shiftToInsert == "Off") {
-								$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = 'Monday'"; 
-								mysqli_query($conn, $query);
-
-								$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
-								mysqli_query($conn, $query);
-							}
-						}
-					}	
-					// if post array is empty then just insert off into table.
-					else {
-						$shiftToInsert = 'Off';
-						$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
-						mysqli_query($conn, $query);
-					}
-	/**************************************************************************************/
-
-	/****************************For Wednesday Availability*******************************/
-					//day selected is for each day of the week
-					$daySelected = 'Wednesday';	
-
-					if(!empty($_POST['wedShift'])) {
-						$check = $_POST['wedShift'];
-						$size = count($check);
-
-						for($i = 0; $i<$size; $i++) {
-							$shiftToInsert = $check[$i];
-							$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
-							mysqli_query($conn, $query);
-
-							// checks to see if off is selected. If so removes all for that day and just puts off instead.
-							if($shiftToInsert == "Off") {
-								$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = 'Monday'"; 
-								mysqli_query($conn, $query);
-
-								$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
-								mysqli_query($conn, $query);
-							}
-						}
-					}	
-					// if post array is empty then just insert off into table.
-					else {
-						$shiftToInsert = 'Off';
-						$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
-						mysqli_query($conn, $query);
-					}
-	/**************************************************************************************/
-
-	/****************************For Thursday Availability*********************************/
-					//day selected is for each day of the week
-					$daySelected = 'Thursday';
-
-					if(!empty($_POST['thurShift'])) {
-						$check = $_POST['thurShift'];
-						$size = count($check);
-
-						for($i = 0; $i<$size; $i++) {
-							$shiftToInsert = $check[$i];
-							$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
-							mysqli_query($conn, $query);
-
-							// checks to see if off is selected. If so removes all for that day and just puts off instead.
-							if($shiftToInsert == "Off") {
-								$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = 'Monday'"; 
-								mysqli_query($conn, $query);
-
-								$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
-								mysqli_query($conn, $query);
-							}
-						}
-					}	
-					// if post array is empty then just insert off into table.
-					else {
-						$shiftToInsert = 'Off';
-						$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
-						mysqli_query($conn, $query);
-					}
-	/**************************************************************************************/
-
-	/****************************For Friday Availability**********************************/
-					//day selected is for each day of the week
-					$daySelected = 'Friday';
-
-					if(!empty($_POST['friShift'])) {
-						$check = $_POST['friShift'];
-						$size = count($check);
-
-						for($i = 0; $i<$size; $i++) {
-							$shiftToInsert = $check[$i];
-							$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
-							mysqli_query($conn, $query);
-
-							// checks to see if off is selected. If so removes all for that day and just puts off instead.
-							if($shiftToInsert == "Off") {
-								$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = 'Monday'"; 
-								mysqli_query($conn, $query);
-
-								$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
-								mysqli_query($conn, $query);
-							}
-						}
-					}
-					// if post array is empty then just insert off into table.	
-					else {
-						$shiftToInsert = 'Off';
-						$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
-						mysqli_query($conn, $query);
-					}
-	/**************************************************************************************/
-
-	/****************************For Saturday Availability*********************************/
-					//day selected is for each day of the week
-					$daySelected = 'Saturday';	
-
-					if(!empty($_POST['satShift'])) {
-						$check = $_POST['satShift'];
-						$size = count($check);
-
-						for($i = 0; $i<$size; $i++) {
-							$shiftToInsert = $check[$i];
-							$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
-							mysqli_query($conn, $query);
-
-							// checks to see if off is selected. If so removes all for that day and just puts off instead.
-							if($shiftToInsert == "Off") {
-								$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = 'Monday'"; 
-								mysqli_query($conn, $query);
-
-								$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
-								mysqli_query($conn, $query);
-							}
-						}
-					}	
-					// if post array is empty then just insert off into table.
-					else {
-						$shiftToInsert = 'Off';
-						$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
-						mysqli_query($conn, $query);
-					}
-	/**************************************************************************************/
-
-	/****************************For Sunday Availability***********************************/
-					//day selected is for each day of the week
-					$daySelected = 'Sunday';
-
-					if(!empty($_POST['sunShift'])) {
-						$check = $_POST['sunShift'];
-						$size = count($check);
-
-						for($i = 0; $i<$size; $i++) {
-							$shiftToInsert = $check[$i];
-							$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
-							mysqli_query($conn, $query);
-
-							// checks to see if off is selected. If so removes all for that day and just puts off instead.
-							if($shiftToInsert == "Off") {
-								$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = 'Monday'"; 
-								mysqli_query($conn, $query);
-
-								$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
-								mysqli_query($conn, $query);
-							}
-						}
-					}	
-					// if post array is empty then just insert off into table.
-					else {
-						$shiftToInsert = 'Off';
-						$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
-						mysqli_query($conn, $query);
-					}
-	/**************************************************************************************/
 				}
 				// Else print error saying that the entry is not unique
 				else {
