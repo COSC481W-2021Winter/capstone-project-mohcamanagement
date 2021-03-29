@@ -11,20 +11,33 @@
         return mysqli_connect($dbHost, $dbUser, $dbPass, $db);
     }
     if(!empty($_POST['Monday'])){
-		for($i=0;$i<=$_POST['userCount'];$i++){
-		//$useri = print('username' + $i);
-		$username='JBond';
-		$monday = $_POST['Monday'];
-		$tuesday = $_POST['Tuesday'];
-		$wednesday = $_POST['Wednesday'];
-		$thursday = $_POST['Thursday'];
-		$friday = $_POST['Friday'];
-		$saturday = $_POST['Saturday'];
-		$sunday = $_POST['Sunday'];
-		$sql="UPDATE WorkingSchedule SET Monday = '$monday', Tuesday = '$tuesday', Wednesday = '$wednesday',Thursday = '$thursday',Friday = '$friday',Saturday = '$saturday',Sunday = '$sunday' WHERE Username = '$username'";
-		// mysqli_query($conn=getInclude(),$sql);
-		$conn=getInclude();
-        $conn->query($sql);
+		$query = "SELECT * FROM Users WHERE isManager=0";
+		$result = mysqli_query($conn, $query);
+		$numOfRows = mysqli_num_rows($result);
+		
+		for($i=0;$i<$numOfRows;$i++){
+			//$useri = print('username' + $i);
+			$row = mysqli_fetch_assoc($result);
+			$username = $row['Username'];
+			
+			$query2 = "SELECT * FROM WorkingSchedule";
+			$result2 = mysqli_query($conn, $query2);
+			$numOfRows2 = mysqli_num_rows($result2);
+			
+			$userToUpdate = $_POST[$username];
+			$monday = $_POST['Monday'];
+			$tuesday = $_POST['Tuesday'];
+			$wednesday = $_POST['Wednesday'];
+			$thursday = $_POST['Thursday'];
+			$friday = $_POST['Friday'];
+			$saturday = $_POST['Saturday'];
+			$sunday = $_POST['Sunday'];
+			$sql="UPDATE WorkingSchedule SET Monday = '$monday', Tuesday = '$tuesday', 
+			Wednesday = '$wednesday',Thursday = '$thursday',Friday = '$friday',
+			Saturday = '$saturday',Sunday = '$sunday' WHERE Username = '$userToUpdate'";
+			// mysqli_query($conn=getInclude(),$sql);
+			$conn=getInclude();
+			mysqli_query($conn,$sql);
         }
     }
     if(!empty($_POST["startTime"])){
@@ -70,7 +83,6 @@
 
     //Iterates through the shift table in the database
     function iterateShiftsTable($result, $pin, &$schedule){
-
     	while($row = $result->fetch_assoc()){
     		if($row['Pin'] == $pin) fillScheduleArray($row, $pin, $schedule);
     	}
@@ -189,7 +201,7 @@
 				echo "<option Selected value='".($row['ShiftName'])."'>".($row['StartTime'])." - ".($row['EndTime'])."</option>";
 			}
 			else{
-			echo "<option value='".($row['ShiftName'])."'>".($row['StartTime'])." - ".($row['EndTime'])."</option>";
+				echo "<option value='".($row['ShiftName'])."'>".($row['StartTime'])." - ".($row['EndTime'])."</option>";
 			}
 		}	
 	}
@@ -202,7 +214,6 @@
 				if($i==23){
 					echo"<option>24:00</option>";
 				}
-				
 			}
 			else{
 				echo"<option>$i:00</option>";
@@ -212,7 +223,6 @@
 		}
 
 	}
-
 ?>
 <!DOCTYPE html>
  <html lang="en">
@@ -272,26 +282,34 @@
 			echo "<td class='schedBorder'><h3>Sunday </h3></td>";
 		echo "</tr>";
 		//Selects all the data from the Users Table for use in getting the schedules
-		$query = "SELECT * FROM Users JOIN WorkingSchedule";
+		//$query = "SELECT * FROM Users JOIN WorkingSchedule";
 		//makes the connection to the database with the query and returns the result
-		$result = mysqli_query($conn, $query);
+		//$result = mysqli_query($conn, $query);
 		//how many rows of data was retunred from the database
-		$numOfRows = mysqli_num_rows($result);
+		//$numOfRows = mysqli_num_rows($result);
 		// or you can put it into the loop directly
 		//which will iterate over every row
-		$temp=null;
+		//$temp=null;
 
+		$query = "SELECT * FROM Users WHERE isManager=0";
+		$result = mysqli_query($conn, $query);
+		$numOfRows = mysqli_num_rows($result);
+		
 		echo "<form action='scheduleGeneration.php' method='POST'>";
 
-
+		// for($i=0;$i<$numOfRows;$i++){
+			// $row = mysqli_fetch_assoc($result);
+			// $username = $row["Username"];
+			// echo "<td class='schedBorder'name='user'>".$username."</td>";
+		// }
 		
-		$i=0;
-		while($row = $result->fetch_assoc()) {
+		//$i=0;
+		for($i=0;$i<$numOfRows;$i++){
 			//grabs the current row of data so you can display or manipulate
-			if($temp==$row["Username"])
-				break;
+			$row = mysqli_fetch_assoc($result);
+			$username = $row["Username"];
 			echo "<tr>";
-				echo "<td class='schedBorder'name='user'>".($row['Username'])."</td>";
+				echo "<td class='schedBorder'name='$username'>".$username."</td>";
 				echo "<td class='schedBorder'><select name='Monday' id='scheduleEdit'>";
 					generateOptions("Monday");
 				echo"</select></td>";		
@@ -314,13 +332,13 @@
 					generateOptions("Sunday");
 				echo"</select></td>";
 			
-				echo"<input type='Hidden' name='done' id='done' value='true'></input>";
-				echo"<input type='Hidden' name='user$i' id='Userdone' value='".($row['Username'])."'></input>";							
+				//echo"<input type='Hidden' name='done' id='done' value='true'></input>";
+				echo"<input type='Hidden' name='$username' id='Userdone' value='".$username."'></input>";							
 			echo "</tr>";
 
-			$i++;
+			//$i++;
 			
-			$temp=$row["Username"];
+			//$temp=$row["Username"];
 		}
 		echo"<input type='Hidden' name='userCount' id='userCount' value='$i'></input>";	
 		echo"<tr><td><input type='Submit' value='EditSchedule'></input></td></tr>";
