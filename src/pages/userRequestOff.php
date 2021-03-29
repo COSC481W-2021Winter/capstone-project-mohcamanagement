@@ -41,7 +41,7 @@
 				echo "<script id='invalidDate'>alert('Date needs to be one week in advance.')</script>";
 			}
 			// if end date is before start date
-			else if($untilCheck < $fromCheck)
+			elseif($untilCheck < $fromCheck)
 			{
 				echo "<script id='invalidDate1'>alert('Ending date can not be before start date.')</script>";
 			}
