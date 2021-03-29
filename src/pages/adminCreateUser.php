@@ -70,8 +70,8 @@
 					$query = "INSERT INTO Users VALUES('$username', '$pin', 0, '$yearsWorked', 'Songbird')";
 					mysqli_query($conn, $query);
 	/**************************************************************************************/
-
-					
+					$query = "INSERT INTO WorkingSchedule VALUES ('$username','Off','Off','Off','Off','Off','Off','Off')";
+					mysqli_query($conn, $query);
 	/****************************For Monday Availability**********************************/
 					//day selected is for each day of the week
 					$daySelected = 'Monday'; 

@@ -14,19 +14,12 @@
 		$query = "SELECT * FROM Users WHERE isManager=0";
 		$result = mysqli_query($conn, $query);
 		$numOfRows = mysqli_num_rows($result);
-
 		for($i=0;$i<$numOfRows;$i++){
-			// $useri = print('username' + $i);
-			
-			// echo "\n";
+
 			$row = mysqli_fetch_assoc($result);
 			$username = $row['Username'];
 			
-			// $query2 = "SELECT * FROM WorkingSchedule";
-			// $result2 = mysqli_query($conn, $query2);
-			// $numOfRows2 = mysqli_num_rows($result2);
-
-			// $userToUpdate = $_POST["$username"];
+			
 			$monday = $_POST['Monday'.$i];
 			$tuesday = $_POST['Tuesday'.$i];
 			$wednesday = $_POST['Wednesday'.$i];
@@ -34,13 +27,12 @@
 			$friday = $_POST['Friday'.$i];
 			$saturday = $_POST['Saturday'.$i];
 			$sunday = $_POST['Sunday'.$i];
-
+      
 			$sql="UPDATE WorkingSchedule SET Monday = '$monday', Tuesday = '$tuesday',
 			Wednesday = '$wednesday',Thursday = '$thursday',Friday = '$friday',
 			Saturday = '$saturday',Sunday = '$sunday' WHERE Username = '$username'";
-			// mysqli_query($conn=getInclude(),$sql);
+
 			$conn=getInclude();
-			// mysqli_query($conn,$sql);
 			$conn->query($sql);
         }
     }
@@ -199,6 +191,7 @@
 	function generateOptions($day,$usernamE){
 		
 		$query = "SELECT * FROM WorkingSchedule NATURAL JOIN ShiftTimes WHERE Username='$usernamE'";
+
 		$result = mysqli_query($conn=getInclude(), $query);
 		
 		while($row = $result->fetch_assoc()){
