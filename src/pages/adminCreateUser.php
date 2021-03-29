@@ -11,11 +11,11 @@
 			$pin = $_POST['Pin'];
 
 			if(preg_match("/^[A-Z]{2}[a-z]+$/", $username) == 0 && preg_match("/^[0-9]{4}$/",$pin) == 0) {
-				echo "<script>alert('Error Username must be only letters. Pin must follow format \"xxxx\"')</script>";
+				echo "<script>alert('Error Username must be only letters following format \"AAb+\" where A is a capitol letter and b is one or more lowercase letters. Pin must follow format \"xxxx\"')</script>";
 			}
 
 			elseif(preg_match("/^[A-Z]{2}[a-z]+$/", $username) == 0) {
-				echo "<script>alert('Error Username must be only letters.')</script>";
+				echo "<script>alert('Error Username must be only letters following format \"AAb+\" where A is a capitol letter and b is one or more lowercase letters.')</script>";
 			}
 
 			elseif(preg_match("/^[0-9]{4}$/",$pin) == 0) {
