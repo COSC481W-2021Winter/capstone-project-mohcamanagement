@@ -44,6 +44,11 @@
 			while($row = $result->fetch_assoc()) {
 				echo "<tr><td style='text-align:center;'>".str_replace("_", " ", $row["ItemName"])."</td>";
 				$temp = $_POST[$row["ItemName"]];
+				$itemName=$row["ItemName"];
+				
+				$query="UPDATE Items SET OnHand= $temp WHERE ItemName='$itemName'";
+				mysqli_query($conn, $query);
+
 				if($_POST[$row['ItemName']] == null) {
 					echo "<td style='text-align:center;'>".$row['Par']."</td></tr>";
 				}

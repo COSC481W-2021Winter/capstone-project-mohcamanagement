@@ -35,7 +35,7 @@ class scheduleGenerationCest
         $I->selectOption('endTime','5:00');
         $I->click('Submit');
         $I->see('Edit Next Weeks Schedule');
-        $I->selectOption('Monday','5th');
+        $I->selectOption('Monday2','1st');
         //Test to see if the database gets updated when the manager updates the employee hours
         $I->click('EditSchedule');
         $I->seeInDatabase('workingschedule', ['Username' => 'JBond', 'Monday' => '5th']);
