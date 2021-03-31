@@ -1,0 +1,116 @@
+CREATE TABLE Company
+(
+  Name VARCHAR(35) NOT NULL,
+  PhoneNum VARCHAR(12) NOT NULL,
+  IrsNum VARCHAR(30) NOT NULL,
+  Type VARCHAR(30) NOT NULL,
+  Street VARCHAR(35) NOT NULL,
+  City VARCHAR(30) NOT NULL,
+  Zip VARCHAR(5) NOT NULL,
+  State VARCHAR(20) NOT NULL,
+  Email VARCHAR(45) NOT NULL,
+  PRIMARY KEY (Name)
+);
+
+CREATE TABLE InventoryType
+(
+  Type VARCHAR(25) NOT NULL,
+  Name VARCHAR(35) NOT NULL,
+  PRIMARY KEY (Type, Name),
+  FOREIGN KEY (Name) REFERENCES Company(Name)
+);
+
+CREATE TABLE Users
+(
+  Username VARCHAR(40) NOT NULL,
+  Pin VARCHAR(10) NOT NULL,
+  IsManager BOOL NOT NULL,
+  YearsWorked VARCHAR(2) NOT NULL,
+  Name VARCHAR(35) NOT NULL,
+  PRIMARY KEY (Pin),
+  FOREIGN KEY (Name) REFERENCES Company(Name)
+);
+
+CREATE TABLE Items
+(
+  ItemName VARCHAR(30) NOT NULL,
+  Par INT NOT NULL,
+  OnHand INT NOT NULL,
+  Type VARCHAR(25) NOT NULL,
+  Name VARCHAR(35) NOT NULL,
+  PRIMARY KEY (ItemName),
+  FOREIGN KEY (Type, Name) REFERENCES InventoryType(Type, Name)
+);
+
+CREATE TABLE InventorySuggestions
+(
+  ItemName VARCHAR(30) NOT NULL,
+  Type VARCHAR(25) NOT NULL,
+  Name VARCHAR(35) NOT NULL,
+  Pin VARCHAR(10) NOT NULL,
+  PRIMARY KEY (ItemName),
+  FOREIGN KEY (Type, Name) REFERENCES InventoryType(Type, Name),
+  FOREIGN KEY (Pin) REFERENCES Users(Pin)
+);
+
+CREATE TABLE RequestOff
+(
+  StartDate DATE NOT NULL,
+  EndDate DATE NOT NULL,
+  Mandatory BOOL NOT NULL,
+  Pin VARCHAR(10) NOT NULL,
+  FOREIGN KEY (Pin) REFERENCES Users(Pin)
+);
+
+CREATE TABLE WriteOffs
+(
+  ItemName VARCHAR(30) NOT NULL,
+  DateExpired DATE NOT NULL,
+  Pin VARCHAR(10) NOT NULL,
+  PRIMARY KEY(ItemName, DateExpired, Pin),
+  FOREIGN KEY (Pin) REFERENCES Users(Pin)
+);
+
+CREATE TABLE ShiftTimes
+(
+  ShiftName VARCHAR(3),
+  StartTime VARCHAR(5),
+  EndTime VARCHAR(5) ,
+  PRIMARY KEY (ShiftName)
+);
+
+CREATE TABLE WorkingSchedule
+(
+  Username VARCHAR(40) NOT NULL,
+  Monday VARCHAR(3) NOT NULL,
+  Tuesday VARCHAR(3) NOT NULL,
+  Wednesday VARCHAR(3) NOT NULL,
+  Thursday VARCHAR(3) NOT NULL,
+  Friday VARCHAR(3) NOT NULL,
+  Saturday VARCHAR(3) NOT NULL,
+  Sunday VARCHAR(3) NOT NULL,
+  PRIMARY KEY (Username)
+);
+
+CREATE TABLE CurrentSchedule
+(
+  Username VARCHAR(40) NOT NULL,
+  Monday VARCHAR(3) NOT NULL,
+  Tuesday VARCHAR(3) NOT NULL,
+  Wednesday VARCHAR(3) NOT NULL,
+  Thursday VARCHAR(3) NOT NULL,
+  Friday VARCHAR(3) NOT NULL,
+  Saturday VARCHAR(3) NOT NULL,
+  Sunday VARCHAR(3) NOT NULL,
+  PRIMARY KEY (Username)
+);
+
+CREATE TABLE Availability
+(
+  Day VARCHAR(15) NOT NULL,
+  Pin VARCHAR(10) NOT NULL,
+  ShiftName VARCHAR(3) NOT NULL,
+  PRIMARY KEY (Day, Pin, ShiftName),
+  FOREIGN KEY (Pin) REFERENCES Users(Pin),
+  FOREIGN KEY (ShiftName) REFERENCES ShiftTimes(ShiftName)
+);
