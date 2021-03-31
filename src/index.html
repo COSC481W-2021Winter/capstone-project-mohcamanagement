@@ -3,28 +3,54 @@
   <title>Welcome Page </title>
   <link href="style/style.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<head>
+	<link rel="stylesheet" href="style/style.css">
+	<link rel="stylesheet" href="style/style1.css">
+</head>
+
+<header>
+	<ul>
+		<!-- LOGO looks weird, small for nav bar <li><img calss="logo" src="images/OverseerTransparent.png" style="width: 40px;" alt="logo" href="pages/about.html"></li>  -->
+		<li><a href="pages/about.html">About</a></li>
+		<li style="float:right"><a class="active" href="pages/login.php">Login</a></li>
+		<li style="float:right"><a href="pages/companyRegister.php">Register</a></li>
+	  </ul>
+</header>
 <body>
 
-<h1>Mocha Managment</h1>
+<!-- Slideshow container -->
+<div class="slideshow-container">
 
-<table class="userCreationTable">
-	<tr>
-		<td>
-			<a href="pages/login.php" class="button">Login</a>
-		</td>
+	<!-- Full-width images -->
+	<div class="mySlides fade">
+	  <img src="images/coffee1.jpeg" style="width:100%">
+	</div>
+  
+	<div class="mySlides fade">
+	  <img src="images/coffee2.jpeg" style="width:100%">
+	</div>
+  
+	<div class="mySlides fade">
+	  <img src="images/coffee4.jpeg" style="width:100%">
+	</div>
 
-		<td>
-			<a href="pages/companyRegister.php" class="button">Register</a>
-		</td>
-	</tr>
+<script>
+var slideIndex = 0;
+showSlides();
 
-	<tr>
-		<td colspan="2" style="padding-left: 25%;">
-			<a style="text-align: center;" href="pages/about.html" class="button">About</a>
-		</td>
-	 
-	</tr>
-</table>
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  slides[slideIndex-1].style.display = "block";
+  setTimeout(showSlides, 5000); // Change image every 5 seconds
+}
+</script>
 
 </body>
 </html>
