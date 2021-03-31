@@ -5,9 +5,13 @@ counter = 0
 def parseSQLStatements(filename):
     try:
         sqlFile = open(filename, 'rt')
-        return sqlFile.read()
-    finally:
+        sqlStatements = sqlFile.read()
         sqlFile.close()
+        return sqlStatements
+    except:
+        print("Error opening file, closing program!")
+        return None
+        
     
 def getStatementList(queryStrings):
     accumulator = ""
@@ -52,12 +56,16 @@ def main():
     cur = overseer.cursor()
 
     ddl = parseSQLStatements("DDL.txt")
+    dml = parseSQLStatements("DML.txt")
+
+    if ddl == None: return
+    if dml == None: return
+
     statements = getStatementList(ddl)
     executeQueries(cur, statements)
-    
-    dml = parseSQLStatements("DML.txt")
     statements = getStatementList(dml)
     executeQueries(cur, statements)
+    
     overseer.commit()
 
     print("A total of: "  +str(counter) + " queries executed")
