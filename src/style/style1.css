@@ -31,6 +31,7 @@ ul {
   }
 
   body{
+    padding-top: 15px;
     margin: 0px;
    }
 
@@ -40,20 +41,32 @@ ul {
     height:10px;
 }
 
+
+  /*------------- Overlay logo over pictures -------------*/
+.imtip {
+    position: absolute;
+    top: 150px;
+    left: 540px;
+  }
+
    /*------------- PICTURE CAROSEL 37-131 -------------*/
    * {box-sizing:border-box}
 
    /* Slideshow container */
    .slideshow-container {
      /*max-width: 1000px;*/ 
+     max-height: 768px;
+     min-width: auto;
      position: relative;
      margin: auto;
-     padding-top: 15px;
+     padding-top: 0px;
    }
    
    /* Hide the images by default */
    .mySlides {
      display: none;
+     position: relative;
+     display: inline;
    }
    
    /* Next & previous buttons */
@@ -136,3 +149,59 @@ ul {
      from {opacity: .4}
      to {opacity: 1}
    }
+   /*------------- FOOTER -------------*/
+   .footer {
+    margin: 0px;
+    left: 0;
+    bottom: 0;
+    height: 250px;
+    width: 100%;
+    background-color: #111;
+    text-align: center;
+    text-decoration: none;
+	font-size:13.5px;
+	color: white; /* White text */
+	padding: 50px 50px; /* Some padding */
+	cursor: pointer; /* Pointer/hand icon */
+	float: left;  /*Float the buttons side by side */
+ }
+
+ /*------------- Word overlay in about page -------------*/
+ .module {
+    background: 
+      linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+      ),
+      url(../images/coffee5.jpeg);
+    background-size: cover;
+    width: 100%;
+    height: 600px;
+    margin: 0;
+    position: relative;
+    float: left;
+  }
+
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  h1.about {
+    text-transform: uppercase;
+    margin: 0;
+    font-size: 3rem;
+    white-space: nowrap;
+    color: white;
+  }
+  h2.about {
+    font-size: 2rem;
+    color: white;
+  }
+  p.about {
+    margin: 0;
+    font-size: 1.3rem;
+    color: white;
+  }
