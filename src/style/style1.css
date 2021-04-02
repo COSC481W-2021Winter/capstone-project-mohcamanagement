@@ -205,3 +205,19 @@ ul {
     font-size: 1.3rem;
     color: white;
   }
+
+   /*------------- Login page -------------*/
+   .login {
+    background: 
+      linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+      ),
+      url(../images/coffee6.jpeg);
+    background-size: cover;
+    width: 100%;
+    height: 600px;
+    margin: 0;
+    position: relative;
+    float: left;
+  }
