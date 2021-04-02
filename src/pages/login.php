@@ -74,5 +74,8 @@
 				</tr>
 			</form>
 		</table> -->
+		<div class="footer">
+			<p>&#169</p>
+		</div>
 	</body>
 </html>
