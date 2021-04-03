@@ -1,6 +1,21 @@
 <?php
 	/*Insert Code here*/
 
+	// checking to see if the user is allowed to be on the page.
+	if(isset($_COOKIE["Username"])) {
+		// if not empty then we store the cookie into a variable
+		$userCookie = $_COOKIE["Username"];
+		$conn = getInclude();
+		$query = "SELECT * FROM Users WHERE Username = '$userCookie'";
+		$result = mysqli_query($conn, $query);
+		$row = mysqli_fetch_assoc($result);
+		$isManagerCheck = $row['IsManager'];
+
+		if($isManagerCheck == 0) {
+			header("Location: userMain.php");
+		}
+	}
+
 	function getInclude() {
 		$dbHost = "localhost";
 		$dbUser = "root";
