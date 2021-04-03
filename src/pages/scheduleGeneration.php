@@ -1,6 +1,20 @@
 <?php
     /*db connection needed if in seperate file */
     include_once ('../includes/dbConnection.php');
+
+	// checking to see if the user is allowed to be on the page.
+    if(isset($_COOKIE["Username"])) {
+		// if not empty then we store the cookie into a variable
+		$userCookie = $_COOKIE["Username"];
+		$query = "SELECT * FROM Users WHERE Username = '$userCookie'";
+		$result = mysqli_query($conn, $query);
+		$row = mysqli_fetch_assoc($result);
+		$isManagerCheck = $row['IsManager'];
+
+		if($isManagerCheck == 0) {
+			header("Location: userMain.php");
+		}
+	}
     // $conn is the conection to database
     function getInclude() {
         $dbHost = "localhost";
