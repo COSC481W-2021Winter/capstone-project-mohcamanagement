@@ -2,6 +2,42 @@
 	/*Insert Code here*/
 	include("../includes/dbConnection.php");
 
+
+	
+	if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["update"])) {
+		$isManager = $_POST['isManager'];
+		$yearsWorked = $_POST['yearsWorked'];
+		$selectedUser = $_POST['userToUpdate'];
+
+		$query = "UPDATE Users SET IsManager=$isManager, YearsWorked = '$yearsWorked' WHERE Username = '$selectedUser'";
+		mysqli_query($conn, $query);
+
+		echo "<script>alert('User $selectedUser Information was Updated')</script>";
+	}
+
+	if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["delete"])) {
+		$selectedUser = $_POST['userToDelete'];
+
+		$query = "SELECT * FROM Users WHERE Username = '$selectedUser'";
+		$result = mysqli_query($conn, $query);
+		$row = mysqli_fetch_assoc($result);
+		$userPin = $row['Pin'];
+		$query = "DELETE FROM WriteOffs WHERE Pin = '$userPin'";
+		mysqli_query($conn, $query);
+		$query = "DELETE FROM RequestOff WHERE Pin = '$userPin'";
+		mysqli_query($conn, $query);
+		$query = "DELETE FROM InventorySuggestions WHERE Pin = '$userPin'";
+		mysqli_query($conn, $query);
+		$query = "DELETE FROM Availability WHERE Pin = '$userPin'";
+		mysqli_query($conn, $query);
+
+
+		$query = "DELETE FROM Users WHERE Username = '$selectedUser'";
+		mysqli_query($conn, $query);
+
+		echo "<script>alert('User $selectedUser was Deleted')</script>";
+	}
+
 	// checking to see if the user is allowed to be on the page.
 	if(isset($_COOKIE["Username"])) {
 		// if not empty then we store the cookie into a variable
@@ -316,6 +352,17 @@
 		}
 	}
 
+	function generateOption(){
+		$query = "SELECT * from Users";
+		$result = mysqli_query($conn, $query);
+		$numOfRows = mysqli_num_rows($result);
+		echo" <option selected disabled>test </option>";
+		for($i = 0; $i < $numOfRows; $i++){
+			$row = mysqli_fetch_assoc($result);
+			$userName = $row['Username'];
+			echo "<option value='".$userName."'> ".$userName." </option>";
+		}
+	}
 ?>
 
 <!DOCTYPE html>
@@ -514,5 +561,89 @@
 				</form>
 			</table>	
 		</div>
+		<table> 
+			<tr>
+				<td>
+					<form method="post" action="adminCreateUser.php">
+						<select name="username" onchange="this.form.submit()">
+						<option selected disabled>Select User To Update </option>
+							<?php
+								if (isset($_POST['username'])){
+									$query = "SELECT * from Users";
+									$result = mysqli_query($conn, $query);
+									$numOfRows = mysqli_num_rows($result);
+									for($i = 0; $i < $numOfRows; $i++){
+										$row = mysqli_fetch_assoc($result);
+										$userName = $row['Username'];
+										if($_POST['username'] == $userName){
+											echo "<option selected value='".$userName."'> ".$userName." </option>";
+										}
+										else{
+											echo "<option value='".$userName."'> ".$userName." </option>";
+										}
+									}
+									$selectedUser=$_POST['username'];
+									$query = "SELECT * from Users WHERE Username='$selectedUser'";
+									$result = mysqli_query($conn, $query);
+									$row = mysqli_fetch_assoc($result);
+									$yearsWorked=$row['YearsWorked'];
+									$isManager=$row['IsManager'];
+									echo "<table>";
+										echo "<tr>";
+											echo"<td>";
+
+
+											echo "<form method='post' action='adminCreateUser.php'>";
+												echo "<input type='text' id='yearsWorked' name='yearsWorked' value=$yearsWorked>"; 
+												echo "</input>";
+												echo"</td>";
+												echo "<td>";
+													if($isManager == 0){
+														echo "<input type='radio' name='isManager' value=1> Yes </input>" ;
+														echo " ";
+														echo "<input checked type='radio' name='isManager' value=0> No </input>";
+													}else{
+														echo "<input checked type='radio' name='isManager' value=1> Yes </input>";
+														echo " ";
+														echo "<input type='radio' name='isManager' value=0> No </input>";
+													}
+												echo"</td>";
+
+												echo "<td>";
+													echo "<input type='Hidden' id='userToUpdate' name='userToUpdate' value='$selectedUser' />";
+													echo "<input type='submit' name='update' value='Update'/>";
+											echo "</form>";
+											echo "</td>";
+
+
+											echo "<td>";
+												echo "<form method='post' action='adminCreateUser.php'>";
+													echo "<input type='Hidden' id='userToDelete' name='userToDelete' value='$selectedUser' />";
+													echo "<input type='submit' name='delete' value='Delete'/>";	
+												echo "</form>";
+											echo"</td>";
+
+
+
+										echo "</tr>";
+									echo "</table>";
+
+
+								}else{
+									$query = "SELECT * from Users";
+									$result = mysqli_query($conn, $query);
+									$numOfRows = mysqli_num_rows($result);
+									for($i = 0; $i < $numOfRows; $i++){
+										$row = mysqli_fetch_assoc($result);
+										$userName = $row['Username'];
+										echo "<option value='".$userName."'> ".$userName." </option>";
+									}
+								}
+							?>
+						</select> 
+					</form>
+				</td>
+			</tr>
+		</table>
 	</body>
 </html>
