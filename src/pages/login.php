@@ -5,7 +5,7 @@
 <html lang="en">
 	<head>
 		<title>Login Page</title>
-		<link rel="stylesheet" href="../style/style2.css">
+		<link rel="stylesheet" href="../style/style2.css?<?php echo time(); ?>">
 		<link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>">
 		
 	</head>
@@ -33,7 +33,7 @@
 	</form>
 	<form class="back" method="post" action="../index.html">
 		  <div class="container" style="background-color:#f1f1f1">
-			  <Button type="Submit" name="Submit" value="Back" class="backbtn">Back</Button>
+			  <Button type="Submit" name="Submit" value="Back" class="backbtn" style="background-color: #343131;  color: #969595;">Back</Button>
 		  </div>
 	</form>
 
@@ -74,8 +74,6 @@
 				</tr>
 			</form>
 		</table> -->
-		<div class="footer">
-			<p>&#169</p>
-		</div>
+	
 	</body>
 </html>

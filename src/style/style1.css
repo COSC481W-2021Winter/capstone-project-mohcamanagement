@@ -1,10 +1,11 @@
+  body {font-family: 'Montserrat', sans-serif;}
 /*------------- NAVBAR -------------*/
 ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: black;
     position: fixed;
     top: 0;
     width: 100%;
@@ -23,12 +24,14 @@ ul {
   }
   
   li a:hover:not(.active) {
-    background-color: #111;
+    background-color: #C7AA93;
   }
   
-  .active {
-    background-color: #4CAF50;
+  
+  .active1 {
+    background-color: #7E6048;
   }
+  
 
   body{
     padding-top: 15px;
@@ -50,8 +53,6 @@ ul {
   }
 
    /*------------- PICTURE CAROSEL 37-131 -------------*/
-   * {box-sizing:border-box}
-
    /* Slideshow container */
    .slideshow-container {
      /*max-width: 1000px;*/ 
@@ -59,7 +60,8 @@ ul {
      min-width: auto;
      position: relative;
      margin: auto;
-     padding-top: 0px;
+     margin-top: 1px;
+     margin-bottom: 0px;
    }
    
    /* Hide the images by default */
@@ -68,70 +70,7 @@ ul {
      position: relative;
      display: inline;
    }
-   
-   /* Next & previous buttons */
-   .prev, .next {
-     cursor: pointer;
-     position: absolute;
-     top: 50%;
-     width: auto;
-     margin-top: -22px;
-     padding: 16px;
-     color: white;
-     font-weight: bold;
-     font-size: 18px;
-     transition: 0.6s ease;
-     border-radius: 0 3px 3px 0;
-     user-select: none;
-   }
-   
-   /* Position the "next button" to the right */
-   .next {
-     right: 0;
-     border-radius: 3px 0 0 3px;
-   }
-   
-   /* On hover, add a black background color with a little bit see-through */
-   .prev:hover, .next:hover {
-     background-color: rgba(0,0,0,0.8);
-   }
-   
-   /* Caption text */
-   .text {
-     color: #f2f2f2;
-     font-size: 15px;
-     padding: 8px 12px;
-     position: absolute;
-     bottom: 8px;
-     width: 100%;
-     text-align: center;
-   }
-   
-   /* Number text (1/3 etc) */
-   .numbertext {
-     color: #f2f2f2;
-     font-size: 12px;
-     padding: 8px 12px;
-     position: absolute;
-     top: 0;
-   }
-   
-   /* The dots/bullets/indicators */
-   .dot {
-     cursor: pointer;
-     height: 15px;
-     width: 15px;
-     margin: 0 2px;
-     background-color: #bbb;
-     border-radius: 50%;
-     display: inline-block;
-     transition: background-color 0.6s ease;
-   }
-   
-   .active, .dot:hover {
-     background-color: #717171;
-   }
-   
+    
    /* Fading animation */
    .fade {
      -webkit-animation-name: fade;
@@ -150,29 +89,32 @@ ul {
      to {opacity: 1}
    }
    /*------------- FOOTER -------------*/
+    /*** This footer is used in index page ***/
    .footer {
     margin: 0px;
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: #111;
+    background-color: black;
     text-align: center;
     text-decoration: none;
 	  font-size:13.5px;
 	  color: white; /* White text */
     padding: 40px 40px; /* Some padding */
  }
+ 
+ /*** This footer is used in about page ***/
  .footer1 {
   margin: 0px;
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: #111;
+  background-color: black;
   text-align: center;
   text-decoration: none;
   font-size:13.5px;
   color: white; /* White text */
-  padding: 150px 0px 20px 0px;/* Some padding */
+  padding: 130px 0px 10px 0px;/* Some padding */
   cursor: pointer; /* Pointer/hand icon */
   float: left;  /*Float the buttons side by side */
 }
@@ -185,13 +127,14 @@ ul {
         rgba(0, 0, 0, 0.6),
         rgba(0, 0, 0, 0.6)
       ),
-      url(../images/coffee5.jpeg);
+      url(../images/coffee11.jpeg);
     background-size: cover;
     width: 100%;
     height: 600px;
     margin: 0;
     position: relative;
     float: left;
+    margin-top: 30px;
   }
 
   .centered {

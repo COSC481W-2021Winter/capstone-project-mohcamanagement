@@ -1,16 +1,21 @@
+body {font-family: 'Montserrat', sans-serif;}
+
 /*------------- Login page -------------*/
 .login {
-    background: 
-      url(../images/wood3.jpeg);
+    background:
+    linear-gradient(
+        rgba(0, 0, 0, 0.6),
+        rgba(0, 0, 0, 0.6)
+      ), 
+      url(../images/coffee14.jpeg);
     background-size: cover;
     width: 100%;
     height: 600px;
     margin: 0;
     position: relative;
     float: left;
+    opacity: 0.85;
   }
-
-  body {font-family: Arial, Helvetica, sans-serif;}
 
   form {
     border: 3px solid #f1f1f1;
@@ -30,7 +35,7 @@ input[type=text], input[type=password] {
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #7E6048;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -51,7 +56,7 @@ button:hover {
 .backbtn {
     width: auto;
     padding: 10px 18px;
-    background-color: #555555;
+    background-color: #7E6048;
   }
 
 .imgcontainer {
