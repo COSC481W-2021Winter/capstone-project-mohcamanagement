@@ -25,9 +25,9 @@ INSERT INTO `Items`(`ItemName`, `Par`, `OnHand`, `Type`, `Name`) VALUES ('Cups',
 INSERT INTO `Items`(`ItemName`, `Par`, `OnHand`, `Type`, `Name`) VALUES ('Napkins',3,0,'FOH','Songbird');
 INSERT INTO `Items`(`ItemName`, `Par`, `OnHand`, `Type`, `Name`) VALUES ('Straws',3,0,'FOH','Songbird');
 
-INSERT INTO `ShiftTimes`(`ShiftName`, `StartTime`, `EndTime`) VALUES ('1st','6:30','1:30');
-INSERT INTO `ShiftTimes`(`ShiftName`, `StartTime`, `EndTime`) VALUES ('2nd','9:00','3:30');
-INSERT INTO `ShiftTimes`(`ShiftName`, `StartTime`, `EndTime`) VALUES ('3rd','11:30','7:00');
+INSERT INTO `ShiftTimes`(`ShiftName`, `StartTime`, `EndTime`) VALUES ('1st','6:30','13:30');
+INSERT INTO `ShiftTimes`(`ShiftName`, `StartTime`, `EndTime`) VALUES ('2nd','9:00','15:30');
+INSERT INTO `ShiftTimes`(`ShiftName`, `StartTime`, `EndTime`) VALUES ('3rd','11:30','19:00');
 INSERT INTO `ShiftTimes`(`ShiftName`) VALUES ('Off');
 
 INSERT INTO `Availability`(`Day`, `Pin`, `ShiftName`) VALUES ('Monday','5555','1st');
