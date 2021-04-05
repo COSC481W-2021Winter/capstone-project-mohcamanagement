@@ -2,6 +2,12 @@ INSERT INTO `Company`(`Name`, `PhoneNum`, `IrsNum`, `Type`, `Street`, `City`, `Z
 
 INSERT INTO `Users`(`Username`, `Pin`, `IsManager`, `YearsWorked`, `Name`) VALUES ("DKilroy",'1117',1,'6','Songbird');
 INSERT INTO `Users`(`Username`, `Pin`, `IsManager`, `YearsWorked`, `Name`) VALUES ("JBond",'5555',0,'1','Songbird');
+INSERT INTO `Users`(`Username`, `Pin`, `IsManager`, `YearsWorked`, `Name`) VALUES ("Joe",'6555',0,'1','Songbird');
+INSERT INTO `Users`(`Username`, `Pin`, `IsManager`, `YearsWorked`, `Name`) VALUES ("Christine",'1337',0,'1','Songbird');
+INSERT INTO `Users`(`Username`, `Pin`, `IsManager`, `YearsWorked`, `Name`) VALUES ("Bob",'5932',0,'1','Songbird');
+INSERT INTO `Users`(`Username`, `Pin`, `IsManager`, `YearsWorked`, `Name`) VALUES ("Jenny",'2823',0,'1','Songbird');
+INSERT INTO `Users`(`Username`, `Pin`, `IsManager`, `YearsWorked`, `Name`) VALUES ("Kyle",'4812',0,'1','Songbird');
+INSERT INTO `Users`(`Username`, `Pin`, `IsManager`, `YearsWorked`, `Name`) VALUES ("Kat",'3231',0,'1','Songbird');
 
 INSERT INTO `InventoryType`(`Type`, `Name`) VALUES ('Kitchen','Songbird');
 INSERT INTO `InventoryType`(`Type`, `Name`) VALUES ('FOH','Songbird');
@@ -33,6 +39,15 @@ INSERT INTO `Availability`(`Day`, `Pin`, `ShiftName`) VALUES ('Saturday','5555',
 INSERT INTO `Availability`(`Day`, `Pin`, `ShiftName`) VALUES ('Saturday','5555','2nd');
 INSERT INTO `Availability`(`Day`, `Pin`, `ShiftName`) VALUES ('Sunday','5555','1st');
 INSERT INTO `Availability`(`Day`, `Pin`, `ShiftName`) VALUES ('Sunday','5555','2nd');
+INSERT INTO `Availability`(`Day`, `Pin`, `ShiftName`) VALUES ('Monday','6555','3rd');
+INSERT INTO `Availability`(`Day`, `Pin`, `ShiftName`) VALUES ('Thursday','6555','1st');
+INSERT INTO `Availability`(`Day`, `Pin`, `ShiftName`) VALUES ('Friday','6555','2nd');
+INSERT INTO `Availability`(`Day`, `Pin`, `ShiftName`) VALUES ('Tuesday','1337','1st');
+INSERT INTO `Availability`(`Day`, `Pin`, `ShiftName`) VALUES ('Tuesday','1337','2nd');
+INSERT INTO `Availability`(`Day`, `Pin`, `ShiftName`) VALUES ('Wednesday','1337','3rd');
+INSERT INTO `Availability`(`Day`, `Pin`, `ShiftName`) VALUES ('Saturday','5932','1st');
+INSERT INTO `Availability`(`Day`, `Pin`, `ShiftName`) VALUES ('Saturday','5932','3rd');
+INSERT INTO `Availability`(`Day`, `Pin`, `ShiftName`) VALUES ('Wednesday','5932','3rd');
 
 INSERT INTO `InventorySuggestions`(`ItemName`, `Type`, `Name`, `Pin`) VALUES ('Ham','Kitchen','Songbird','5555');
 INSERT INTO `InventorySuggestions`(`ItemName`, `Type`, `Name`, `Pin`) VALUES ('Half Calf','Coffee','Songbird','1117');
