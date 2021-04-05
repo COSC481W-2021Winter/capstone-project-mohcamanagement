@@ -39,7 +39,8 @@ class Week:
             shifts = currentDay.getShift()
             for j in range(0, shiftAmount-1):
                 if(shifts[j] != 0):
-                    print(self.getWeekDay(i) + " Shift: " + str(j+1) + ": " + self.getUserNameFromPin(shifts[j], userList))
+                    userName = self.getUserNameFromPin(shifts[j], userList)
+                    if userName != None: print(self.getWeekDay(i) + " Shift: " + str(j+1) + ": " + userName)
                 else: print(self.getWeekDay(i) + " Shift: " + str(j+1) + ": Off")
             print("\n")
 
