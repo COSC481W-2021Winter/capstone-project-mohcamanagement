@@ -5,6 +5,7 @@ class Schedule:
         self.userList = userList
         self.finalizedWeek = Week(scheduleInfo)
         self.scheduleInfo = scheduleInfo
+        self.copiedUserList = userList.copy()
 
     def sortUserArray(self):
         self.userList.sort(key=cmp_to_key(self.compareByWeight), reverse=True)
@@ -18,7 +19,7 @@ class Schedule:
 
     #Prints the schedule
     def printSchedule(self):
-        self.finalizedWeek.weekToString(self.userList)
+        self.finalizedWeek.weekToString(self.copiedUserList)
         #for j in range(0, 6):
         #    print(self.finalizedWeek.weekToString())
 
@@ -47,7 +48,9 @@ class Schedule:
                     self.assignUserToShift(dayIndex, shiftIndex, user.getUserID())    #
                     user.assignHours(shiftIndex)                    #
                     user.calculateUserWeight()                      #
-                    if(user.getUserWeight()<=0): self.userList.remove(user)
+                    if(user.getUserWeight()<=0):
+                        print("Removed: " + user.getName())
+                        self.userList.remove(user)
                     self.sortUserArray()                            #
                     break                                           #
         #daysAvailable = user.calculateDaysWorking()     #How many days a user is available
