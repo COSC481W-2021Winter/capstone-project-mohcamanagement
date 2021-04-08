@@ -5,14 +5,24 @@
 
 	
 	if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["update"])) {
-		$isManager = $_POST['isManager'];
-		$yearsWorked = $_POST['yearsWorked'];
+		// checking to see if the user is updating their info.
+		if(isset($_POST['isManager']))
+			$isManager = $_POST['isManager'];
+		else
+			$isManager = 1;
+
 		$selectedUser = $_POST['userToUpdate'];
+		$yearsWorked = $_POST['yearsWorked']; 
+		// regex for correct number input
+		if(preg_match("/^([0-9]|[0-9]{2})$/", $yearsWorked) == 0){
+			echo "<script>alert('Error years worked has to be a number from 0-99!')</script>";
+		}
+		else{
+			$query = "UPDATE Users SET IsManager=$isManager, YearsWorked = '$yearsWorked' WHERE Username = '$selectedUser'";
+			mysqli_query($conn, $query);
 
-		$query = "UPDATE Users SET IsManager=$isManager, YearsWorked = '$yearsWorked' WHERE Username = '$selectedUser'";
-		mysqli_query($conn, $query);
-
-		echo "<script>alert('User $selectedUser Information was Updated')</script>";
+			echo "<script>alert('User $selectedUser Information was Updated')</script>";
+		}
 	}
 
 	if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["delete"])) {
@@ -375,35 +385,37 @@
 
 	<body>
 		<h2 align="center">Create User</h2>
-		<hr />
-		<div style="width: 40%; margin: auto;">
-			<table class="userCreationTable">
+			<table class="userCreationTable" style="border-collapse: collapse;">
 				<form method="post" action="adminCreateUser.php">
 					<tr>
-						<td style="padding: 2px;">
+						<td style="text-align: center; padding: 5px;" colspan="3">
 							<input size="22px" type="text" name="Username" placeholder="Enter Username" class="inputBox"></input>
+							<span class="required">*</span>
 						</td>
 
-						<td class="required">
-							<span>*</span>
+					
+						<td style="text-align: center; padding: 5px;" colspan="4" >
+							<input size="22px" type="text" name="Pin" placeholder="Enter Pin" class="inputBox"></input>
+							<span class="required">*</span>
 						</td>
 					</tr>
 
 					<tr>
-						<td style="padding: 2px;">
-							<input size="22px" type="text" name="Pin" placeholder="Enter Pin" class="inputBox"></input>
-						</td>
-
-						<td class="required">
-							<span>*</span>
-						</td>
+						<th style="padding-top: 5px; border-top-style: solid;" colspan="7">Availability</th>	
 					</tr>
 
 					<tr>	
-						<td style="padding: 2px;">
-							Availability for Monday
-						</td>
-						<td>
+						<td style="padding: 0px 5px 5px 5px;">Monday</td>
+						<td style="padding: 0px 5px 5px 5px;">Tuesday</td>
+						<td style="padding: 0px 5px 5px 5px;">Wednesday</td>
+						<td style="padding: 0px 5px 5px 5px;">Thursday</td>
+						<td style="padding: 0px 5px 5px 5px;">Friday</td>
+						<td style="padding: 0px 5px 5px 5px;">Saturday</td>
+						<td style="padding: 0px 5px 5px 5px;">Sunday</td>
+
+					</tr>
+					<tr style="border-bottom-style: solid;">
+						<td style="text-align: center;">
 							<?php 
 							$query = "SELECT * FROM ShiftTimes";
 							$result = mysqli_query($conn, $query);
@@ -416,14 +428,10 @@
 								// can have a tag that lets the box be checked or unchecked
 							}
 							 ?>
-						</td>
-					</tr>	
+						</td>	
 
-					<tr>
-						<td style="padding: 2px;">
-							Availability for Tuesday
-						</td>
-						<td>
+						
+						<td style="text-align: center;">
 							<?php 
 							$query = "SELECT * FROM ShiftTimes";
 							$result = mysqli_query($conn, $query);
@@ -437,13 +445,8 @@
 							}
 							 ?>
 						</td>
-					</tr>
-
-					<tr>
-						<td style="padding: 2px;">
-							Availability for Wednesday
-						</td>
-						<td>
+						
+						<td style="text-align: center;">
 							<?php 
 							$query = "SELECT * FROM ShiftTimes";
 							$result = mysqli_query($conn, $query);
@@ -457,13 +460,8 @@
 							}
 							 ?>
 						</td>
-					</tr>
-
-					<tr>
-						<td style="padding: 2px;">
-							Availability for Thursday
-						</td>
-						<td>
+						
+						<td style="text-align: center;">
 							<?php 
 							$query = "SELECT * FROM ShiftTimes";
 							$result = mysqli_query($conn, $query);
@@ -477,13 +475,8 @@
 							}
 							 ?>
 						</td>
-					</tr>
-
-					<tr>
-						<td style="padding: 2px;">
-							Availability for Friday
-						</td>
-						<td>
+						
+						<td style="text-align: center;">
 							<?php 
 							$query = "SELECT * FROM ShiftTimes";
 							$result = mysqli_query($conn, $query);
@@ -497,13 +490,8 @@
 							}
 							 ?>
 						</td>
-					</tr>
-
-					<tr>
-						<td style="padding: 2px;">
-							Availability for Saturday
-						</td>
-						<td>
+						
+						<td style="text-align: center;">
 							<?php 
 							$query = "SELECT * FROM ShiftTimes";
 							$result = mysqli_query($conn, $query);
@@ -517,13 +505,8 @@
 							}
 							 ?>
 						</td>
-					</tr>
-
-					<tr>
-						<td style="padding: 2px;">
-							Availability for Sunday
-						</td>
-						<td>
+						
+						<td style="text-align: center;">
 							<?php 
 							$query = "SELECT * FROM ShiftTimes";
 							$result = mysqli_query($conn, $query);
@@ -540,96 +523,132 @@
 					</tr>
 
 					<tr>
-						<td style="padding: 2px;">
+						<td style="text-align: center; padding: 5px;" colspan="7">
 							<input size="22px" type="text" name="YearsWorked" placeholder="Enter Years Worked" class="inputBox"></input>
 						</td>
 					</tr>
 
 					<tr>
-						<td style="text-align: center; padding: 2px;">
+						<td colspan="3" style="text-align: right; padding: 5px;">
 							<input style="background-color: #343131;  color: #969595;" type="Submit" name="Create" value="Create"></input>
-						</td>
-					</tr>	
+						</td>	
 				</form>
 
 				<form method="post" action="adminMain.php">
-					<tr>
-						<td style="text-align: center; padding: 2px;">
+						<td colspan="4" style="text-align: left; padding: 5px;">
 							<input type="Submit" name="Submit" value="Back" style="background-color: #343131;  color: #969595;"></input>
 						</td>
 					</tr>
 				</form>
 			</table>	
-		</div>
-		<table> 
+
+			<div style="margin-top: 25px; ">
+				
+			</div>
+
+	<h2 style="text-align: center;">Edit Employee</h2>
+		<table style="margin: auto;"> 
 			<tr>
-				<td>
+				<td style="text-align: center;">
 					<form method="post" action="adminCreateUser.php">
 						<select name="username" onchange="this.form.submit()">
 						<option selected disabled>Select User To Update </option>
 							<?php
-								if (isset($_POST['username'])){
+								// this calls if the form was submitted with the dropdown menu
+								if (isset($_POST['username'])) {
 									$query = "SELECT * from Users";
 									$result = mysqli_query($conn, $query);
 									$numOfRows = mysqli_num_rows($result);
-									for($i = 0; $i < $numOfRows; $i++){
+
+									for($i = 0; $i < $numOfRows; $i++) {
 										$row = mysqli_fetch_assoc($result);
 										$userName = $row['Username'];
-										if($_POST['username'] == $userName){
+
+										if($_POST['username'] == $userName) {
 											echo "<option selected value='".$userName."'> ".$userName." </option>";
 										}
-										else{
+										else {
 											echo "<option value='".$userName."'> ".$userName." </option>";
 										}
 									}
+
 									$selectedUser=$_POST['username'];
 									$query = "SELECT * from Users WHERE Username='$selectedUser'";
 									$result = mysqli_query($conn, $query);
 									$row = mysqli_fetch_assoc($result);
 									$yearsWorked=$row['YearsWorked'];
 									$isManager=$row['IsManager'];
-									echo "<table>";
-										echo "<tr>";
-											echo"<td>";
+									?>
 
+								<form method='post' action='adminCreateUser.php'>
+									<table style="border-style: solid; border-collapse: collapse; padding: 5px;">
+										<tr>	
+											<?php 
+												if($userCookie != $selectedUser){
+													echo "<th style='border-right-style: solid; padding: 0px 4px 0px 4px'>Years Worked</th>";
+													echo "<th>Is Manager</th>";
+												}
+												else {
+													echo "<th>Years Worked</th>";
+												}
+											 ?>
+												
+										</tr>
 
-											echo "<form method='post' action='adminCreateUser.php'>";
-												echo "<input type='text' id='yearsWorked' name='yearsWorked' value=$yearsWorked>"; 
-												echo "</input>";
-												echo"</td>";
-												echo "<td>";
-													if($isManager == 0){
-														echo "<input type='radio' name='isManager' value=1> Yes </input>" ;
-														echo " ";
-														echo "<input checked type='radio' name='isManager' value=0> No </input>";
-													}else{
-														echo "<input checked type='radio' name='isManager' value=1> Yes </input>";
-														echo " ";
-														echo "<input type='radio' name='isManager' value=0> No </input>";
+										<tr>
+											<td style='border-right-style: solid; padding: 5px;'>
+												
+												<?php
+												echo "<input type='text' id='yearsWorked' name='yearsWorked' value=$yearsWorked size='13'></input>";
+												?>
+											</td>
+
+											
+
+												<?php 
+													if($userCookie != $selectedUser){
+														echo "<td style='padding: 5px;'>";
+														if($isManager == 0){
+															echo "<input type='radio' name='isManager' value=1> Yes </input>" ;
+															echo " ";
+															echo "<input checked type='radio' name='isManager' value=0> No </input>";
+														}
+														else{
+															echo "<input checked type='radio' name='isManager' value=1> Yes </input>";
+															echo " ";
+															echo "<input type='radio' name='isManager' value=0> No </input>";
+														}
+														echo "</td>";
 													}
-												echo"</td>";
+												?>
+											
+										</tr>
+										<tr style="border-top-style: solid;">
+											<td style="text-align: right;">
+												<?php 
+												echo "<input type='Hidden' id='userToUpdate' name='userToUpdate' value='$selectedUser' />";
+												?>
+												<input type='submit' name='update' value='Update'/>
+								</form>
+											</td>
 
-												echo "<td>";
-													echo "<input type='Hidden' id='userToUpdate' name='userToUpdate' value='$selectedUser' />";
-													echo "<input type='submit' name='update' value='Update'/>";
-											echo "</form>";
-											echo "</td>";
+												<form method='post' action='adminCreateUser.php'>
+													<?php 
+													if($userCookie != $selectedUser){
+														echo "<td style='text-align: left;'>";
+														echo "<input type='Hidden' id='userToDelete' name='userToDelete' value='$selectedUser' />";
+														echo "<input type='submit' name='delete' value='Terminate'/>";	
+														echo "</td>";
+													}
+													?>
+												</form>
+										</tr>
+									</table>
 
-
-											echo "<td>";
-												echo "<form method='post' action='adminCreateUser.php'>";
-													echo "<input type='Hidden' id='userToDelete' name='userToDelete' value='$selectedUser' />";
-													echo "<input type='submit' name='delete' value='Delete'/>";	
-												echo "</form>";
-											echo"</td>";
-
-
-
-										echo "</tr>";
-									echo "</table>";
-
-
-								}else{
+							<?php 
+								}
+								// Else generate the selection menu on the drop down
+								else{
 									$query = "SELECT * from Users";
 									$result = mysqli_query($conn, $query);
 									$numOfRows = mysqli_num_rows($result);
