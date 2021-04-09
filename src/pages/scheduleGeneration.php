@@ -228,11 +228,14 @@
  <html lang="en">
  <head>
     <title>Work Schedule</title>
-    <link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>">
+    <!-- <link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>"> -->
+	<link rel="stylesheet" href="../style/style5.css?<?php echo time(); ?>">
 
  </head>
  <body>
-    <h1>Availability</h1>
+
+	<button class="collapsible">Availability</button>
+	<div class="content">
     <table id="avail" style="center">
         <?php
         // plan to add an automated date with the weekdays to make shcdule easier to read
@@ -266,7 +269,10 @@
         }
         ?>
     </table>
-    <h1>Edit Next Weeks Schedule</h1>
+	</div>
+
+	<button class="collapsible">Edit Next Weeks Schedule</button>
+	<div class="content">
 	<table id="nextweekschedule" style="center">
 		<?php
 		// plan to add an automated date with the weekdays to make shcdule easier to read
@@ -346,7 +352,12 @@
 		echo "</form>";
 		?>
 	</table>
-	<h1>Next Weeks Schedule</h1>
+	</div>
+
+
+	
+	<button class="collapsible">Next Weeks Schedule</button>
+	<div class="content">
 	<table id="workSched">
         <?php
         echo "<tr>";
@@ -372,8 +383,12 @@
         }
         ?>
     </table>
+	</div>
 
-    <h1>Time Request Off</h1>
+
+
+	<button class="collapsible">Time Request Off</button>
+	<div class="content">
     <table id="requestOff" style="center">
         <?php
         // plan to add an automated date with the weekdays to make shcdule easier to read
@@ -399,9 +414,12 @@
         }
         ?>
     </table>
+	</div>
 
+
+	<button class="collapsible">Add Custom Shifts</button>
+	<div class="content">
     <table>
-        <h1>Add Custom Shifts</h1>
         <form action="scheduleGeneration.php" method="POST">
         <tr>
             <td>Name <input type="text" name="shiftName"></td>
@@ -426,9 +444,28 @@
         </form>
 
     </table>
+	</div>
 
     <form method="post" action="adminMain.php">
             <input type="Submit" name="Submit" value="Back"></input>
     </form>
+
+
+	<script>
+	var coll = document.getElementsByClassName("collapsible");
+	var i;
+
+	for (i = 0; i < coll.length; i++) {
+ 		coll[i].addEventListener("click", function() {
+   	 		this.classList.toggle("active");
+    		var content = this.nextElementSibling;
+    		if (content.style.maxHeight){
+      			content.style.maxHeight = null;
+    		} else {
+      			content.style.maxHeight = content.scrollHeight + "px";
+    		} 
+  		});
+	}
+</script>
  </body>
  </html>
