@@ -244,9 +244,10 @@
 </header>
 
 <body style="margin-top: 2%">
+<div class="wrapper">
 <h1 class="center">Schedule Generation</h1>
 	<button class="collapsible">Availability</button>
-	<div class="content">
+	<div class="content inside-table">
     <table id="avail" style="center">
         <?php
         // plan to add an automated date with the weekdays to make shcdule easier to read
@@ -283,7 +284,7 @@
 	</div>
 
 	<button class="collapsible">Edit Next Weeks Schedule</button>
-	<div class="content">
+	<div class="content inside-table">
 	<table id="nextweekschedule" style="center">
 		<?php
 		// plan to add an automated date with the weekdays to make shcdule easier to read
@@ -368,7 +369,7 @@
 
 	
 	<button class="collapsible">Next Weeks Schedule</button>
-	<div class="content">
+	<div class="content inside-table">
 	<table id="workSched">
         <?php
         echo "<tr>";
@@ -399,7 +400,7 @@
 
 
 	<button class="collapsible">Time Request Off</button>
-	<div class="content">
+	<div class="content inside-table">
     <table id="requestOff" style="center">
         <?php
         // plan to add an automated date with the weekdays to make shcdule easier to read
@@ -429,7 +430,7 @@
 
 
 	<button class="collapsible">Add Custom Shifts</button>
-	<div class="content">
+	<div class="content inside-table">
     <table>
         <form action="scheduleGeneration.php" method="POST">
         <tr>
@@ -474,5 +475,10 @@
   		});
 	}
 	</script>
+
+<div class="push"></div>
+  </div>
+<footer class="footer3 center">&#169 2021 Overseer</footer>
+
  </body>
  </html>

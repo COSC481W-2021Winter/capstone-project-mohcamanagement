@@ -1,17 +1,29 @@
 /*********************** Schedule Generation Page ***********************/
-body {
-    font-family: 'Montserrat', sans-serif;
-    background-color: #f1f1f1;
-}
-
-div {
-    margin-right: 15%;
-    margin-left: 15%;
-}
 
 .center {
     text-align: center;
+}
+
+/* The 3 classes below formats footer */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f1f1f1;
   }
+  .wrapper {
+    min-height: 100%;
+  
+    /* Equal to height of footer */
+    /* But also accounting for potential margin-bottom of last child */
+    margin-bottom: -50px;
+  }
+  .footer3,
+  .push {
+    margin-top: 20px;
+    height: 50px;
+  }
+
 
 /* Make tables collapsible */
 .collapsible {
@@ -54,6 +66,11 @@ div {
 
 
   /* Style tables */
+  .inside-table {
+    margin-right: 15%;
+    margin-left: 15%;
+}
+
   table {
     font-family: 'Montserrat', sans-serif;
     border-collapse: collapse;
