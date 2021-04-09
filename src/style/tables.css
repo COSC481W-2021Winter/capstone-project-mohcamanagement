@@ -1,0 +1,51 @@
+/* The 3 classes below formats footer */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f1f1f1;
+    margin-top: 1%;
+  }
+  .wrapper {
+    min-height: 100%;
+  
+    /* Equal to height of footer */
+    /* But also accounting for potential margin-bottom of last child */
+    margin-bottom: -50px;
+  }
+  .footer3,
+  .push {
+    margin-top: 20px;
+    height: 50px;
+    text-align: center;
+  }
+/* Style tables */
+.inside-table {
+    margin-right: 25%;
+    margin-left: 25%;
+}
+
+table {
+    font-family: 'Montserrat', sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+    padding: 2px;
+  }
+  
+  td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even){background-color: #f2f2f2;}
+  
+  tr:hover {background-color: #ddd;}
+  
+  th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #7E6048;
+    color: white;
+  }
