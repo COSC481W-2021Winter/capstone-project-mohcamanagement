@@ -1,11 +1,27 @@
 /*********************** Schedule Generation Page ***********************/
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f1f1f1;
+}
+
+div {
+    margin-right: 15%;
+    margin-left: 15%;
+}
+
+.center {
+    text-align: center;
+  }
+
 /* Make tables collapsible */
 .collapsible {
-    background-color: #777;
+    font-family: 'Montserrat', sans-serif;
+    background-color: black;
     color: white;
     cursor: pointer;
     padding: 18px;
-    width: 100%;
+    width: 70%;
+    margin-left: 15%;
     border: none;
     text-align: left;
     outline: none;
@@ -13,7 +29,7 @@
   }
   
   .active, .collapsible:hover {
-    background-color: #555;
+    background-color: #C7AA93;
   }
   
   .collapsible:after {
@@ -39,7 +55,7 @@
 
   /* Style tables */
   table {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     border-collapse: collapse;
     width: 100%;
   }
@@ -57,6 +73,6 @@
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #4CAF50;
+    background-color: #7E6048;
     color: white;
   }

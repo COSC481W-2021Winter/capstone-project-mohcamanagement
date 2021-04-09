@@ -228,12 +228,23 @@
  <html lang="en">
  <head>
     <title>Work Schedule</title>
-    <!-- <link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>"> -->
 	<link rel="stylesheet" href="../style/style5.css?<?php echo time(); ?>">
-
+	<link rel="stylesheet" href="../style/style1.css?<?php echo time(); ?>">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
  </head>
- <body>
+ <header>
+    <!-- Navbar -->
+    <ul>
+	<li><a href="adminMain.php">Admin Main</a></li>
+      <li><a href="/capstone-project-mohcamanagement/src/pages/inventoryLog.php">Inventory Log</a></li>
+      <li><a href="/capstone-project-mohcamanagement/src/pages/scheduleGeneration.php">Schedule Generation</a></li>
+	  <li><a href="/capstone-project-mohcamanagement/src/pages/adminCreateUser.php">Create Users</a></li>
+      <li style="float:right"><a class="active1" onclick="location.href='/capstone-project-mohcamanagement/src/index.html'">Log out</a></li>
+    </ul>
+</header>
 
+<body style="margin-top: 2%">
+<h1 class="center">Schedule Generation</h1>
 	<button class="collapsible">Availability</button>
 	<div class="content">
     <table id="avail" style="center">
@@ -241,14 +252,14 @@
         // plan to add an automated date with the weekdays to make shcdule easier to read
         //ex Monday 15
         echo "<tr>";
-            echo "<td class='schedBorder'><h3>Employee</h3></td>";
-            echo "<td class='schedBorder' ><h3>Monday </h3></td>";
-            echo "<td class='schedBorder'><h3>Tuesday </h3></td>";
-            echo "<td class='schedBorder'><h3>Wednesday </h3></td>";
-            echo "<td class='schedBorder'><h3>Thursday </h3></td>";
-            echo "<td class='schedBorder'><h3>Friday </h3></td>";
-            echo "<td class='schedBorder'><h3>Saturday </h3></td>";
-            echo "<td class='schedBorder'><h3>Sunday </h3></td>";
+            echo "<th>Employee</th>";
+            echo "<th>Monday</th>";
+            echo "<th>Tuesday</th>";
+            echo "<th>Wednesday</th>";
+            echo "<th>Thursday</th>";
+            echo "<th>Friday</th>";
+            echo "<th>Saturday</th>";
+            echo "<th>Sunday</th>";
         echo "</tr>";
         //Selects all the data from the Users Table for use in getting the schedules
         $query = "SELECT * FROM Users";
@@ -278,14 +289,14 @@
 		// plan to add an automated date with the weekdays to make shcdule easier to read
 		//ex Monday 15
 		echo "<tr>";
-			echo "<td class='schedBorder'><h3>Employee</h3></td>";					
-			echo "<td class='schedBorder' ><h3>Monday </h3></td>";
-			echo "<td class='schedBorder'><h3>Tuesday </h3></td>";
-			echo "<td class='schedBorder'><h3>Wednesday </h3></td>";
-			echo "<td class='schedBorder'><h3>Thursday </h3></td>";
-			echo "<td class='schedBorder'><h3>Friday </h3></td>";
-			echo "<td class='schedBorder'><h3>Saturday </h3></td>";
-			echo "<td class='schedBorder'><h3>Sunday </h3></td>";
+		echo "<th>Employee</th>";
+		echo "<th>Monday</th>";
+		echo "<th>Tuesday</th>";
+		echo "<th>Wednesday</th>";
+		echo "<th>Thursday</th>";
+		echo "<th>Friday</th>";
+		echo "<th>Saturday</th>";
+		echo "<th>Sunday</th>";
 		echo "</tr>";
 		//Selects all the data from the Users Table for use in getting the schedules
 		//$query = "SELECT * FROM Users JOIN WorkingSchedule";
@@ -361,14 +372,14 @@
 	<table id="workSched">
         <?php
         echo "<tr>";
-            echo "<td class='schedBorder'><h3>Employee</h3></td>";
-            echo "<td class='schedBorder' ><h3>Monday </h3></td>";
-            echo "<td class='schedBorder'><h3>Tuesday </h3></td>";
-            echo "<td class='schedBorder'><h3>Wednesday </h3></td>";
-            echo "<td class='schedBorder'><h3>Thursday </h3></td>";
-            echo "<td class='schedBorder'><h3>Friday </h3></td>";
-            echo "<td class='schedBorder'><h3>Saturday </h3></td>";
-            echo "<td class='schedBorder'><h3>Sunday </h3></td>";
+		echo "<th>Employee</th>";
+		echo "<th>Monday</th>";
+		echo "<th>Tuesday</th>";
+		echo "<th>Wednesday</th>";
+		echo "<th>Thursday</th>";
+		echo "<th>Friday</th>";
+		echo "<th>Saturday</th>";
+		echo "<th>Sunday</th>";
 		echo "</tr>";
 		
         $query = "SELECT * FROM Users WHERE isManager=0";
@@ -394,10 +405,10 @@
         // plan to add an automated date with the weekdays to make shcdule easier to read
         //ex Monday 15
         echo "<tr>";
-            echo "<td class='schedBorder'><h3>Employee</h3></td>";
-            echo "<td class='schedBorder' ><h3> Start Date </h3></td>";
-            echo "<td class='schedBorder'><h3> End Date </h3></td>";
-            echo "<td class='schedBorder'><h3> Mandatory </h3></td>";
+            echo "<th>Employee</th>";
+            echo "<th>Start Date</th>";
+            echo "<th>End Date</th>";
+            echo "<th>Mandatory</th>";
         echo "</tr>";
         //Selects all the data from the Users Table for use in getting the schedules
         $query = "SELECT * FROM Users";
@@ -446,11 +457,7 @@
     </table>
 	</div>
 
-    <form method="post" action="adminMain.php">
-            <input type="Submit" name="Submit" value="Back"></input>
-    </form>
-
-
+	<!-- This script is to make the tables collapsible -->
 	<script>
 	var coll = document.getElementsByClassName("collapsible");
 	var i;
@@ -466,6 +473,6 @@
     		} 
   		});
 	}
-</script>
+	</script>
  </body>
  </html>
