@@ -13,110 +13,37 @@
 <html lang="en">
 	<head>
 		<title>Admin Main Page</title>
-
-		<link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>">
+		<link rel="stylesheet" href="../style/style1.css?<?php echo time(); ?>">
+		<link rel="stylesheet" href="../style/style6.css?<?php echo time(); ?>">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 	</head>
 
- 	<!-- CSS might want to add to the style sheet -->
-	<style>
-		h1 {
-			text-align: center;
-		}
-		
-		.centerHorz {
-			display: flex;
-			justify-content: center;
-		}
-		
-		.vertical-center {
-			margin: 0;
-			position: absolute;
-			top: 50%;
-			-ms-transform: translateY(-50%);
-			transform: translateY(-50%);
-		}
 
-		.square1 {
-			text-align:center;
-			margin-left: auto;
-			margin-right: auto;
-			height: 500px;
-			width: 750px;
-			background-color: #555;
-			border: 3px solid black;
-		}
+<!-- Navbar -->
+<header>
+    <ul>
+		<li><a href="adminMain.php">Admin Main</a></li>
+      	<li><a href="/capstone-project-mohcamanagement/src/pages/inventoryLog.php">Inventory Log</a></li>
+      	<li><a href="/capstone-project-mohcamanagement/src/pages/scheduleGeneration.php">Schedule Generation</a></li>
+	  	<li><a href="/capstone-project-mohcamanagement/src/pages/adminCreateUser.php">Create Users</a></li>
+      	<li style="float:right"><a class="active1" onclick="location.href='/capstone-project-mohcamanagement/src/index.html'">Log out</a></li>
+    </ul>
+</header>
+	
+<body>
+	<?php 
+	echo "<h1>Welcome $userCookie</h1>";
+	 ?>
+	<div class="square1">
+		<p>Schedule Placeholder</p>
+	</div>
 
-		.square2 {
-			text-align:center;
-			margin-left: auto;
-			margin-right: auto;
-			height: 50px;
-			width: 300px;
-			background-color: #555;
-			margin-top: 10px;
-			border: 3px solid black;
-		}
+	<div class="square2">
+		<p>Suggested Inventory / Writeoffs Placeholder</p>
+	</div>
 
-		.button {
-			border: none;
-			color: white;
-			padding: 16px 32px;
-			text-align: center;
-			text-decoration: none;
-			display: inline-block;
-			font-size: 17px;
-			margin: 10px 5px;
-			transition-duration: 0.4s;
-			cursor: pointer;
-		}
-
-		.button1 {
-			background-color: white; 
-			color: black; 
-			border: 2px solid #800000;
-		}
-		
-		.button1:hover {
-			background-color: #671D00;
-			color: black;
-		}
-	</style>
-
-	<!-- Navbar -->
-	<header>
-		<img class="logo" src="../../resources/OverseerTransparent.png" style="width: 100px;" alt="logo">
-		
-		<form method="post" action="/capstone-project-mohcamanagement/src/pages/inventoryLog.php">
-			<button class="button NavButton" >Inventory Log</button>
-		</form>
-
-		<form method="post" action="/capstone-project-mohcamanagement/src/pages/scheduleGeneration.php">
-			<button class="button NavButton" >Schedule Generation</button>
-		</form>
-
-		<form method="post" action="/capstone-project-mohcamanagement/src/pages/adminCreateUser.php">
-			<button class="button NavButton" >Create Users</button>
-		</form>
-
-		<form method="post" action="/capstone-project-mohcamanagement/src/index.html">
-			<button class="button button0" onclick="location.href='/capstone-project-mohcamanagement/src/index.html'">Log Out</button>
-		</form>
-	</header>
-
-	<body>
-		<?php 
-		echo "<h1>Welcome $userCookie</h1>";
-		 ?>
-		<div class="square1">
-			<p>Schedule Placeholder</p>
-		</div>
-
-		<div class="square2">
-			<p>Suggested Inventory / Writeoffs Placeholder</p>
-		</div>
-
-		<div class="square2">
-			<p>Employee Updates / Request Offs Placeholder</p>
-		</div>
-	</body>
+	<div class="square2">
+		<p>Employee Updates / Request Offs Placeholder</p>
+	</div>
+</body>
 </html>
