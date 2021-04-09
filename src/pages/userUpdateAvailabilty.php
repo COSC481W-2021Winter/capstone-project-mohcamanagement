@@ -70,7 +70,7 @@
 </header>
 	<body>
 	<div class="wrapper">
-		<h1><u>Update Your Weekly Work Schedule</u></h1>
+		<h1>Update Your Weekly Work Schedule</h1>
 
 		<!-- Displays the shift times which are generated from the shiftTimes table -->
 		<h3>Shift Information</h3>
