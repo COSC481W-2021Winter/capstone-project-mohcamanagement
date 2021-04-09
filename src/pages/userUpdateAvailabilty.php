@@ -43,197 +43,10 @@
 <html lang="en">
 	<head>
 		<title>User Update Availability</title>
-		<link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>">
+		<link rel="stylesheet" href="../style/style1.css?<?php echo time(); ?>">
+		<link rel="stylesheet" href="../style/style7.css?<?php echo time(); ?>">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 		
-		<style>
-
-			table {
-				margin-left: auto;
-				margin-right: auto;
-				font-family: arial, sans-serif;
-				border-collapse: collapse;
-				width: 25%;
-			}
-
-			a {
-				color: #000000;
-			}
-
-			h3 {
-				text-align: center;
-			}
-
-			.table1{
-				margin-left: auto;
-				margin-right: auto;
-				font-family: arial, sans-serif;
-				border-collapse: collapse;
-				height: 200px;
-				width: 65%;
-			}
-
-			td, th {
-			  border: 1px solid #dddddd;
-			  text-align: center;
-			  padding: 8px;
-			  width:500px;
-			}
-
-			.container {
-				width: 400px;
-				height: 650px;
-			}
-
-			a.buttons {
-				height: 5%;
-				width: 100%;
-				border: 4px;
-				border-radius: 5px;
-				padding: 6px 40% 10px 40%;
-				margin: 10px;
-				box-shadow: 1px 1px 1px 1px grey;
-				background-color: #efefef;
-				font-size: 18px;
-				text-align: center;
-				clear: both;
-				text-decoration:none;
-				display:inline-block;
-			}
-			/*
-				This is all the code for the update and cancel buttons
-			*/
-			a.buttons {
-				height: 5%;
-				width: 100%;
-				border: 4px;
-				border-radius: 5px;
-				padding: 6px 40% 10px 40%;
-				margin: 10px;
-				box-shadow: 1px 1px 1px 1px grey;
-				background-color: #efefef;
-				font-size: 18px;
-				text-align: center;
-				clear: both;
-				text-decoration:none;
-				display:inline-block;
-			}
-
-			a:visited {
-				color:#000000;
-			}
-
-			a:hover {
-				color: gray;
-			}
-			
-			/*
-				This is all the code for the select box styling
-			*/
-			.select {
-				margin: 10px;
-			}
-
-			#select {
-				width:300px;
-				font-size: 15px;
-				height:100px;
-				text-align-last:center;
-			}
-
-			#select option {
-			  width:250px;
-			  height:30px;   
-			}
-		
-		/*
-			This is all the code for the pop ups. Yes it's a lot for a simple pop up...
-		*/
-		/* Popup container - can be anything you want */
-			.popup {
-				position: relative;
-				cursor: pointer;
-				-webkit-user-select: none;
-				-moz-user-select: none;
-				-ms-user-select: none;
-				user-select: none;
-				  
-				height: 5%;
-				width: 100%;
-				border: 4px;
-				border-radius: 5px;
-				padding: 6px 40% 10px 40%;
-				margin: 10px;
-				box-shadow: 1px 1px 1px 1px grey;
-				background-color: #efefef;
-				font-size: 18px;
-				text-align: center;
-				clear: both;
-				text-decoration:none;
-				display:inline-block;
-			}
-
-			/* The actual popup */
-			.popup .popuptext {
-				visibility: hidden;
-				width: 160px;
-				background-color: #555;
-				color: #fff;
-				text-align: center;
-				border-radius: 6px;
-				padding: 8px 0;
-				position: absolute;
-				z-index: 1;
-				bottom: 125%;
-				left: 50%;
-				margin-left: -80px;
-			}
-
-			/* Popup arrow */
-			.popup .popuptext::after {
-				content: "";
-				position: absolute;
-				top: 100%;
-				left: 50%;
-				margin-left: -5px;
-				border-width: 5px;
-				border-style: solid;
-				border-color: #555 transparent transparent transparent;
-			}
-
-			/* Toggle this class - hide and show the popup */
-			.popup .show {
-			  	visibility: visible;
-				-webkit-animation: fadeIn 1s;
-			  	animation: fadeIn 1s;
-			}
-
-			/* Add animation (fade in the popup) */
-			@-webkit-keyframes fadeIn {
-				  from {
-				  	opacity: 0;
-				  } 
-				  to {
-				  	opacity: 1;
-				  }
-			}
-
-			@keyframes fadeIn {
-			 	from {
-			 		opacity: 0;
-			  	}
-			  	to {
-			  		opacity:1 ;
-			  	}
-			}
-
-			popup:hover {
-				color: gray;
-			}
-
-			.popup:hover {
-				color: gray;
-			}
-		</style>
 		<script>
 		//This is the JavaScript code for the pop up on the update button.
 		// When the user clicks on div, open the popup
@@ -246,14 +59,22 @@
 			}
 		</script>
 	</head>
-
+	<!-- Navbar -->
+<header>
+    <ul>
+		<li><a href="userMain.php">User Main</a></li>
+      	<li><a href="/capstone-project-mohcamanagement/src/pages/userUpdateAvailabilty.php">Update Availability</a></li>
+      	<li><a href="/capstone-project-mohcamanagement/src/pages/userRequestOff.php">Request Off</a></li>
+      	<li style="float:right"><a class="active1" onclick="location.href='/capstone-project-mohcamanagement/src/index.html'">Log out</a></li>
+    </ul>
+</header>
 	<body>
-		<br>
+	<div class="wrapper">
 		<h1><u>Update Your Weekly Work Schedule</u></h1>
-		<br>
 
 		<!-- Displays the shift times which are generated from the shiftTimes table -->
 		<h3>Shift Information</h3>
+		<div class="inside-table">
 		<table style="margin-top: 6px; margin-bottom: 10px;">
 			<tr>
 				<th>Shifts</th>
@@ -282,10 +103,11 @@
 				}
 			 ?>
 		</table>
+		
 
 		<!-- Fills the correct arrays with the availability for each day. For sorting purposes. -->
 		<h3>Current Availability</h3>
-		<table style="margin-top: 10px; margin-bottom: 10px;">
+		<table>
 			<tr>
 				<th>Day</th>
 				<th>Availability</th>
@@ -440,7 +262,7 @@
 		<!-- Lets a User update their availability -->
 		<h3>Choose your personal availability</h3>
 		<form method='post' action='userUpdateAvailabilty.php'>
-			<table style="margin-top: 10px; padding: 2px;">
+			<table>
 				<tr>
 					<th>Select Day</th>
 					<th>Select Shifts</th>
@@ -492,6 +314,12 @@
 				</tr>
 			</form>
 		</table>
+		</div>
+	
+		<div class="push"></div>
+		</div>
+		<footer class="footer3 center">&#169 2021 Overseer</footer>
+
 
 	</body>
 </html>
