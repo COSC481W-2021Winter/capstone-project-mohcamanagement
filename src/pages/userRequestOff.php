@@ -1,27 +1,35 @@
 <?php
 	/*db connection needed if in seperate file */
 	include_once ('../includes/dbConnection.php');
-
-
-	function isValidDateCheck(){
-		$fromCheck = $_POST['from'];
-		$untilCheck = $_POST['until'];
+		
+	function isValidDateCheck($fromCheck, $untilCheck){
 		return preg_match("/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/", $fromCheck) == 0 || preg_match("/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/", $untilCheck) == 0;
 	}
 
-	// $conn is the conection to database
+	// checking to see if the cookie array is empty
 	if(isset($_COOKIE["Username"])) {
 		// if not empty then we store the cookie into a variable
 		$userCookie = $_COOKIE["Username"];
+
+		// This query is used to make sure the user is allowed to be on the page or not.
+		$query = "SELECT * FROM Users WHERE Username = '$userCookie'";
+		$result = mysqli_query($conn, $query);
+		$row = mysqli_fetch_assoc($result);
+		$isManagerCheck = $row['IsManager'];
+
+		if($isManagerCheck == 1) {
+			header("Location: adminMain.php");
+		}
 	}
 
 	if (isset($_POST['send']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 		
 		// grabbing start and end dates from the form
-		
+		$fromCheck = $_POST['from'];
+		$untilCheck = $_POST['until'];
 
 		// This regular expression sends an error if the user doen not enter the correct date format
-		if(isValidDateCheck()) {
+		if(isValidDateCheck($fromCheck, $untilCheck)) {
 			echo "<script id='invalidEntry'>alert('Entries needs to be a date in format \"yyyy-mm-dd\".')</script>";
 		}
 
@@ -100,8 +108,8 @@
 			$result = mysqli_query($conn, $query);
 			$numOfRows = mysqli_num_rows($result);
 
-				//grabs the current row of data so you can display or manipulate
-				$row = mysqli_fetch_assoc($result);
+			//grabs the current row of data so you can display or manipulate
+			$row = mysqli_fetch_assoc($result);
 			// }
 			?>
 			<!-- TODO fix placment of form on screen -->
