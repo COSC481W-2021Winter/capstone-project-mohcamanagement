@@ -84,9 +84,11 @@
 <html lang="en">
 	<head>
 		<title>Request Off</title>
-		<link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>">
 		<link rel="stylesheet" href="../style/style1.css?<?php echo time(); ?>">
-		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../style/tables.css?<?php echo time(); ?>">
+        <link rel="stylesheet" href="../style/style4.css?<?php echo time(); ?>">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+		
 	</head>
 
 	<!-- Navbar -->
@@ -98,7 +100,12 @@
       	<li style="float:right"><a class="active1" onclick="location.href='/capstone-project-mohcamanagement/src/index.html'">Log out</a></li>
     </ul>
 </header>
-	<body>
+		<body class="image-two">
+	
+		<div class="wrapper">
+        <div class="content inside-table">
+	
+	
 		<h1 style="text-align:center;">Request Off <?php echo "$userCookie";?></h1>
 
 		<table class="userCreationTable">
@@ -119,7 +126,7 @@
 				</tr>
 
 				<tr>
-					<td>
+					<td style="text-align: center;">  
 						<input id="from" name="from" type="date" value="<?php echo date('Y-m-d');?>" class="inputBox"/>
 					</td>
 				</tr>
@@ -129,7 +136,7 @@
 				</tr>
 
 				<tr>
-					<td>
+					<td style="text-align: center;">
 						<input id="until" name="until" type="date" value="<?php echo date('Y-m-d');?>" class="inputBox"/>
 					</td>
 				</tr>
@@ -161,5 +168,8 @@
 				</tr>
 			</form>
 		</table>
+		
+		</div>
+		</div>
 	 </body>
  </html>
