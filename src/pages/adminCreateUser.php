@@ -381,11 +381,24 @@
 		<title>AdminCreateUser</title>
 		
 		<link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>">
+		<link rel="stylesheet" href="../style/style1.css?<?php echo time(); ?>">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 	</head>
+	<!-- Navbar -->
+	<header>
+    	<ul>
+			<li><a href="adminMain.php">Admin Main</a></li>
+      		<li><a href="/capstone-project-mohcamanagement/src/pages/inventoryLog.php">Inventory Log</a></li>
+      		<li><a href="/capstone-project-mohcamanagement/src/pages/scheduleGeneration.php">Schedule Generation</a></li>
+	  		<li><a href="/capstone-project-mohcamanagement/src/pages/adminCreateUser.php">Create Users</a></li>
+      		<li style="float:right"><a class="active1" onclick="location.href='/capstone-project-mohcamanagement/src/index.html'">Log out</a></li>
+    	</ul>
+	</header>
 
 	<body>
-		<h2 align="center">Create User</h2>
-			<table class="userCreationTable" style="border-collapse: collapse;">
+	<h1>Create User</h1>
+		<div style="width: 40%; margin: auto;">
+			<table class="userCreationTable">
 				<form method="post" action="adminCreateUser.php">
 					<tr>
 						<td style="text-align: center; padding: 5px;" colspan="3">

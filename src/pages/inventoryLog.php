@@ -124,9 +124,20 @@
 <html lang="en">
 	<head>
 		<title>Page Title</title>
-
 		<link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>">
+		<link rel="stylesheet" href="../style/style1.css?<?php echo time(); ?>">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 	</head>
+	<!-- Navbar -->
+	<header>
+    	<ul>
+			<li><a href="adminMain.php">Admin Main</a></li>
+      		<li><a href="/capstone-project-mohcamanagement/src/pages/inventoryLog.php">Inventory Log</a></li>
+      		<li><a href="/capstone-project-mohcamanagement/src/pages/scheduleGeneration.php">Schedule Generation</a></li>
+	  		<li><a href="/capstone-project-mohcamanagement/src/pages/adminCreateUser.php">Create Users</a></li>
+      		<li style="float:right"><a class="active1" onclick="location.href='/capstone-project-mohcamanagement/src/index.html'">Log out</a></li>
+    	</ul>
+	</header>
 
 	<body>
 		<table id="itemTable" class="userCreationTable">
