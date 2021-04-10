@@ -124,9 +124,10 @@
 <html lang="en">
 	<head>
 		<title>Page Title</title>
-		<link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>">
 		<link rel="stylesheet" href="../style/style1.css?<?php echo time(); ?>">
-		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../style/tables.css?<?php echo time(); ?>">
+    	<link rel="stylesheet" href="../style/style4.css?<?php echo time(); ?>">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 	</head>
 	<!-- Navbar -->
 	<header>
@@ -139,7 +140,11 @@
     	</ul>
 	</header>
 
-	<body>
+	<body class="image-one">
+
+		<div class="wrapper">
+        <div class="content inside-table">
+	
 		<table id="itemTable" class="userCreationTable">
 			<form method="post" action="inventoryLog.php">
 				<tr>
@@ -238,6 +243,8 @@
 					</form>
 				</td>
 			</tr>
-		</table>	
+		</table>
+		</div>
+		</div>		
 	</body>
 </html>

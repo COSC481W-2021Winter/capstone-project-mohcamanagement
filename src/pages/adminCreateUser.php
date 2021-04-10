@@ -380,9 +380,13 @@
 	<head>
 		<title>AdminCreateUser</title>
 		
-		<link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>">
 		<link rel="stylesheet" href="../style/style1.css?<?php echo time(); ?>">
+		<link rel="stylesheet" href="../style/style2.css?<?php echo time(); ?>">
+		<link rel="stylesheet" href="../style/style4.css?<?php echo time(); ?>">
+		<link rel="stylesheet" href="../style/tables.css?<?php echo time(); ?>">
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+		
+	
 	</head>
 	<!-- Navbar -->
 	<header>
@@ -392,11 +396,14 @@
       		<li><a href="/capstone-project-mohcamanagement/src/pages/scheduleGeneration.php">Schedule Generation</a></li>
 	  		<li><a href="/capstone-project-mohcamanagement/src/pages/adminCreateUser.php">Create Users</a></li>
       		<li style="float:right"><a class="active1" onclick="location.href='/capstone-project-mohcamanagement/src/index.html'">Log out</a></li>
+      	
+      		
     	</ul>
 	</header>
 
-	<body>
-	<h1>Create User</h1>
+	<body class="image">
+		
+		<h1 style="text-align: center;">Create User</h1>
 		<div style="width: 40%; margin: auto;">
 			<table class="userCreationTable">
 				<form method="post" action="adminCreateUser.php">
