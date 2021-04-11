@@ -1,0 +1,66 @@
+.image {
+    background: 
+    linear-gradient(
+        rgba(119, 119, 119, 0.6),    
+        rgba(119, 119, 119, 0.6)    
+      ), 
+      url(../images/coffee2.jpeg); /* name of your image here */
+    background-size: cover; 
+    height: 100%; 
+    width: 100%;
+    margin: 0;
+    position: relative;
+    float: left;
+    margin-top: 2%;
+  }
+  
+  
+  .image-one {
+    background: 
+    linear-gradient(
+        rgba(119, 119, 119, 0.6),    
+        rgba(119, 119, 119, 0.6)    
+      ), 
+      url(../images/coffee9.jpeg); /* name of your image here */
+    background-size: cover; 
+    height: 100%; 
+    width: 100%;
+    margin: 0;
+    position: relative;
+    float: left;
+    margin-top: 2%;
+  }
+  
+  
+    .image-two {
+    background: 
+    linear-gradient(
+        rgba(119, 119, 119, 0.6),    
+        rgba(119, 119, 119, 0.6)    
+      ), 
+      url(../images/coffee3.jpg); /* name of your image here */
+    background-size: cover; 
+    height: 100%; 
+    width: 100%;
+    margin: 0;
+    position: relative;
+    float: left;
+    margin-top: 2%;
+  }
+  
+  
+  .image-three {
+    background: 
+    linear-gradient(
+        rgba(119, 119, 119, 0.6),    
+        rgba(119, 119, 119, 0.6)    
+      ), 
+      url(../images/coffee5.jpeg); /* name of your image here */
+    background-size: cover; 
+    height: 100%; 
+    width: 100%;
+    margin: 0;
+    position: relative;
+    float: left;
+    margin-top: 2%;
+  }

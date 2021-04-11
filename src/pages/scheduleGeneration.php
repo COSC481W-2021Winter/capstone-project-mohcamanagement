@@ -242,24 +242,39 @@
  <html lang="en">
  <head>
     <title>Work Schedule</title>
-    <link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>">
-
+	<link rel="stylesheet" href="../style/style5.css?<?php echo time(); ?>">
+	<link rel="stylesheet" href="../style/style1.css?<?php echo time(); ?>">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
  </head>
- <body>
-    <h1>Availability</h1>
+ <header>
+    <!-- Navbar -->
+    <ul>
+	<li><a href="adminMain.php">Admin Main</a></li>
+      <li><a href="/capstone-project-mohcamanagement/src/pages/inventoryLog.php">Inventory Log</a></li>
+      <li><a href="/capstone-project-mohcamanagement/src/pages/scheduleGeneration.php">Schedule Generation</a></li>
+	  <li><a href="/capstone-project-mohcamanagement/src/pages/adminCreateUser.php">Create Users</a></li>
+      <li style="float:right"><a class="active1" onclick="location.href='/capstone-project-mohcamanagement/src/index.html'">Log out</a></li>
+    </ul>
+</header>
+
+<body style="margin-top: 2%">
+<div class="wrapper">
+<h1 class="center">Schedule Generation</h1>
+	<button class="collapsible">Availability</button>
+	<div class="content inside-table">
     <table id="avail" style="center">
         <?php
         // plan to add an automated date with the weekdays to make shcdule easier to read
         //ex Monday 15
         echo "<tr>";
-            echo "<td class='schedBorder'><h3>Employee</h3></td>";
-            echo "<td class='schedBorder' ><h3>Monday </h3></td>";
-            echo "<td class='schedBorder'><h3>Tuesday </h3></td>";
-            echo "<td class='schedBorder'><h3>Wednesday </h3></td>";
-            echo "<td class='schedBorder'><h3>Thursday </h3></td>";
-            echo "<td class='schedBorder'><h3>Friday </h3></td>";
-            echo "<td class='schedBorder'><h3>Saturday </h3></td>";
-            echo "<td class='schedBorder'><h3>Sunday </h3></td>";
+            echo "<th>Employee</th>";
+            echo "<th>Monday</th>";
+            echo "<th>Tuesday</th>";
+            echo "<th>Wednesday</th>";
+            echo "<th>Thursday</th>";
+            echo "<th>Friday</th>";
+            echo "<th>Saturday</th>";
+            echo "<th>Sunday</th>";
         echo "</tr>";
         //Selects all the data from the Users Table for use in getting the schedules
         $query = "SELECT * FROM Users";
@@ -280,20 +295,23 @@
         }
         ?>
     </table>
-    <h1>Edit Next Weeks Schedule</h1>
+	</div>
+
+	<button class="collapsible">Edit Next Weeks Schedule</button>
+	<div class="content inside-table">
 	<table id="nextweekschedule" style="center">
 		<?php
 		// plan to add an automated date with the weekdays to make shcdule easier to read
 		//ex Monday 15
 		echo "<tr>";
-			echo "<td class='schedBorder'><h3>Employee</h3></td>";					
-			echo "<td class='schedBorder' ><h3>Monday </h3></td>";
-			echo "<td class='schedBorder'><h3>Tuesday </h3></td>";
-			echo "<td class='schedBorder'><h3>Wednesday </h3></td>";
-			echo "<td class='schedBorder'><h3>Thursday </h3></td>";
-			echo "<td class='schedBorder'><h3>Friday </h3></td>";
-			echo "<td class='schedBorder'><h3>Saturday </h3></td>";
-			echo "<td class='schedBorder'><h3>Sunday </h3></td>";
+		echo "<th>Employee</th>";
+		echo "<th>Monday</th>";
+		echo "<th>Tuesday</th>";
+		echo "<th>Wednesday</th>";
+		echo "<th>Thursday</th>";
+		echo "<th>Friday</th>";
+		echo "<th>Saturday</th>";
+		echo "<th>Sunday</th>";
 		echo "</tr>";
 		//Selects all the data from the Users Table for use in getting the schedules
 		//$query = "SELECT * FROM Users JOIN WorkingSchedule";
@@ -360,18 +378,23 @@
 		echo "</form>";
 		?>
 	</table>
-	<h1>Next Weeks Schedule</h1>
+	</div>
+
+
+	
+	<button class="collapsible">Next Weeks Schedule</button>
+	<div class="content inside-table">
 	<table id="workSched">
         <?php
         echo "<tr>";
-            echo "<td class='schedBorder'><h3>Employee</h3></td>";
-            echo "<td class='schedBorder' ><h3>Monday </h3></td>";
-            echo "<td class='schedBorder'><h3>Tuesday </h3></td>";
-            echo "<td class='schedBorder'><h3>Wednesday </h3></td>";
-            echo "<td class='schedBorder'><h3>Thursday </h3></td>";
-            echo "<td class='schedBorder'><h3>Friday </h3></td>";
-            echo "<td class='schedBorder'><h3>Saturday </h3></td>";
-            echo "<td class='schedBorder'><h3>Sunday </h3></td>";
+		echo "<th>Employee</th>";
+		echo "<th>Monday</th>";
+		echo "<th>Tuesday</th>";
+		echo "<th>Wednesday</th>";
+		echo "<th>Thursday</th>";
+		echo "<th>Friday</th>";
+		echo "<th>Saturday</th>";
+		echo "<th>Sunday</th>";
 		echo "</tr>";
 		
         $query = "SELECT * FROM Users WHERE isManager=0";
@@ -386,17 +409,21 @@
         }
         ?>
     </table>
+	</div>
 
-    <h1>Time Request Off</h1>
+
+
+	<button class="collapsible">Time Request Off</button>
+	<div class="content inside-table">
     <table id="requestOff" style="center">
         <?php
         // plan to add an automated date with the weekdays to make shcdule easier to read
         //ex Monday 15
         echo "<tr>";
-            echo "<td class='schedBorder'><h3>Employee</h3></td>";
-            echo "<td class='schedBorder' ><h3> Start Date </h3></td>";
-            echo "<td class='schedBorder'><h3> End Date </h3></td>";
-            echo "<td class='schedBorder'><h3> Mandatory </h3></td>";
+            echo "<th>Employee</th>";
+            echo "<th>Start Date</th>";
+            echo "<th>End Date</th>";
+            echo "<th>Mandatory</th>";
         echo "</tr>";
         //Selects all the data from the Users Table for use in getting the schedules
         $query = "SELECT * FROM Users";
@@ -413,9 +440,12 @@
         }
         ?>
     </table>
+	</div>
 
+
+	<button class="collapsible">Add Custom Shifts</button>
+	<div class="content inside-table">
     <table>
-        <h1>Add Custom Shifts</h1>
         <form action="scheduleGeneration.php" method="POST">
         <tr>
             <td>Name <input type="text" name="shiftName"></td>
@@ -440,9 +470,29 @@
         </form>
 
     </table>
+	</div>
 
-    <form method="post" action="adminMain.php">
-            <input type="Submit" name="Submit" value="Back"></input>
-    </form>
+	<!-- This script is to make the tables collapsible -->
+	<script>
+	var coll = document.getElementsByClassName("collapsible");
+	var i;
+
+	for (i = 0; i < coll.length; i++) {
+ 		coll[i].addEventListener("click", function() {
+   	 		this.classList.toggle("active");
+    		var content = this.nextElementSibling;
+    		if (content.style.maxHeight){
+      			content.style.maxHeight = null;
+    		} else {
+      			content.style.maxHeight = content.scrollHeight + "px";
+    		} 
+  		});
+	}
+	</script>
+
+<div class="push"></div>
+  </div>
+<footer class="footer3 center">&#169 2021 Overseer</footer>
+
  </body>
  </html>

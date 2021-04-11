@@ -85,12 +85,18 @@
 <html lang="en">
 	<head>
 		<title>Page Title</title>
-
-		<link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>">
+			<link rel="stylesheet" href="../style/style1.css?<?php echo time(); ?>">
+       		 <link rel="stylesheet" href="../style/tables.css?<?php echo time(); ?>">
+       		 <link rel="stylesheet" href="../style/style4.css?<?php echo time(); ?>">
+       		 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 	</head>
 
-	<body>
-		<h1><?php echo getInventoryName(); ?></h1>
+	<body class="image-three">
+	
+		<div class="wrapper">
+        <div class="content inside-table">
+	
+		<h1 style="text-align: center;" ><?php echo getInventoryName(); ?></h1>
 		<table class="userCreationTable" id="orderTable">
 			<tr>
 				<th>Item</th>
@@ -105,5 +111,7 @@
 				</td>
 			</tr>
 		</table>
+		</div>
+		</div>
 	</body>
 </html>

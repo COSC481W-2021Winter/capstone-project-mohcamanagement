@@ -380,12 +380,32 @@
 	<head>
 		<title>AdminCreateUser</title>
 		
-		<link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>">
+		<link rel="stylesheet" href="../style/style1.css?<?php echo time(); ?>">
+		<link rel="stylesheet" href="../style/style2.css?<?php echo time(); ?>">
+		<link rel="stylesheet" href="../style/style4.css?<?php echo time(); ?>">
+		<link rel="stylesheet" href="../style/tables.css?<?php echo time(); ?>">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+		
+	
 	</head>
+	<!-- Navbar -->
+	<header>
+    	<ul>
+			<li><a href="adminMain.php">Admin Main</a></li>
+      		<li><a href="/capstone-project-mohcamanagement/src/pages/inventoryLog.php">Inventory Log</a></li>
+      		<li><a href="/capstone-project-mohcamanagement/src/pages/scheduleGeneration.php">Schedule Generation</a></li>
+	  		<li><a href="/capstone-project-mohcamanagement/src/pages/adminCreateUser.php">Create Users</a></li>
+      		<li style="float:right"><a class="active1" onclick="location.href='/capstone-project-mohcamanagement/src/index.html'">Log out</a></li>
+      	
+      		
+    	</ul>
+	</header>
 
-	<body>
-		<h2 align="center">Create User</h2>
-			<table class="userCreationTable" style="border-collapse: collapse;">
+	<body class="image">
+		<div class="wrapper">
+		<h1 style="text-align: center;">Create User</h1>
+		<div style="width: 40%; margin: auto;">
+			<table class="userCreationTable">
 				<form method="post" action="adminCreateUser.php">
 					<tr>
 						<td style="text-align: center; padding: 5px;" colspan="3">
@@ -415,7 +435,7 @@
 
 					</tr>
 					<tr style="border-bottom-style: solid;">
-						<td style="text-align: center;">
+						<td style="text-align: left;">
 							<?php 
 							$query = "SELECT * FROM ShiftTimes";
 							$result = mysqli_query($conn, $query);
@@ -431,7 +451,7 @@
 						</td>	
 
 						
-						<td style="text-align: center;">
+						<td style="text-align: left;">
 							<?php 
 							$query = "SELECT * FROM ShiftTimes";
 							$result = mysqli_query($conn, $query);
@@ -446,7 +466,7 @@
 							 ?>
 						</td>
 						
-						<td style="text-align: center;">
+						<td style="text-align: left;">
 							<?php 
 							$query = "SELECT * FROM ShiftTimes";
 							$result = mysqli_query($conn, $query);
@@ -461,7 +481,7 @@
 							 ?>
 						</td>
 						
-						<td style="text-align: center;">
+						<td style="text-align: left;">
 							<?php 
 							$query = "SELECT * FROM ShiftTimes";
 							$result = mysqli_query($conn, $query);
@@ -476,7 +496,7 @@
 							 ?>
 						</td>
 						
-						<td style="text-align: center;">
+						<td style="text-align: left;">
 							<?php 
 							$query = "SELECT * FROM ShiftTimes";
 							$result = mysqli_query($conn, $query);
@@ -491,7 +511,7 @@
 							 ?>
 						</td>
 						
-						<td style="text-align: center;">
+						<td style="text-align: left;">
 							<?php 
 							$query = "SELECT * FROM ShiftTimes";
 							$result = mysqli_query($conn, $query);
@@ -506,7 +526,7 @@
 							 ?>
 						</td>
 						
-						<td style="text-align: center;">
+						<td style="text-align: left;">
 							<?php 
 							$query = "SELECT * FROM ShiftTimes";
 							$result = mysqli_query($conn, $query);
@@ -581,11 +601,11 @@
 									?>
 
 								<form method='post' action='adminCreateUser.php'>
-									<table style="border-style: solid; border-collapse: collapse; padding: 5px;">
+									<table>
 										<tr>	
 											<?php 
 												if($userCookie != $selectedUser){
-													echo "<th style='border-right-style: solid; padding: 0px 4px 0px 4px'>Years Worked</th>";
+													echo "<th>Years Worked</th>";
 													echo "<th>Is Manager</th>";
 												}
 												else {
@@ -596,7 +616,7 @@
 										</tr>
 
 										<tr>
-											<td style='border-right-style: solid; padding: 5px;'>
+											<td>
 												
 												<?php
 												echo "<input type='text' id='yearsWorked' name='yearsWorked' value=$yearsWorked size='13'></input>";
@@ -610,12 +630,12 @@
 														echo "<td style='padding: 5px;'>";
 														if($isManager == 0){
 															echo "<input type='radio' name='isManager' value=1> Yes </input>" ;
-															echo " ";
+															echo " <br>";
 															echo "<input checked type='radio' name='isManager' value=0> No </input>";
 														}
 														else{
 															echo "<input checked type='radio' name='isManager' value=1> Yes </input>";
-															echo " ";
+															echo " <br>";
 															echo "<input type='radio' name='isManager' value=0> No </input>";
 														}
 														echo "</td>";
@@ -664,5 +684,9 @@
 				</td>
 			</tr>
 		</table>
+		</div>
+		<div class="push"></div>
+  		</div>
+		<footer class="footer3 center">&#169 2021 Overseer</footer>
 	</body>
 </html>

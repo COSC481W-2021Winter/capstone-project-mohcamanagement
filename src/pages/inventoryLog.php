@@ -124,16 +124,30 @@
 <html lang="en">
 	<head>
 		<title>Page Title</title>
-
-		<link rel="stylesheet" href="../style/style.css?<?php echo time(); ?>">
+		<link rel="stylesheet" href="../style/style1.css?<?php echo time(); ?>">
+        <link rel="stylesheet" href="../style/tables.css?<?php echo time(); ?>">
+    	<link rel="stylesheet" href="../style/style4.css?<?php echo time(); ?>">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 	</head>
+	<!-- Navbar -->
+	<header>
+    	<ul>
+			<li><a href="adminMain.php">Admin Main</a></li>
+      		<li><a href="/capstone-project-mohcamanagement/src/pages/inventoryLog.php">Inventory Log</a></li>
+      		<li><a href="/capstone-project-mohcamanagement/src/pages/scheduleGeneration.php">Schedule Generation</a></li>
+	  		<li><a href="/capstone-project-mohcamanagement/src/pages/adminCreateUser.php">Create Users</a></li>
+      		<li style="float:right"><a class="active1" onclick="location.href='/capstone-project-mohcamanagement/src/index.html'">Log out</a></li>
+    	</ul>
+	</header>
 
-	<body>
+	<body class="image-one" style="margin-top: 2%">
+        <div class="wrapper content inside-table">
+		<h1 class="center"> Inventory Type</h1>
 		<table id="itemTable" class="userCreationTable">
 			<form method="post" action="inventoryLog.php">
-				<tr>
+				<!-- <tr>
 					<td colspan="4" style="text-align: center;">Inventory Type</td>
-				</tr>
+				</tr> -->
 
 				<tr>
 				
@@ -198,7 +212,7 @@
 				</tr>
 
 				<tr>
-					<td colspan="3" style="text-align: center;">
+					<td colspan="4" style="text-align: center;">
 						<input type="submit" name="addItem" value="Add Item" style='background-color: #343131;  color: #969595;'/>
 					</td>
 				</tr>
@@ -227,6 +241,10 @@
 					</form>
 				</td>
 			</tr>
-		</table>	
+		</table>
+
+		<div class="push"></div>
+  		</div>
+		<footer class="footer3 center">&#169 2021 Overseer</footer>		
 	</body>
 </html>

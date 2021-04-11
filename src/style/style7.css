@@ -1,0 +1,175 @@
+h1 {
+    text-align: center;
+}
+/* The 3 classes below formats footer */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f1f1f1;
+    margin-top: 1%;
+  }
+  .wrapper {
+    min-height: 100%;
+  
+    /* Equal to height of footer */
+    /* But also accounting for potential margin-bottom of last child */
+    margin-bottom: -50px;
+  }
+  .footer3,
+  .push {
+    margin-top: 20px;
+    height: 50px;
+    text-align: center;
+  }
+
+  /* Style tables */
+  .inside-table {
+    margin-right: 15%;
+    margin-left: 15%;
+}
+
+  table {
+    font-family: 'Montserrat', sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+    padding: 2px;
+  }
+  
+  td, th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even){background-color: #f2f2f2;}
+  
+  tr:hover {background-color: #ddd;}
+  
+  th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #7E6048;
+    color: white;
+  }
+
+h3 {
+    text-align: center;
+    padding-top: 15px;
+}
+
+.container {
+    width: 400px;
+    height: 650px;
+}
+
+
+
+/*
+    This is all the code for the select box styling
+*/
+.select {
+    margin: 10px;
+}
+
+#select {
+    width:300px;
+    font-size: 15px;
+    height:100px;
+    text-align-last:center;
+}
+
+#select option {
+  width:250px;
+  height:30px;   
+}
+
+/*
+This is all the code for the pop ups. Yes it's a lot for a simple pop up...
+*/
+/* Popup container - can be anything you want */
+.popup {
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+      
+    height: 5%;
+    width: 100%;
+    border: 4px;
+    border-radius: 5px;
+    padding: 6px 40% 10px 40%;
+    margin: 10px;
+    box-shadow: 1px 1px 1px 1px grey;
+    background-color: #efefef;
+    font-size: 18px;
+    text-align: center;
+    clear: both;
+    text-decoration:none;
+    display:inline-block;
+}
+
+/* The actual popup */
+.popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class - hide and show the popup */
+.popup .show {
+      visibility: visible;
+    -webkit-animation: fadeIn 1s;
+      animation: fadeIn 1s;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+      from {
+          opacity: 0;
+      } 
+      to {
+          opacity: 1;
+      }
+}
+
+@keyframes fadeIn {
+     from {
+         opacity: 0;
+      }
+      to {
+          opacity:1 ;
+      }
+}
+
+popup:hover {
+    color: gray;
+}
+
+.popup:hover {
+    color: gray;
+}
