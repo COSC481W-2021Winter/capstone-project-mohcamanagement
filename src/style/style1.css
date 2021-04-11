@@ -1,4 +1,8 @@
   body {font-family: 'Montserrat', sans-serif;}
+  .center {
+    text-align: center;
+}
+
 /*------------- NAVBAR -------------*/
 ul {
     list-style-type: none;

@@ -101,7 +101,6 @@
     </ul>
 </header>
 		<body class="image-two">
-	
 		<div class="wrapper">
         <div class="content inside-table">
 	
@@ -170,6 +169,8 @@
 		</table>
 		
 		</div>
-		</div>
+		<div class="push"></div>
+  		</div>
+		<footer class="footer3 center">&#169 2021 Overseer</footer>
 	 </body>
  </html>
