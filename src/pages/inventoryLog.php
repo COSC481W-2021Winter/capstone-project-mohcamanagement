@@ -140,16 +140,14 @@
     	</ul>
 	</header>
 
-	<body class="image-one">
-
-		<div class="wrapper">
-        <div class="content inside-table">
-	
+	<body class="image-one" style="margin-top: 2%">
+        <div class="wrapper content inside-table">
+		<h1 class="center"> Inventory Type</h1>
 		<table id="itemTable" class="userCreationTable">
 			<form method="post" action="inventoryLog.php">
-				<tr>
+				<!-- <tr>
 					<td colspan="4" style="text-align: center;">Inventory Type</td>
-				</tr>
+				</tr> -->
 
 				<tr>
 				
@@ -214,7 +212,7 @@
 				</tr>
 
 				<tr>
-					<td colspan="3" style="text-align: center;">
+					<td colspan="4" style="text-align: center;">
 						<input type="submit" name="addItem" value="Add Item" style='background-color: #343131;  color: #969595;'/>
 					</td>
 				</tr>
@@ -244,7 +242,9 @@
 				</td>
 			</tr>
 		</table>
-		</div>
-		</div>		
+
+		<div class="push"></div>
+  		</div>
+		<footer class="footer3 center">&#169 2021 Overseer</footer>		
 	</body>
 </html>

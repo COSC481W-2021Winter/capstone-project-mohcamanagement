@@ -7,11 +7,10 @@ html, body {
     margin-top: 1%;
   }
   .wrapper {
-    min-height: 100%;
-  
+    height: 90%;
     /* Equal to height of footer */
     /* But also accounting for potential margin-bottom of last child */
-    margin-bottom: -50px;
+    margin-bottom: -1%;
   }
   .footer3,
   .push {
@@ -39,6 +38,7 @@ table {
   }
   
   tr:nth-child(even){background-color: #f2f2f2;}
+  tr:nth-child(odd){background-color: #f2f2f2;}
   
   tr:hover {background-color: #ddd;}
   
