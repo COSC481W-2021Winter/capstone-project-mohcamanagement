@@ -1,11 +1,13 @@
 <?php
+// Test Command: vendor\bin\codecept.bat run tests\acceptance\inventoryLogCest.php
+// Directory: C:\xampp\htdocs\capstone-project-mohcamanagement
 
 class inventoryLogCest
 {
 	public function inventoryLogAcceptanceTest(AcceptanceTester $I)
 	{
 		$I->amOnPage('/pages/inventoryLog.php');
-		$I->see('Inventory Log');
+		$I->see('Inventory Type');
 	}
 
 	public function verifyTableExistsTest(AcceptanceTester $I)
@@ -17,32 +19,27 @@ class inventoryLogCest
 	public function verifyItemAddedTest(AcceptanceTester $I)
 	{
 		$I->amOnPage('/pages/inventoryLog.php');
-		$I->fillField('itemEntry', 'Pizza');
+		$I->fillField('itemEntry', 'Tomato Caprese');
 		$I->fillField('expectedPar', '3');
-		$I->click('submit');
-		$I->amOnPage('/pages/inventoryLog.php');
-		$I->see('Pizza');
+		$option = $I->grabTextFrom('select option:nth-child(4)');
+		$I->selectOption("invType", $option);
+		$I->click('addItem');
+		$option = $I->grabTextFrom('select option:nth-child(4)');
+		$I->selectOption("inventory", $option);
+		
 	}
 
-	public function verifyItemDatabaseTest(AcceptanceTester $I)
+	public function verifyOnHandDataBaseTest(AcceptanceTester $I)
 	{
+		// $I->amOnPage('index.html');
+		// $I->click('Login');
+		// $I->fillField(['name' => 'Username'], 'DKilroy');
+        // $I->fillField(['name' => 'Pin'], '1117');
 		$I->amOnPage('/pages/inventoryLog.php');
-		$I->fillField('itemEntry', 'Pizza');
-		$I->fillField('expectedPar', '3');
-		$I->click('submit');
-		$I->amOnPage('/pages/inventoryLog.php');
-		$I->seeInDatabase('inventory', ['item' => 'Pizza', 'Par' => '3']);
-	}
+		$option = $I->grabTextFrom('select option:nth-child(2)');
+		$I->selectOption("inventory", $option);
 
-	//Logic needs to be implemented
-	public function verifyRemovalDatabaseTest(AcceptanceTester $I)
-	{
-		$I->amOnPage('/pages/inventoryLog.php');
-		$I->click('remove');
-		$I->amOnPage('/pages/inventoryLog.php');
-		$I->dontSeeInDatabase('inventory', ['item' => 'Pizza', 'Par' => '3']);
 	}
-		//Test to see if page updates when choosing a different item in the drop-down menu
 
 }
 

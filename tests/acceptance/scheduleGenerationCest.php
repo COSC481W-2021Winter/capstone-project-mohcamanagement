@@ -22,6 +22,7 @@ class scheduleGenerationCest
         $I->see('Employee');
         $I->see('JBond' , \Codeception\Util\Locator::elementAt('table#avail>tr', -1));
         $I->see('Off' , \Codeception\Util\Locator::elementAt('table#avail>tr', -1));
+        
     }
 
     
