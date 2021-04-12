@@ -25,3 +25,11 @@ class Day:
     
     def removeShiftInt(self, shift):
         self.shifts[shift] = 0
+
+    def getShiftSet(self):
+        index = 0
+        for i in self.shifts:
+            if i == 1:
+                return index
+            index += 1
+        return -1

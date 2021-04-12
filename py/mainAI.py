@@ -30,13 +30,17 @@ def main():
 			if currentUser.calculateDaysWorking() != 0:
 				userList.append(currentUser)
 
+	overseer.close()
+
 	userList.sort(key=cmp_to_key(compareByWeight), reverse=True)
 
 	workSchedule = Schedule(userList, date)
 	workSchedule.createSchedule()
 	workSchedule.printSchedule()
 
-	overseer.close()
+	print("Done")
+
+	
 
     
 def sortUserArray(userArray):

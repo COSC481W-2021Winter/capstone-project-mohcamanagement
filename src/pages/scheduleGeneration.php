@@ -2,6 +2,12 @@
     /*db connection needed if in seperate file */
     include_once ('../includes/dbConnection.php');
 
+	function callAIFunction($company){
+		exec("python ../../py/mainAI.py", $output);
+		var_dump($output);
+		echo $output;
+	}
+
 	// checking to see if the user is allowed to be on the page.
     if(isset($_COOKIE["Username"])) {
 		// if not empty then we store the cookie into a variable
@@ -61,6 +67,15 @@
         $conn->query($sql);
 
     }
+
+	if(!empty($_POST["generateAI"])){
+		$userName = $_COOKIE['Username'];
+		$query = "SELECT Name FROM Users WHERE Username = '$userName'";
+		$result = mysqli_query($conn, $query);
+		$row = mysqli_fetch_assoc($result);
+		callAIFunction($row['Name']);
+
+	}
 
 
     //Converts a day string to a number based on the day of the week starting on Monday
@@ -378,6 +393,9 @@
 		echo "</form>";
 		?>
 	</table>
+	<form action='scheduleGeneration.php' method="post">
+			<input type="submit" name="generateAI" value="Generate Schedule"/>
+	</form>
 	</div>
 
 

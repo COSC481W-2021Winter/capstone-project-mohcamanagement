@@ -105,7 +105,9 @@ class User:
 
 		return tHours, tMinutes
 
-	def assignHours(self, shift):
+	def assignHours(self, shift, day):
+		self.week.getDay(day).setShiftInt(shift)
+
 		startTime = list(self.startDict.values())[shift]
 		endTime = list(self.endDict.values())[shift]
 
@@ -147,3 +149,6 @@ class User:
 
 	def getUserRequestedHours(self):
 		return self.totalRequestedHours
+
+	def getWeek(self):
+		return self.week
