@@ -51,10 +51,10 @@ ul {
 
   /*------------- Overlay logo over pictures -------------*/
 .imtip {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
+  position:absolute;
+  top:40%;
+  left:50%;
+  transform:translate(-50%, -50%);
   }
 
    /*------------- PICTURE CAROSEL 37-131 -------------*/
