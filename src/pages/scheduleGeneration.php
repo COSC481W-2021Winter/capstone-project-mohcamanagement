@@ -7,6 +7,30 @@
 		var_dump($output);
 		echo $output;
 	}
+	if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["acceptSchedule"])) {
+		$query = "DELETE FROM CurrentSchedule";
+		mysqli_query($conn, $query);
+
+		$query = "SELECT * FROM WorkingSchedule";
+		$result = mysqli_query($conn, $query);
+		$numOfRows = mysqli_num_rows($result);
+
+		for($i=0;$i<$numOfRows;$i++){
+			$row = mysqli_fetch_assoc($result);
+			$user = $row['Username'];
+			$monday = $row['Monday'];
+			$tuesday = $row['Tuesday'];
+			$wednesday = $row['Wednesday'];
+			$thursday = $row['Thursday'];
+			$friday = $row['Friday'];
+			$saturday = $row['Saturday'];
+			$sunday = $row['Sunday'];
+
+			$sql = "INSERT INTO CurrentSchedule VALUES ('$user','$monday','$tuesday','$wednesday','$thursday','$friday','$saturday','$sunday')";
+			mysqli_query($conn, $sql);
+		}
+		echo "<script>alert('The schedule has ben saved as the current schedule.')</script>";
+	}
 
 	// checking to see if the user is allowed to be on the page.
     if(isset($_COOKIE["Username"])) {
@@ -267,7 +291,7 @@
 	<li><a href="adminMain.php">Admin Main</a></li>
       <li><a href="/capstone-project-mohcamanagement/src/pages/inventoryLog.php">Inventory Log</a></li>
       <li><a href="/capstone-project-mohcamanagement/src/pages/scheduleGeneration.php">Schedule Generation</a></li>
-	  <li><a href="/capstone-project-mohcamanagement/src/pages/adminCreateUser.php">Create Users</a></li>
+	  <li><a href="/capstone-project-mohcamanagement/src/pages/adminCreateUser.php">Employees</a></li>
       <li style="float:right"><a class="active1" onclick="location.href='/capstone-project-mohcamanagement/src/index.php'">Log out</a></li>
     </ul>
 </header>
@@ -389,13 +413,26 @@
 			//$temp=$row["Username"];
 		}
 		// echo"<input type='Hidden' name='userCount' id='userCount' value='$i'></input>";	
-		echo"<tr><td><input type='Submit' value='EditSchedule'></input></td></tr>";
+		echo"<tr><td colspan='8' style='text-align: center;'><input type='Submit' value='Edit Schedule'></input></td></tr>";
 		echo "</form>";
 		?>
+		<tr>
+			<td colspan="8" style="text-align: center;">
+				<form action='scheduleGeneration.php' method="post">
+						<input type="submit" name="generateAI" value="Generate Schedule"/>
+				</form>
+			</td>
+		</tr>
+
+		<tr>
+			<td colspan="8" style="text-align: center;">
+				<form action='scheduleGeneration.php' method="post">
+					<input type="submit" name="acceptSchedule" value="Accept Schedule">
+				</form>
+			</td>
+		</tr>
 	</table>
-	<form action='scheduleGeneration.php' method="post">
-			<input type="submit" name="generateAI" value="Generate Schedule"/>
-	</form>
+
 	</div>
 
 
