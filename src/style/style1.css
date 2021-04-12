@@ -51,9 +51,10 @@ ul {
 
   /*------------- Overlay logo over pictures -------------*/
 .imtip {
-    position: absolute;
-    top: 150px;
-    left: 540px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
   }
 
    /*------------- PICTURE CAROSEL 37-131 -------------*/
