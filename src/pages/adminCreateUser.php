@@ -395,7 +395,7 @@
       		<li><a href="/capstone-project-mohcamanagement/src/pages/inventoryLog.php">Inventory Log</a></li>
       		<li><a href="/capstone-project-mohcamanagement/src/pages/scheduleGeneration.php">Schedule Generation</a></li>
 	  		<li><a href="/capstone-project-mohcamanagement/src/pages/adminCreateUser.php">Create Users</a></li>
-      		<li style="float:right"><a class="active1" onclick="location.href='/capstone-project-mohcamanagement/src/index.html'">Log out</a></li>
+      		<li style="float:right"><a class="active1" onclick="location.href='/capstone-project-mohcamanagement/src/index.php'">Log out</a></li>
       	
       		
     	</ul>
