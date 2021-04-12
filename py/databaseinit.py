@@ -25,7 +25,7 @@ def getStatementList(queryStrings):
 
 def resetDatabase():
     overseer = mysql.connector.connect(
-    host="localhost",
+    host="127.0.0.1",
     user="root",
     password="")
 
@@ -48,7 +48,7 @@ def main():
     resetDatabase()
 
     overseer = mysql.connector.connect(
-    host="localhost",
+    host="127.0.0.1",
     user="root",
     password="",
     database="overseer")

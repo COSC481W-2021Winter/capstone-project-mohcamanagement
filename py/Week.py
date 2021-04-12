@@ -1,4 +1,5 @@
 from Day import *
+import mysql.connector
 #import traceback
 class Week:
     def __init__(self, scheduleInfo):
@@ -44,6 +45,32 @@ class Week:
                 else: print(self.getWeekDay(i) + " Shift: " + str(j+1) + ": Off")
             print("\n")
 
+    def writeScheduleToDatabase(self, userList):
+
+        overseer = mysql.connector.connect(
+		host="localhost",
+		user="root",
+		password="",
+		database="overseer")
+
+
+        cur = overseer.cursor(buffered=True)
+
+        cur.execute("DELETE FROM `workingschedule`")
+
+
+        #For all 7 days in a week, first get the day
+        for user in userList:
+            currentWeek = user.getWeek()
+            scheduleTemp = [-1] * 7
+            for i in range(0,7):
+                shiftIndex = currentWeek.getDay(i).getShiftSet()
+                if shiftIndex != -1: scheduleTemp[i] = shiftIndex
+            cur.execute("INSERT INTO `workingschedule`(`Username`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`, `Sunday`) VALUES ('"+user.getName()+"', '"+self.getShiftString(scheduleTemp[0])+"', '"+self.getShiftString(scheduleTemp[1])+"', '"+self.getShiftString(scheduleTemp[2])+"', '"+self.getShiftString(scheduleTemp[3])+"', '"+self.getShiftString(scheduleTemp[4])+"', '"+self.getShiftString(scheduleTemp[5])+"', '"+self.getShiftString(scheduleTemp[6])+"')")
+
+        overseer.commit()
+        cur.close()
+
     def printWeekMatrix(self):
         for i in range(0, 7):
             currentDay = self.getDay(i)
@@ -63,3 +90,16 @@ class Week:
         #Returns either the day, or "Incorrect Input"
         #If the input is not one of the 0-6 days
         return days.get(day, "Incorrect Input")
+
+
+    def getShiftString(self, shift):
+        shifts = {
+            -1: "Off",
+            0: "1st",
+            1: "2nd",
+            2: "3rd",
+            3: "Off",
+        }
+        #Returns either the day, or "Incorrect Input"
+        #If the input is not one of the 0-6 days
+        return shifts.get(shift, "Incorrect Input")

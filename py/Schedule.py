@@ -19,7 +19,8 @@ class Schedule:
 
     #Prints the schedule
     def printSchedule(self):
-        self.finalizedWeek.weekToString(self.copiedUserList)
+        #self.finalizedWeek.weekToString(self.copiedUserList)
+        self.finalizedWeek.writeScheduleToDatabase(self.copiedUserList)
         #for j in range(0, 6):
         #    print(self.finalizedWeek.weekToString())
 
@@ -46,10 +47,9 @@ class Schedule:
                 #print("Day: " + str(dayIndex) + "\nShift: " + str(shiftIndex))
                 if(user.isAvailable(dayIndex, shiftIndex)):         #If user is available for that shift, then assign them to that shift
                     self.assignUserToShift(dayIndex, shiftIndex, user.getUserID())    #
-                    user.assignHours(shiftIndex)                    #
+                    user.assignHours(shiftIndex, dayIndex)                    #
                     user.calculateUserWeight()                      #
                     if(user.getUserWeight()<=0):
-                        print("Removed: " + user.getName())
                         self.userList.remove(user)
                     self.sortUserArray()                            #
                     break                                           #
@@ -57,10 +57,6 @@ class Schedule:
         #userAvailability = user.getUserAvailability()   #User's requested availability
         #currentDay = finalizedWeek.getDay(dayIndex)     #Current day of schedule week
         #shifts = userAvailability[dayIndex]             #User's requested shift
-
-    #Determine if all userList have a shift or if all days are set
-    def stillAvailable(self):
-        return True #Should not always return True
         
     #Creates the week schedule
     def createSchedule(self):
