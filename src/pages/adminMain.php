@@ -25,6 +25,7 @@
 		<title>Admin Main Page</title>
 		<link rel="stylesheet" href="../style/style1.css?<?php echo time(); ?>">
 		<link rel="stylesheet" href="../style/style6.css?<?php echo time(); ?>">
+		<link rel="stylesheet" href="../style/style7.css?<?php echo time(); ?>">
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 	</head>
 
@@ -41,12 +42,79 @@
 </header>
 	
 <body>
+	
 	<?php 
-	echo "<h1>Welcome $userCookie</h1>";
-	 ?>
-	<div class="square1">
-		<p>Schedule Placeholder</p>
-	</div>
+		
+		echo "<h1>Welcome $userCookie</h1>";
+
+		function createUserShiftTable($result){
+			while(($row = mysqli_fetch_assoc($result)) != null){
+				echo "<tr>";
+				echo "<td>".$row['Username']."</td>";
+				echo "<td>".$row['Monday']."</td>";
+			    echo "<td>".$row['Tuesday']."</td>";
+				echo "<td>".$row['Wednesday']."</td>";
+				echo "<td>".$row['Thursday']."</td>";
+				echo "<td>".$row['Friday']."</td>";
+				echo "<td>".$row['Saturday']."</td>";
+				echo "<td>".$row['Sunday']."</td>";
+				echo "</tr>";
+			}
+		}
+	?>
+		 
+
+	<h3>Shift Information</h3>
+		<div class="inside-table">
+			<table style="margin-top: 6px; margin-bottom: 10px;">
+				<tr>
+					<th>Shifts</th>
+					<th>In</th>
+					<th>Out</th>
+				</tr>
+				<?php 
+					$query = "SELECT * from ShiftTimes";
+					$result = mysqli_query($conn, $query);
+					$numOfRows = mysqli_num_rows($result);
+
+					for($i = 0; $i<$numOfRows; $i++) {
+						$row = mysqli_fetch_assoc($result);
+
+						$shiftName = $row['ShiftName'];
+
+						$startTime = $row['StartTime'];
+						$endTime = $row['EndTime'];
+
+						echo "<tr>";
+						echo "<td>$shiftName</td>";
+						echo "<td>$startTime</td>";
+						echo "<td>$endTime</td>";
+						echo "</tr>";
+
+					}
+				 ?>
+			</table>
+			
+			<h3>Current Work Week</h3>
+			<table>
+				<tr>
+					<th>User</th>
+					<th>Monday</th>
+					<th>Tuesday</th>
+					<th>Wednesday</th>
+					<th>Thursday</th>
+					<th>Friday</th>
+					<th>Saturday</th>
+					<th>Sunday</th>
+				</tr>
+				<?php
+					$query = "SELECT * FROM CurrentSchedule";
+					$result = mysqli_query($conn, $query);
+					createUserShiftTable($result);
+				?>
+			</table>
+			<h3>Suggested Inventory / Writeoffs Placeholder</h3>
+		</div>
 
 	<div class="square2">
 		<p>Suggested Inventory / Writeoffs Placeholder</p>
