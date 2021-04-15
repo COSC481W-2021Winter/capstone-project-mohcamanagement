@@ -301,7 +301,7 @@
 <h1 class="center">Schedule Generation</h1>
 	<button class="collapsible">Availability</button>
 	<div class="content inside-table">
-    <table id="avail" style="center">
+    <table id="avail" style="margin-bottom: 1%;">
         <?php
         // plan to add an automated date with the weekdays to make shcdule easier to read
         //ex Monday 15
@@ -338,7 +338,7 @@
 
 	<button class="collapsible">Edit Next Weeks Schedule</button>
 	<div class="content inside-table">
-	<table id="nextweekschedule" style="center">
+	<table id="nextweekschedule" style="margin-bottom: 1%;">
 		<?php
 		// plan to add an automated date with the weekdays to make shcdule easier to read
 		//ex Monday 15
@@ -439,7 +439,7 @@
 	
 	<button class="collapsible">Next Weeks Schedule</button>
 	<div class="content inside-table">
-	<table id="workSched">
+	<table id="workSched" style="margin-bottom: 1%;">
         <?php
         echo "<tr>";
 		echo "<th>Employee</th>";
@@ -470,7 +470,7 @@
 
 	<button class="collapsible">Time Request Off</button>
 	<div class="content inside-table">
-    <table id="requestOff" style="center">
+    <table id="requestOff" style="margin-bottom: 1%;">
         <?php
         // plan to add an automated date with the weekdays to make shcdule easier to read
         //ex Monday 15
@@ -545,9 +545,10 @@
 	}
 	</script>
 
-<div class="push"></div>
-  </div>
-<footer class="footer3 center">&#169 2021 Overseer</footer>
+	<!-- Footer -->
+	<div class="push"></div>
+	</div>
+	<footer class="footer3 center">&#169 2021 Overseer</footer>
 
  </body>
  </html>

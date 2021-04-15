@@ -83,7 +83,7 @@
     </ul>
 </header>
 	<body>
-	<div class="wrapper">
+	<div class="wrapper content inside-table">
 		<h1>Update Your Weekly Work Schedule</h1>
 
 		<!-- Displays the shift times which are generated from the shiftTimes table -->
@@ -330,10 +330,10 @@
 		</table>
 		</div>
 	
+		<!-- Footer -->
 		<div class="push"></div>
 		</div>
 		<footer class="footer3 center">&#169 2021 Overseer</footer>
-
 
 	</body>
 </html>
