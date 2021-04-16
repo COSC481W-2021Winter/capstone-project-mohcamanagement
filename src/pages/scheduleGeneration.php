@@ -5,7 +5,7 @@
 	date_default_timezone_set("America/New_York");
 
 	function callAIFunction($company){
-		exec("python ../../py/mainAI.py", $output);
+		exec("python ../../py/mainAI.py 2>&1", $output);
 		var_dump($output);
 		echo $output;
 	}
@@ -57,15 +57,15 @@
 
         return mysqli_connect($dbHost, $dbUser, $dbPass, $db);
     }
-    if(!empty($_POST['Monday0'])){
-		$query = "SELECT * FROM Users WHERE isManager=0 AND Name='$companyName";
+    if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["editSchedule"])) {
+		$query = "SELECT * FROM Users WHERE isManager=0 AND Name='$companyName'";
 		$result = mysqli_query($conn, $query);
 		$numOfRows = mysqli_num_rows($result);
-		for($i=0;$i<$numOfRows;$i++){
+		
+		for($i=0; $i<$numOfRows; $i++){
 
 			$row = mysqli_fetch_assoc($result);
 			$username = $row['Username'];
-			
 			
 			$monday = $_POST['Monday'.$i];
 			$tuesday = $_POST['Tuesday'.$i];
@@ -74,15 +74,16 @@
 			$friday = $_POST['Friday'.$i];
 			$saturday = $_POST['Saturday'.$i];
 			$sunday = $_POST['Sunday'.$i];
-      
-			$sql="UPDATE WorkingSchedule SET Monday = '$monday', Tuesday = '$tuesday',
-			Wednesday = '$wednesday',Thursday = '$thursday',Friday = '$friday',
-			Saturday = '$saturday',Sunday = '$sunday' WHERE Username = '$username'";
+      		
+      		$sql ="DELETE FROM WorkingSchedule WHERE Username='$username'";
+      		mysqli_query($conn, $sql);
 
-			$conn=getInclude();
-			$conn->query($sql);
+			$sql="INSERT INTO WorkingSchedule VALUES('$username', '$monday', '$tuesday', '$wednesday', '$thursday', '$friday', '$saturday', '$sunday')";
+
+      		mysqli_query($conn, $sql);
         }
     }
+
     if(!empty($_POST["startTime"])){
         $name=$_POST['shiftName'];
         $start=$_POST['startTime'];
@@ -100,8 +101,8 @@
 		$query = "SELECT Name FROM Users WHERE Username = '$userName'";
 		$result = mysqli_query($conn, $query);
 		$row = mysqli_fetch_assoc($result);
-		callAIFunction($row['Name']);
-
+		echo "$test";
+		callAIFunction($test);
 	}
 
 
@@ -131,6 +132,7 @@
     function fillScheduleArray($row, $pin, &$schedule){
     	$index = dateToNumber($row['Day']);
     	array_push($schedule[$index], $row['ShiftName']);
+
     }
 
     //Iterates through the shift table in the database
@@ -159,7 +161,6 @@
 
     	$query = "SELECT * FROM Availability";
     	$result = mysqli_query($conn, $query);
-
     	iterateShiftsTable($result, $pin, $schedule);
     	printSchedule($schedule);
     }
@@ -245,20 +246,35 @@
 	//makes the options for the shift selectin for next weeks schedule
 	
 	function generateOptions($day,$usernamE){
-		
 		$query = "SELECT * FROM WorkingSchedule NATURAL JOIN ShiftTimes WHERE Username='$usernamE'";
 
 		$result = mysqli_query($conn=getInclude(), $query);
-		
-		while($row = $result->fetch_assoc()){
+		$numOfRows = mysqli_num_rows($result);
+		if($numOfRows > 0) {
+			while($row = $result->fetch_assoc()){
 
-			if($row[$day]==$row["ShiftName"]){
-				echo "<option Selected value='".($row['ShiftName'])."'>".($row['StartTime'])." - ".($row['EndTime'])."</option>";
+				if($row[$day]==$row["ShiftName"]){
+					echo "<option Selected value='".($row['ShiftName'])."'>".($row['StartTime'])." - ".($row['EndTime'])."</option>";
 
+				}
+				else{
+					echo "<option value='".($row['ShiftName'])."'>".($row['StartTime'])." - ".($row['EndTime'])."</option>";
+				}
 			}
-			else{
+		}
+
+		else {
+			$query = "SELECT * FROM ShiftTimes";
+			$result = mysqli_query($conn=getInclude(), $query);
+       		$numOfRows = mysqli_num_rows($result);
+
+			for ($i=0; $i < $numOfRows-1 ; $i++) { 
+				$row = mysqli_fetch_assoc($result);
+
 				echo "<option value='".($row['ShiftName'])."'>".($row['StartTime'])." - ".($row['EndTime'])."</option>";
-			}
+			}	
+				$row = mysqli_fetch_assoc($result);
+				echo "<option selected value='".($row['ShiftName'])."'>".($row['StartTime'])." - ".($row['EndTime'])."</option>";
 		}	
 	}
 	//makes the shift times for custom shifts
@@ -408,7 +424,7 @@
 			//$temp=$row["Username"];
 		}
 		// echo"<input type='Hidden' name='userCount' id='userCount' value='$i'></input>";	
-		echo"<tr><td colspan='8' style='text-align: center;'><input type='Submit' value='Edit Schedule'></input></td></tr>";
+		echo"<tr><td colspan='8' style='text-align: center;'><input type='Submit' name='editSchedule' value='Edit Schedule'></input></td></tr>";
 		echo "</form>";
 		?>
 		<tr>
