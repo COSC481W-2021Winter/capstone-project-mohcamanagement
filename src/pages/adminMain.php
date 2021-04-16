@@ -18,6 +18,50 @@
 			header("Location: userMain.php");
 		}
 	}
+	function getInclude() {
+		$dbHost = "localhost";
+		$dbUser = "root";
+		$dbPass = "";
+		$db = "Overseer";
+
+		return mysqli_connect($dbHost, $dbUser, $dbPass, $db);
+	}
+
+// to generate the writeOffs
+	function writeOffs(){
+		$conn=getInclude();
+		$query = "SELECT * FROM WriteOffs ";
+		$result = mysqli_query($conn, $query);
+		while($row = $result->fetch_assoc()) {
+			echo "<tr>
+				<td>
+				Item: ".$row['ItemName']."
+				</td>
+				</tr>
+			
+			";
+		}
+	}
+
+// to generate the suggestedInventory
+	function suggestedInventory(){
+		$conn=getInclude();
+		$query = "SELECT * FROM InventorySuggestions ";
+		$result = mysqli_query($conn, $query);
+		while($row = $result->fetch_assoc()) {
+			echo "<tr>
+				<td>
+				Item: ".$row['ItemName']." Stock: ".$row['Type']."
+				</td>
+				</tr>
+			
+			";
+			
+		}
+	}
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,13 +91,30 @@
 	<div class="square1">
 		<p>Schedule Placeholder</p>
 	</div>
+	<!-- to display all of the WriteOffs -->
+	<div class="square3">
+		<!-- <p>Suggested Inventory / Writeoffs Placeholder</p> -->
+	<!-- generate writeoff List -->
+	<?php
+		echo "<table style='border:solid black 3px'>";
+		echo "<tr>Write Offs</tr>";
+		writeOffs();
+		echo "</table>";
+	?>
 
-	<div class="square2">
-		<p>Suggested Inventory / Writeoffs Placeholder</p>
 	</div>
+	<!-- to display all of the suggested inventory -->
+	<div class="square3">
+		<!-- <p>Employee Updates / Request Offs Placeholder</p> -->
+		<!-- generate suggested list -->
+	<?php
+		
+		echo "<table style='border:solid black 3px'>";
+		echo "<tr>Suggested Inventory</tr>";
+		suggestedInventory();
+		echo "</table>";
+	?>
 
-	<div class="square2">
-		<p>Employee Updates / Request Offs Placeholder</p>
 	</div>
 </body>
 </html>
