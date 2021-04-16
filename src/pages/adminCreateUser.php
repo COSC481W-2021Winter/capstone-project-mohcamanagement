@@ -2,7 +2,7 @@
 	/*Insert Code here*/
 	include("../includes/dbConnection.php");
 
-
+	date_default_timezone_set("America/New_York");
 	
 	if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["update"])) {
 		// checking to see if the user is updating their info.
@@ -56,6 +56,7 @@
 		$result = mysqli_query($conn, $query);
 		$row = mysqli_fetch_assoc($result);
 		$isManagerCheck = $row['IsManager'];
+		$companyName = $row['Name'];
 
 		if($isManagerCheck == 0) {
 			header("Location: userMain.php");
@@ -90,7 +91,7 @@
 				$pinUnique = 1;
 
 				// Run a query to check the table and see if the entry is already in the table
-				$query = "SELECT * FROM Users";
+				$query = "SELECT * FROM Users WHERE Name = '$companyName'";
 				$result = mysqli_query($conn, $query);
 				$numOfRows = mysqli_num_rows($result);
 
@@ -128,7 +129,7 @@
 						echo "<script>alert('Error years worked need to be a number with either one or two digits.')</script>";
 					}
 					else {
-						$query = "INSERT INTO Users VALUES('$username', '$pin', 0, '$yearsWorked', 'Songbird')";
+						$query = "INSERT INTO Users VALUES('$username', '$pin', 0, '$yearsWorked', '$companyName')";
 						mysqli_query($conn, $query);
 		/**************************************************************************************/
 						$query = "INSERT INTO WorkingSchedule VALUES ('$username','Off','Off','Off','Off','Off','Off','Off')";
@@ -410,18 +411,23 @@
 					<tr>
 						<td style="text-align: center; padding: 5px;" colspan="3">
 							<input size="22px" type="text" name="Username" placeholder="Enter Username" class="inputBox"></input>
-							<span class="required">*</span>
+						</td>
+						<td>
+							<span style="color: red;">*</span>
 						</td>
 
 					
 						<td style="text-align: center; padding: 5px;" colspan="4" >
 							<input size="22px" type="text" name="Pin" placeholder="Enter Pin" class="inputBox"></input>
-							<span class="required">*</span>
 						</td>
+						<td>
+							<span style="color: red;">*</span>
+						</td>
+
 					</tr>
 
 					<tr>
-						<th style="padding-top: 5px; border-top-style: solid;" colspan="7">Availability</th>	
+						<th style="padding-top: 5px; border-top-style: solid;" colspan="9">Availability</th>	
 					</tr>
 
 					<tr>	
@@ -429,9 +435,9 @@
 						<td style="padding: 0px 5px 5px 5px;">Tuesday</td>
 						<td style="padding: 0px 5px 5px 5px;">Wednesday</td>
 						<td style="padding: 0px 5px 5px 5px;">Thursday</td>
-						<td style="padding: 0px 5px 5px 5px;">Friday</td>
+						<td colspan="2" style="padding: 0px 5px 5px 5px;">Friday</td>
 						<td style="padding: 0px 5px 5px 5px;">Saturday</td>
-						<td style="padding: 0px 5px 5px 5px;">Sunday</td>
+						<td colspan="2" style="padding: 0px 5px 5px 5px;">Sunday</td>
 
 					</tr>
 					<tr style="border-bottom-style: solid;">
@@ -496,7 +502,7 @@
 							 ?>
 						</td>
 						
-						<td style="text-align: left;">
+						<td  colspan="2" style="text-align: left;">
 							<?php 
 							$query = "SELECT * FROM ShiftTimes";
 							$result = mysqli_query($conn, $query);
@@ -526,7 +532,7 @@
 							 ?>
 						</td>
 						
-						<td style="text-align: left;">
+						<td colspan="2" style="text-align: left;">
 							<?php 
 							$query = "SELECT * FROM ShiftTimes";
 							$result = mysqli_query($conn, $query);
@@ -543,7 +549,7 @@
 					</tr>
 
 					<tr>
-						<td style="text-align: center; padding: 5px;" colspan="7">
+						<td style="text-align: center; padding: 5px;" colspan="9">
 							<input size="22px" type="text" name="YearsWorked" placeholder="Enter Years Worked" class="inputBox"></input>
 						</td>
 					</tr>
@@ -555,7 +561,7 @@
 				</form>
 
 				<form method="post" action="adminMain.php">
-						<td colspan="4" style="text-align: left; padding: 5px;">
+						<td colspan="6" style="text-align: left; padding: 5px;">
 							<input type="Submit" name="Submit" value="Back" style="background-color: #343131;  color: #969595;"></input>
 						</td>
 					</tr>
@@ -564,7 +570,7 @@
 
 			<div style="margin-top: 25px; ">
 				
-			</div>
+		</div>
 
 	<h2 style="text-align: center;">Edit Employee</h2>
 		<table style="margin: auto;"> 

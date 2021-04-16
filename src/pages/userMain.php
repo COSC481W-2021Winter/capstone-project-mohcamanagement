@@ -1,7 +1,8 @@
 <?php
 	/*db connection needed if in seperate file */
 	include_once ('../includes/dbConnection.php');
-	// $conn is the conection to database
+
+	date_default_timezone_set("America/New_York");
 
 	// checking to see if the cookie array is empty
 	if(isset($_COOKIE["Username"])) {
@@ -194,7 +195,7 @@
 						</select>
 					</td>
 					<td class="a" :hover>
-						<input size="22px" type="date" name="dateExpired" placeholder="<?php echo date('Y-m-d');?>" class="inputBox"></input>
+						<input size="22px" type="date" name="dateExpired" value="<?php echo date('Y-m-d');?>" class="inputBox"></input>
 					</td>
 				</tr>
 				<tr>

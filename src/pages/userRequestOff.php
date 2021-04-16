@@ -1,7 +1,9 @@
 <?php
 	/*db connection needed if in seperate file */
 	include_once ('../includes/dbConnection.php');
-		
+	
+	date_default_timezone_set("America/New_York");
+	
 	function isValidDateCheck($fromCheck, $untilCheck){
 		return preg_match("/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/", $fromCheck) == 0 || preg_match("/^[0-9]{4}\-[0-9]{2}\-[0-9]{2}$/", $untilCheck) == 0;
 	}

@@ -1,5 +1,6 @@
 <?php
-	/*Insert Code here*/
+
+	date_default_timezone_set("America/New_York");
 
 	// checking to see if the user is allowed to be on the page.
 	if(isset($_COOKIE["Username"])) {

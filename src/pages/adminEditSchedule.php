@@ -2,6 +2,9 @@
 	/*db connection needed if in seperate file */
 	include_once ('../includes/dbConnection.php');
 	print_r($_POST);
+
+	date_default_timezone_set("America/New_York");
+	
 	// $conn is the conection to database
 	function getInclude() {
         $dbHost = "localhost";
