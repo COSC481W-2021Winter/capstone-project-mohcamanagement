@@ -4,8 +4,10 @@
 
 	function callAIFunction($company){
 		exec("python ../../py/mainAI.py", $output);
-		var_dump($output);
-		echo $output;
+		if ($output[0] != "Done"){
+			echo '<script>alert("Unable to generate schedule!")</script>';
+		}
+
 	}
 	if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["acceptSchedule"])) {
 		$query = "DELETE FROM CurrentSchedule";
