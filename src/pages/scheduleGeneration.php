@@ -4,8 +4,8 @@
 
 	date_default_timezone_set("America/New_York");
 
-	function callAIFunction($company){
-		exec("python ../../py/mainAI.py", $output);
+	function callAIFunction($company=""){
+		exec("python ../../py/mainAI.py ".$company, $output);
 		if ($output[0] != "Done"){
 			echo '<script>alert("Unable to generate schedule!")</script>';
 		}
@@ -102,8 +102,8 @@
 		$query = "SELECT Name FROM Users WHERE Username = '$userName'";
 		$result = mysqli_query($conn, $query);
 		$row = mysqli_fetch_assoc($result);
-		echo "$test";
-		callAIFunction($test);
+		$company = $row['Name'];
+		callAIFunction($company);
 	}
 
 
