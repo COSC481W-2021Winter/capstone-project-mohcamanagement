@@ -42,7 +42,7 @@
 </header>
 	
 <body>
-	
+<div class="wrapper content inside-table">
 	<?php 
 		
 		echo "<h1>Welcome $userCookie</h1>";
@@ -123,5 +123,10 @@
 	<div class="square2">
 		<p>Employee Updates / Request Offs Placeholder</p>
 	</div>
+
+	<!-- Footer -->
+	<div class="push"></div>
+  	</div>
+	<footer class="footer3 center">&#169 2021 Overseer</footer>	
 </body>
 </html>

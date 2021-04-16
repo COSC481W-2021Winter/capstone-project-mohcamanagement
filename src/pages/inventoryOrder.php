@@ -107,7 +107,7 @@
 			?>
 			<tr>
 				<td colspan="3" style="text-align: center;">
-					<button type="button" onclick="location.href='adminMain.php'" style='background-color: #343131;  color: #969595;'>Back</button>
+					<button type="button" onclick="location.href='inventoryLog.php'" style='background-color: #343131;  color: #969595;'>Back</button>
 				</td>
 			</tr>
 		</table>
