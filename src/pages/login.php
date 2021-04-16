@@ -1,5 +1,5 @@
 <?php
-	/*Insert Code here*/
+	date_default_timezone_set("America/New_York");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +32,7 @@
   		</div>
 	</form>
 
-	<form class="back" method="post" action="../index.html">
+	<form class="back" method="post" action="../index.php">
 		  <div class="container" style="background-color:#f1f1f1">
 			  <Button type="Submit" name="Submit" value="Back" class="backbtn" style="background-color: #343131;  color: #969595;">Back</Button>
 		  </div>

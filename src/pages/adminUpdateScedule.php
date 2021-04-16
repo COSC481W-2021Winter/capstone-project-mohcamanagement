@@ -1,8 +1,9 @@
 <?php
-	// $userCookie = $_COOKIE["Username"];
 	session_start();
 	include("../includes/dbConnection.php");
 
+	date_default_timezone_set("America/New_York");
+	
 	if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['Add'])) {
 		$pin = $_SESSION['Pin'];
 

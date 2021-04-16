@@ -1,6 +1,8 @@
 <?php
 	/*Insert Code here*/
 	include("../includes/dbConnection.php");
+	
+	date_default_timezone_set("America/New_York");
 
 	// Checks the request method so that the error will only show if the request method is POST
 	if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST["submit"])) {

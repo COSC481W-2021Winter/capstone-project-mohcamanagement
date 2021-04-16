@@ -1,5 +1,6 @@
 <?php
-	/*Insert Code here*/
+
+	date_default_timezone_set("America/New_York");
 
 	// checking to see if the user is allowed to be on the page.
 	if(isset($_COOKIE["Username"])) {
@@ -107,7 +108,7 @@
 			?>
 			<tr>
 				<td colspan="3" style="text-align: center;">
-					<button type="button" onclick="location.href='adminMain.php'" style='background-color: #343131;  color: #969595;'>Back</button>
+					<button type="button" onclick="location.href='inventoryLog.php'" style='background-color: #343131;  color: #969595;'>Back</button>
 				</td>
 			</tr>
 		</table>

@@ -2,6 +2,8 @@
 	session_start();
 	include("../includes/dbConnection.php");
 
+	date_default_timezone_set("America/New_York");
+	
 	if(isset($_COOKIE["Username"])) {
 		// if not empty then we store the cookie into a variable
 		$userCookie = $_COOKIE["Username"];
@@ -83,7 +85,7 @@
     </ul>
 </header>
 	<body>
-	<div class="wrapper">
+	<div class="wrapper content inside-table">
 		<h1>Update Your Weekly Work Schedule</h1>
 
 		<!-- Displays the shift times which are generated from the shiftTimes table -->
@@ -330,10 +332,10 @@
 		</table>
 		</div>
 	
+		<!-- Footer -->
 		<div class="push"></div>
 		</div>
 		<footer class="footer3 center">&#169 2021 Overseer</footer>
-
 
 	</body>
 </html>
