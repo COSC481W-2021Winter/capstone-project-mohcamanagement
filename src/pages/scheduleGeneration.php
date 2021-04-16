@@ -2,6 +2,8 @@
     /*db connection needed if in seperate file */
     include_once ('../includes/dbConnection.php');
 
+	date_default_timezone_set("America/New_York");
+
 	function callAIFunction($company){
 		exec("python ../../py/mainAI.py", $output);
 		var_dump($output);
@@ -40,6 +42,7 @@
 		$result = mysqli_query($conn, $query);
 		$row = mysqli_fetch_assoc($result);
 		$isManagerCheck = $row['IsManager'];
+		$companyName = $row['Name'];
 
 		if($isManagerCheck == 0) {
 			header("Location: userMain.php");
@@ -55,7 +58,7 @@
         return mysqli_connect($dbHost, $dbUser, $dbPass, $db);
     }
     if(!empty($_POST['Monday0'])){
-		$query = "SELECT * FROM Users WHERE isManager=0";
+		$query = "SELECT * FROM Users WHERE isManager=0 AND Name='$companyName";
 		$result = mysqli_query($conn, $query);
 		$numOfRows = mysqli_num_rows($result);
 		for($i=0;$i<$numOfRows;$i++){
@@ -316,7 +319,7 @@
             echo "<th>Sunday</th>";
         echo "</tr>";
         //Selects all the data from the Users Table for use in getting the schedules
-        $query = "SELECT * FROM Users";
+        $query = "SELECT * FROM Users WHERE Name='$companyName'";
         //makes the connection to the database with the query and returns the result
         $result = mysqli_query($conn, $query);
         //how many rows of data was retunred from the database
@@ -352,17 +355,9 @@
 		echo "<th>Saturday</th>";
 		echo "<th>Sunday</th>";
 		echo "</tr>";
+		
 		//Selects all the data from the Users Table for use in getting the schedules
-		//$query = "SELECT * FROM Users JOIN WorkingSchedule";
-		//makes the connection to the database with the query and returns the result
-		//$result = mysqli_query($conn, $query);
-		//how many rows of data was retunred from the database
-		//$numOfRows = mysqli_num_rows($result);
-		// or you can put it into the loop directly
-		//which will iterate over every row
-		//$temp=null;
-
-		$query = "SELECT * FROM Users WHERE isManager=0";
+		$query = "SELECT * FROM Users WHERE isManager=0 AND Name='$companyName'";
 		$result = mysqli_query($conn, $query);
 		$numOfRows = mysqli_num_rows($result);
 		
@@ -452,7 +447,7 @@
 		echo "<th>Sunday</th>";
 		echo "</tr>";
 		
-        $query = "SELECT * FROM Users WHERE isManager=0";
+        $query = "SELECT * FROM Users WHERE isManager=0 AND Name='$companyName'";
         $result = mysqli_query($conn, $query);
         $numOfRows = mysqli_num_rows($result);
 
@@ -481,7 +476,7 @@
             echo "<th>Mandatory</th>";
         echo "</tr>";
         //Selects all the data from the Users Table for use in getting the schedules
-        $query = "SELECT * FROM Users";
+        $query = "SELECT * FROM Users WHERE Name='$companyName'";
         //makes the connection to the database with the query and returns the result
         $result = mysqli_query($conn, $query);
         //how many rows of data was retunred from the database

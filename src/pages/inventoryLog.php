@@ -1,5 +1,7 @@
 <?php
 	
+	date_default_timezone_set("America/New_York");
+
 	// checking to see if the user is allowed to be on the page.
 	if(isset($_COOKIE["Username"])) {
 		// if not empty then we store the cookie into a variable
@@ -9,6 +11,7 @@
 		$result = mysqli_query($conn, $query);
 		$row = mysqli_fetch_assoc($result);
 		$isManagerCheck = $row['IsManager'];
+		$companyName = $row['Name'];
 
 		if($isManagerCheck == 0) {
 			header("Location: userMain.php");
@@ -88,7 +91,9 @@
 	function addItemToTable($itemEntry, $expectedPar, $expectedType) {
 		$conn = getInclude();
 
-		$query = "INSERT INTO Items Values('$itemEntry', '$expectedPar', 0, '$expectedType', 'Songbird')";
+        global $companyName;
+
+		$query = "INSERT INTO Items Values('$itemEntry', '$expectedPar', 0, '$expectedType', '$companyName')";
 		mysqli_query($conn, $query);
 	}
 
@@ -109,8 +114,9 @@
 	function addInventoryTypeToTable($Type) {
         $conn = getInclude();
 
-        $Name = "Songbird";
-        $query = "INSERT INTO InventoryType VALUES('".str_replace(" ", "_", $Type)."', '".$Name."')"; 
+        global $companyName;
+
+        $query = "INSERT INTO InventoryType VALUES('".str_replace(" ", "_", $Type)."', '".$companyName."')"; 
         mysqli_query($conn, $query);
     }
 

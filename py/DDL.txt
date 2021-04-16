@@ -27,7 +27,7 @@ CREATE TABLE Users
   IsManager BOOL NOT NULL,
   YearsWorked VARCHAR(2) NOT NULL,
   Name VARCHAR(35) NOT NULL,
-  PRIMARY KEY (Pin),
+  PRIMARY KEY (Pin, Name),
   FOREIGN KEY (Name) REFERENCES Company(Name)
 );
 

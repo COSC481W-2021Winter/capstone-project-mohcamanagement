@@ -1,7 +1,8 @@
 <?php
 	/*db connection needed if in seperate file */
 	include_once ('../includes/dbConnection.php');
-	// $conn is the conection to database
+
+	date_default_timezone_set("America/New_York");
 	
 	// checking to see if the cookie array is empty
 	if(isset($_COOKIE["Username"])) {

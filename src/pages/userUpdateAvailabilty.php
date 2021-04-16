@@ -2,6 +2,8 @@
 	session_start();
 	include("../includes/dbConnection.php");
 
+	date_default_timezone_set("America/New_York");
+	
 	if(isset($_COOKIE["Username"])) {
 		// if not empty then we store the cookie into a variable
 		$userCookie = $_COOKIE["Username"];

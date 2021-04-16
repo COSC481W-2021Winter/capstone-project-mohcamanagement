@@ -2,6 +2,8 @@
 	// makes connection to the database
 	include("../includes/dbConnection.php");
 
+	date_default_timezone_set("America/New_York");
+	
 	// collecting the variables passed from the post array
 	$usernameEntered = $_POST["Username"];
 	$pinEntered = $_POST["Pin"];
@@ -83,7 +85,7 @@
 			<span class="psw">New <a href="companyRegister.php">company?</a></span>
   		</div>
 	</form>
-	<form class="back" method="post" action="../index.html">
+	<form class="back" method="post" action="../index.php">
 		  <div class="container" style="background-color:#f1f1f1">
 			  <Button type="Submit" name="Submit" value="Back" class="backbtn" style="background-color: #343131;  color: #969595;">Back</Button>
 		  </div>
