@@ -87,7 +87,7 @@
 </header>
 	
 <body>
-	
+<div class="wrapper content inside-table">
 	<?php 
 		
 		echo "<h1>Welcome $userCookie</h1>";
@@ -190,5 +190,10 @@
 	?>
 
 	</div>
+
+	<!-- Footer -->
+	<div class="push"></div>
+  	</div>
+	<footer class="footer3 center">&#169 2021 Overseer</footer>	
 </body>
 </html>
