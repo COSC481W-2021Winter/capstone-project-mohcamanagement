@@ -393,10 +393,10 @@
 	<header>
     	<ul>
 			<li><a href="adminMain.php">Admin Main</a></li>
-      		<li><a href="/capstone-project-mohcamanagement/src/pages/inventoryLog.php">Inventory Log</a></li>
-      		<li><a href="/capstone-project-mohcamanagement/src/pages/scheduleGeneration.php">Schedule Generation</a></li>
-	  		<li><a href="/capstone-project-mohcamanagement/src/pages/adminCreateUser.php">Employees</a></li>
-      		<li style="float:right"><a class="active1" onclick="location.href='/capstone-project-mohcamanagement/src/index.php'">Log out</a></li>
+      		<li><a href="/src/pages/inventoryLog.php">Inventory Log</a></li>
+      		<li><a href="/src/pages/scheduleGeneration.php">Schedule Generation</a></li>
+	  		<li><a href="/src/pages/adminCreateUser.php">Employees</a></li>
+      		<li style="float:right"><a class="active1" onclick="location.href='/src/index.php'">Log out</a></li>
       	
       		
     	</ul>

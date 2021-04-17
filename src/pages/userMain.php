@@ -93,9 +93,9 @@
 <header>
     <ul>
 		<li><a href="userMain.php">User Main</a></li>
-      	<li><a href="/capstone-project-mohcamanagement/src/pages/userUpdateAvailabilty.php">Update Availability</a></li>
-      	<li><a href="/capstone-project-mohcamanagement/src/pages/userRequestOff.php">Request Off</a></li>
-      	<li style="float:right"><a class="active1" onclick="location.href='/capstone-project-mohcamanagement/src/index.php'">Log out</a></li>
+      	<li><a href="/src/pages/userUpdateAvailabilty.php">Update Availability</a></li>
+      	<li><a href="/src/pages/userRequestOff.php">Request Off</a></li>
+      	<li style="float:right"><a class="active1" onclick="location.href='/src/index.php'">Log out</a></li>
     </ul>
 </header>
 	
