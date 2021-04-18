@@ -391,15 +391,13 @@
 	</head>
 	<!-- Navbar -->
 	<header>
-    	<ul>
+	    <ul>
 			<li><a href="adminMain.php">Admin Main</a></li>
-      		<li><a href="/src/pages/inventoryLog.php">Inventory Log</a></li>
-      		<li><a href="/src/pages/scheduleGeneration.php">Schedule Generation</a></li>
-	  		<li><a href="/src/pages/adminCreateUser.php">Employees</a></li>
-      		<li style="float:right"><a class="active1" onclick="location.href='/src/index.php'">Log out</a></li>
-      	
-      		
-    	</ul>
+	      	<li><a href="inventoryLog.php">Inventory Log</a></li>
+	      	<li><a href="scheduleGeneration.php">Schedule Generation</a></li>
+		  	<li><a href="adminCreateUser.php">Employees</a></li>
+	      	<li style="float:right"><a class="active1" onclick="location.href='../index.php'">Log out</a></li>
+	    </ul>
 	</header>
 
 	<body class="image">

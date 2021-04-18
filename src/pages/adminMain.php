@@ -34,13 +34,14 @@
 		$query = "SELECT * FROM WriteOffs ";
 		$result = mysqli_query($conn, $query);
 		while($row = $result->fetch_assoc()) {
-			echo "<tr>
-				<td>
-				Item: ".$row['ItemName']."
-				</td>
-				</tr>
-			
-			";
+			echo "<tr>";
+			echo "<td>";
+			echo "Item: ".$row['ItemName'];
+			echo "</td>";
+			echo "<td>";
+			echo "Date: ".$row['DateExpired'];
+			echo "</td>";
+			echo "</tr>";
 		}
 	}
 
@@ -50,14 +51,14 @@
 		$query = "SELECT * FROM InventorySuggestions ";
 		$result = mysqli_query($conn, $query);
 		while($row = $result->fetch_assoc()) {
-			echo "<tr>
-				<td>
-				Item: ".$row['ItemName']." Stock: ".$row['Type']."
-				</td>
-				</tr>
-			
-			";
-			
+			echo "<tr>";
+			echo "<td>";
+			echo "Item: ".$row['ItemName'];
+			echo "</td>";
+			echo "<td>";
+			echo "Stock: ".$row['Type'];
+			echo "</td>";
+			echo "</tr>";
 		}
 	}
 
@@ -79,10 +80,10 @@
 <header>
     <ul>
 		<li><a href="adminMain.php">Admin Main</a></li>
-      	<li><a href="/src/pages/inventoryLog.php">Inventory Log</a></li>
-      	<li><a href="/src/pages/scheduleGeneration.php">Schedule Generation</a></li>
-	  	<li><a href="/src/pages/adminCreateUser.php">Employees</a></li>
-      	<li style="float:right"><a class="active1" onclick="location.href='/src/index.php'">Log out</a></li>
+      	<li><a href="inventoryLog.php">Inventory Log</a></li>
+      	<li><a href="scheduleGeneration.php">Schedule Generation</a></li>
+	  	<li><a href="adminCreateUser.php">Employees</a></li>
+      	<li style="float:right"><a class="active1" onclick="location.href='../index.php'">Log out</a></li>
     </ul>
 </header>
 	
@@ -158,19 +159,16 @@
 					createUserShiftTable($result);
 				?>
 			</table>
-			<h3>Suggested Inventory / Writeoffs Placeholder</h3>
-		</div>
-
-
-	</div>
+		<!-- </div> -->
+	<!-- </div> -->
   
 	<!-- to display all of the WriteOffs -->
-	<div class="square3">
+	<!-- <div class="square3"> -->
 		<!-- <p>Suggested Inventory / Writeoffs Placeholder</p> -->
 	<!-- generate writeoff List -->
 	<?php
 		echo "<table style='border:solid black 3px'>";
-		echo "<tr>Write Offs</tr>";
+		echo "<tr><th colspan = '2'>Write Offs</th></tr>";
 		writeOffs();
 		echo "</table>";
 	?>
@@ -178,13 +176,13 @@
   
   
 	<!-- to display all of the suggested inventory -->
-	<div class="square3">
+	<!-- <div class="square3"> -->
 		<!-- <p>Employee Updates / Request Offs Placeholder</p> -->
 		<!-- generate suggested list -->
 	<?php
 		
 		echo "<table style='border:solid black 3px'>";
-		echo "<tr>Suggested Inventory</tr>";
+		echo "<tr><th colspan = '2'>Suggested Inventory</th></tr>";
 		suggestedInventory();
 		echo "</table>";
 	?>
@@ -192,7 +190,7 @@
 	</div>
 
 	<!-- Footer -->
-	<div class="push"></div>
+	<div class="push" style="text-align: center;"></div>
   	</div>
 	<footer class="footer3 center">&#169 2021 Overseer</footer>	
 </body>

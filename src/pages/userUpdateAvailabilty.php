@@ -76,14 +76,14 @@
 		</script>
 	</head>
 	<!-- Navbar -->
-<header>
-    <ul>
-		<li><a href="userMain.php">User Main</a></li>
-      	<li><a href="/src/pages/userUpdateAvailabilty.php">Update Availability</a></li>
-      	<li><a href="/src/pages/userRequestOff.php">Request Off</a></li>
-      	<li style="float:right"><a class="active1" onclick="location.href='/src/index.php'">Log out</a></li>
-    </ul>
-</header>
+	<header>
+	    <ul>
+			<li><a href="userMain.php">User Main</a></li>
+	      	<li><a href="userUpdateAvailabilty.php">Update Availability</a></li>
+	      	<li><a href="userRequestOff.php">Request Off</a></li>
+	      	<li style="float:right"><a class="active1" onclick="location.href='../index.php'">Log out</a></li>
+	    </ul>
+	</header>
 	<body>
 	<div class="wrapper content inside-table">
 		<h1>Update Your Weekly Work Schedule</h1>
