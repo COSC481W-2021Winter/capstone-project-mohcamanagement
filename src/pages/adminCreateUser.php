@@ -441,7 +441,7 @@
 					<tr style="border-bottom-style: solid;">
 						<td style="text-align: left;">
 							<?php 
-							$query = "SELECT * FROM ShiftTimes";
+							$query = "SELECT * FROM ShiftTimes WHERE CompName='$companyName'";
 							$result = mysqli_query($conn, $query);
 							$numOfRows = mysqli_num_rows($result);
 
@@ -457,7 +457,7 @@
 						
 						<td style="text-align: left;">
 							<?php 
-							$query = "SELECT * FROM ShiftTimes";
+							$query = "SELECT * FROM ShiftTimes WHERE CompName='$companyName'";
 							$result = mysqli_query($conn, $query);
 							$numOfRows = mysqli_num_rows($result);
 
@@ -472,7 +472,7 @@
 						
 						<td style="text-align: left;">
 							<?php 
-							$query = "SELECT * FROM ShiftTimes";
+							$query = "SELECT * FROM ShiftTimes WHERE CompName='$companyName'";
 							$result = mysqli_query($conn, $query);
 							$numOfRows = mysqli_num_rows($result);
 
@@ -487,7 +487,7 @@
 						
 						<td style="text-align: left;">
 							<?php 
-							$query = "SELECT * FROM ShiftTimes";
+							$query = "SELECT * FROM ShiftTimes WHERE CompName='$companyName'";
 							$result = mysqli_query($conn, $query);
 							$numOfRows = mysqli_num_rows($result);
 
@@ -502,7 +502,7 @@
 						
 						<td  colspan="2" style="text-align: left;">
 							<?php 
-							$query = "SELECT * FROM ShiftTimes";
+							$query = "SELECT * FROM ShiftTimes WHERE CompName='$companyName'";
 							$result = mysqli_query($conn, $query);
 							$numOfRows = mysqli_num_rows($result);
 
@@ -517,7 +517,7 @@
 						
 						<td style="text-align: left;">
 							<?php 
-							$query = "SELECT * FROM ShiftTimes";
+							$query = "SELECT * FROM ShiftTimes WHERE CompName='$companyName'";
 							$result = mysqli_query($conn, $query);
 							$numOfRows = mysqli_num_rows($result);
 
@@ -532,7 +532,7 @@
 						
 						<td colspan="2" style="text-align: left;">
 							<?php 
-							$query = "SELECT * FROM ShiftTimes";
+							$query = "SELECT * FROM ShiftTimes WHERE CompName='$companyName'";
 							$result = mysqli_query($conn, $query);
 							$numOfRows = mysqli_num_rows($result);
 
