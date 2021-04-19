@@ -72,6 +72,7 @@
 			elseif (preg_match("/^([a-z]|[0-9])+@([a-z]|[0-9])+\.(com|org|gov)$/i", $email) == 0) {
 				echo "<script>alert('Error must be valid email format.')</script>";
 			}
+			
 
 			elseif (preg_match("/^[0-9]{2}\-[0-9]{7}$/", $irsNum) == 0) {
 				echo "<script>alert('Error IRS Number must follow format \"xx-xxxxxxx\"')</script>";
