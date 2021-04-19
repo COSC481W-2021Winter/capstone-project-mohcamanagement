@@ -439,7 +439,7 @@
 		<tr>
 			<td colspan="8" style="text-align: center;">
 				<form action='scheduleGeneration.php' method="post">
-					<input type="submit" name="acceptSchedule" value="Accept Schedule">
+					<input type="submit" name="acceptSchedule" value="Overwrite Current Week">
 				</form>
 			</td>
 		</tr>

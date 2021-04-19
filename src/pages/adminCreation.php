@@ -53,6 +53,9 @@
 						$query = "INSERT INTO Users VALUES('$username', '$pin', 1, '$yearsWorked', '$companyName')";
 						mysqli_query($conn, $query);
 
+						$query = "INSERT INTO ShiftTimes VALUES ('Off','-','-','$companyName')";
+						mysqli_query($conn, $query);
+
 						// header() changes the page to the location listed
 						header("Location: adminMain.php");
 					}
@@ -67,6 +70,9 @@
 
 					// Use the saved variables to insert into the Users table
 					$query = "INSERT INTO Users VALUES('$username', '$pin', 1, '$yearsWorked', '$companyName')";
+					mysqli_query($conn, $query);
+
+					$query = "INSERT INTO ShiftTimes VALUES ('Off','-','-','$companyName')";
 					mysqli_query($conn, $query);
 
 					// header() changes the page to the location listed
