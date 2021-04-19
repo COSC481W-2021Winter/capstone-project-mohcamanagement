@@ -99,7 +99,7 @@
 				<th>Out</th>
 			</tr>
 			<?php 
-				$query = "SELECT * from ShiftTimes CompName='$companyName'";
+				$query = "SELECT * from ShiftTimes WHERE CompName='$companyName'";
 				$result = mysqli_query($conn, $query);
 				$numOfRows = mysqli_num_rows($result);
 
@@ -301,7 +301,7 @@
 
 					<td>
 					<?php
-						$query = "SELECT * FROM ShiftTimes";
+						$query = "SELECT * FROM ShiftTimes WHERE CompName = '$companyName'";
 						$result = mysqli_query($conn, $query);
 						$numOfRows = mysqli_num_rows($result);
 

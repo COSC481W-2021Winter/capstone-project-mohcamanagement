@@ -31,35 +31,51 @@
 
 // to generate the writeOffs
 	function writeOffs(){
+
+		global $companyName;
+
 		$conn=getInclude();
-		$query = "SELECT * FROM WriteOffs ";
+		$query = "SELECT * FROM WriteOffs NATURAL JOIN Users";
 		$result = mysqli_query($conn, $query);
 		while($row = $result->fetch_assoc()) {
-			echo "<tr>";
-			echo "<td>";
-			echo "Item: ".$row['ItemName'];
-			echo "</td>";
-			echo "<td>";
-			echo "Date: ".$row['DateExpired'];
-			echo "</td>";
-			echo "</tr>";
+			$writeOffPin = $row['Pin'];
+			$companyNameCheck = $row['Name'];
+
+			if($companyNameCheck == $companyName) {
+				echo "<tr>";
+				echo "<td>";
+				echo "Item: ".$row['ItemName'];
+				echo "</td>";
+				echo "<td>";
+				echo "Date: ".$row['DateExpired'];
+				echo "</td>";
+				echo "</tr>";
+			}
 		}
 	}
 
 // to generate the suggestedInventory
 	function suggestedInventory(){
+		
+		global $companyName;
+
 		$conn=getInclude();
-		$query = "SELECT * FROM InventorySuggestions ";
+		$query = "SELECT * FROM InventorySuggestions NATURAL JOIN Users";
 		$result = mysqli_query($conn, $query);
 		while($row = $result->fetch_assoc()) {
-			echo "<tr>";
-			echo "<td>";
-			echo "Item: ".$row['ItemName'];
-			echo "</td>";
-			echo "<td>";
-			echo "Stock: ".$row['Type'];
-			echo "</td>";
-			echo "</tr>";
+			$writeOffPin = $row['Pin'];
+			$companyNameCheck = $row['Name'];
+
+			if($companyNameCheck == $companyName) {
+				echo "<tr>";
+				echo "<td>";
+				echo "Item: ".$row['ItemName'];
+				echo "</td>";
+				echo "<td>";
+				echo "Stock: ".$row['Type'];
+				echo "</td>";
+				echo "</tr>";
+			}
 		}
 	}
 
@@ -95,17 +111,23 @@
 		echo "<h1>Welcome $userCookie</h1>";
 
 		function createUserShiftTable($result){
+
+			global $companyName;
+
 			while(($row = mysqli_fetch_assoc($result)) != null){
-				echo "<tr>";
-				echo "<td>".$row['Username']."</td>";
-				echo "<td>".$row['Monday']."</td>";
-			    echo "<td>".$row['Tuesday']."</td>";
-				echo "<td>".$row['Wednesday']."</td>";
-				echo "<td>".$row['Thursday']."</td>";
-				echo "<td>".$row['Friday']."</td>";
-				echo "<td>".$row['Saturday']."</td>";
-				echo "<td>".$row['Sunday']."</td>";
-				echo "</tr>";
+				$companyCheck = $row['Name'];
+				if($companyCheck == $companyName) {
+					echo "<tr>";
+					echo "<td>".$row['Username']."</td>";
+					echo "<td>".$row['Monday']."</td>";
+				    echo "<td>".$row['Tuesday']."</td>";
+					echo "<td>".$row['Wednesday']."</td>";
+					echo "<td>".$row['Thursday']."</td>";
+					echo "<td>".$row['Friday']."</td>";
+					echo "<td>".$row['Saturday']."</td>";
+					echo "<td>".$row['Sunday']."</td>";
+					echo "</tr>";
+				}
 			}
 		}
 	?>
@@ -155,17 +177,12 @@
 					<th>Sunday</th>
 				</tr>
 				<?php
-					$query = "SELECT * FROM CurrentSchedule";
+					$query = "SELECT * FROM CurrentSchedule NATURAL JOIN Users";
 					$result = mysqli_query($conn, $query);
 					createUserShiftTable($result);
 				?>
 			</table>
-		<!-- </div> -->
-	<!-- </div> -->
-  
-	<!-- to display all of the WriteOffs -->
-	<!-- <div class="square3"> -->
-		<!-- <p>Suggested Inventory / Writeoffs Placeholder</p> -->
+
 	<!-- generate writeoff List -->
 	<?php
 		echo "<table style='border:solid black 3px'>";
@@ -177,8 +194,8 @@
   
   
 	<!-- to display all of the suggested inventory -->
-	<!-- <div class="square3"> -->
-		<!-- <p>Employee Updates / Request Offs Placeholder</p> -->
+
+
 		<!-- generate suggested list -->
 	<?php
 		

@@ -35,7 +35,7 @@
 	
 		// Query to insert what the user entered for suggestions
 		if(!empty($_POST['suggestedInventory']) && !empty($_POST['type'])){
-			$query = "INSERT INTO InventorySuggestions VALUES ('$suggestedInventory', '$type', 'Songbird', '$userPin')";
+			$query = "INSERT INTO InventorySuggestions VALUES ('$suggestedInventory', '$type', '$companyName', '$userPin')";
 			mysqli_query($conn, $query);
 		}
 	}
@@ -47,7 +47,7 @@
 		$dateExpired = $_POST['dateExpired'];
 	
 		// Query to get the userCookie
-		$query = "SELECT * FROM Users WHERE Username = '$userCookie'";
+		$query = "SELECT * FROM Users WHERE Username = '$userCookie' AND Name = '$companyName'";
 		$result = mysqli_query($conn, $query);
 		$row = mysqli_fetch_assoc($result);
 		$userPin = $row['Pin'];

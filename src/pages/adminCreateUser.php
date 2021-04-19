@@ -580,7 +580,7 @@
 							<?php
 								// this calls if the form was submitted with the dropdown menu
 								if (isset($_POST['username'])) {
-									$query = "SELECT * from Users";
+									$query = "SELECT * from Users WHERE Name='$companyName'";
 									$result = mysqli_query($conn, $query);
 									$numOfRows = mysqli_num_rows($result);
 
@@ -673,7 +673,7 @@
 								}
 								// Else generate the selection menu on the drop down
 								else{
-									$query = "SELECT * from Users";
+									$query = "SELECT * from Users WHERE Name='$companyName'";
 									$result = mysqli_query($conn, $query);
 									$numOfRows = mysqli_num_rows($result);
 									for($i = 0; $i < $numOfRows; $i++){

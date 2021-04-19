@@ -112,7 +112,9 @@ CREATE TABLE Availability
   Day VARCHAR(15) NOT NULL,
   Pin VARCHAR(10) NOT NULL,
   ShiftName VARCHAR(3) NOT NULL,
-  PRIMARY KEY (Day, Pin, ShiftName),
+  Name VARCHAR(35) NOT NULL,
+  PRIMARY KEY (Day, Pin, ShiftName, Name),
   FOREIGN KEY (Pin) REFERENCES Users(Pin),
-  FOREIGN KEY (ShiftName) REFERENCES ShiftTimes(ShiftName)
+  FOREIGN KEY (ShiftName) REFERENCES ShiftTimes(ShiftName),
+  FOREIGN KEY (Name) REFERENCES Company(Name)
 );

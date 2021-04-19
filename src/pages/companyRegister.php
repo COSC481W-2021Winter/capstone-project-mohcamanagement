@@ -21,15 +21,15 @@
 
 /**************************************************************************************/
 			// all of these if-else check the 15 ways the errors could occur
-			if(preg_match("/^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/", $phoneNo) == 0 && preg_match("/^[a-z]+@[a-z]+\.(com|org|gov)$/i", $email) == 0 && preg_match("/^[0-9]{2}\-[0-9]{7}$/", $irsNum) == 0 && preg_match("/^[0-9]{5}$/", $zipCode) == 0) {
+			if(preg_match("/^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/", $phoneNo) == 0 && preg_match("/^([a-z]|[0-9])+@([a-z]|[0-9])+\.(com|org|gov)$/i", $email) == 0 && preg_match("/^[0-9]{2}\-[0-9]{7}$/", $irsNum) == 0 && preg_match("/^[0-9]{5}$/", $zipCode) == 0) {
 				echo "<script>alert('Error phone number must follow format \"xxx-xxx-xxxx\". Email must be valid format. IRS Number must follow format \"xx-xxxxxxx\". Zip code must follow format \"xxxxx\".')</script>";
 			}
 
-			elseif(preg_match("/^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/", $phoneNo) == 0 && preg_match("/^[a-z]+@[a-z]+\.(com|org|gov)$/i", $email) == 0 && preg_match("/^[0-9]{2}\-[0-9]{7}$/", $irsNum) == 0) {
+			elseif(preg_match("/^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/", $phoneNo) == 0 && preg_match("/^([a-z]|[0-9])+@([a-z]|[0-9])+\.(com|org|gov)$/i", $email) == 0 && preg_match("/^[0-9]{2}\-[0-9]{7}$/", $irsNum) == 0) {
 				echo "<script>alert('Error phone number must follow format \"xxx-xxx-xxxx\". Email must be valid format. IRS Number must follow format \"xx-xxxxxxx\".')</script>";
 			}
 
-			elseif(preg_match("/^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/", $phoneNo) == 0 && preg_match("/^[a-z]+@[a-z]+\.(com|org|gov)$/i", $email) == 0 && preg_match("/^[0-9]{5}$/", $zipCode) == 0) {
+			elseif(preg_match("/^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/", $phoneNo) == 0 && preg_match("/^([a-z]|[0-9])+@([a-z]|[0-9])+\.(com|org|gov)$/i", $email) == 0 && preg_match("/^[0-9]{5}$/", $zipCode) == 0) {
 				echo "<script>alert('Error phone number must follow format \"xxx-xxx-xxxx\". Email must be valid format. Zip code must follow format \"xxxxx\".')</script>";
 			}
 
@@ -37,11 +37,11 @@
 				echo "<script>alert('Error phone number must follow format \"xxx-xxx-xxxx\". IRS Number must follow format \"xx-xxxxxxx\". Zip code must follow format \"xxxxx\".')</script>";
 			}
 
-			elseif(preg_match("/^[a-z]+@[a-z]+\.(com|org|gov)$/i", $email) == 0 && preg_match("/^[0-9]{2}\-[0-9]{7}$/", $irsNum) == 0 && preg_match("/^[0-9]{5}$/", $zipCode) == 0) {
+			elseif(preg_match("/^([a-z]|[0-9])+@([a-z]|[0-9])+\.(com|org|gov)$/i", $email) == 0 && preg_match("/^[0-9]{2}\-[0-9]{7}$/", $irsNum) == 0 && preg_match("/^[0-9]{5}$/", $zipCode) == 0) {
 				echo "<script>alert('Error email must be valid format. IRS Number must follow format \"xx-xxxxxxx\". Zip code must follow format \"xxxxx\".')</script>";
 			}
 
-			elseif(preg_match("/^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/", $phoneNo) == 0 && preg_match("/^[a-z]+@[a-z]+\.(com|org|gov)$/i", $email) == 0) {
+			elseif(preg_match("/^[0-9]{3}\-[0-9]{3}\-[0-9]{4}$/", $phoneNo) == 0 && preg_match("/^([a-z]|[0-9])+@([a-z]|[0-9])+\.(com|org|gov)$/i", $email) == 0) {
 				echo "<script>alert('Error phone number must follow format \"xxx-xxx-xxxx\". Email must be valid format.')</script>";
 			}
 
@@ -53,11 +53,11 @@
 				echo "<script>alert('Error phone number must follow format \"xxx-xxx-xxxx\". IRS Number must follow format \"xx-xxxxxxx\".')</script>";
 			}
 
-			elseif(preg_match("/^[a-z]+@[a-z]+\.(com|org|gov)$/i", $email) == 0 && preg_match("/^[0-9]{2}\-[0-9]{7}$/", $irsNum) == 0) {
+			elseif(preg_match("/^([a-z]|[0-9])+@([a-z]|[0-9])+\.(com|org|gov)$/i", $email) == 0 && preg_match("/^[0-9]{2}\-[0-9]{7}$/", $irsNum) == 0) {
 				echo "<script>alert('Error email must be valid format. IRS Number must follow format \"xx-xxxxxxx\".')</script>";
 			}
 
-			elseif(preg_match("/^[a-z]+@[a-z]+\.(com|org|gov)$/i", $email) == 0 &&  preg_match("/^[0-9]{5}$/", $zipCode) == 0) {
+			elseif(preg_match("/^([a-z]|[0-9])+@([a-z]|[0-9])+\.(com|org|gov)$/i", $email) == 0 &&  preg_match("/^[0-9]{5}$/", $zipCode) == 0) {
 				echo "<script>alert('Error email must be valid format. Zip code must follow format \"xxxxx\".')</script>";
 			}
 
@@ -69,7 +69,7 @@
 				echo "<script>alert('Error phone number must follow format \"xxx-xxx-xxxx\"')</script>";
 			}
 
-			elseif (preg_match("/^[a-z]+@[a-z]+\.(com|org|gov)$/i", $email) == 0) {
+			elseif (preg_match("/^([a-z]|[0-9])+@([a-z]|[0-9])+\.(com|org|gov)$/i", $email) == 0) {
 				echo "<script>alert('Error must be valid email format.')</script>";
 			}
 
@@ -128,7 +128,7 @@
 			<br>
 
 			<label for="email"><b>Company E-mail Address</b></label>
-			<input type="text" name="email" size="20" maxlength="25" placeholder="Company E-mail Address"/>
+			<input type="text" name="email" size="20" maxlength="50" placeholder="Company E-mail Address"/>
 
 			<label for="irsNum"><b>IRS Number</b></label>
 			<input type="text" name="irsNum" size="20" maxlength="25" placeholder="12-1234567"/>
@@ -199,10 +199,6 @@
 
 			<label for="zipcode"><b>Zip Code</b></label>
 			<input type="text" name="zipCode" size="20" maxlength="20" placeholder="12345"/>
-
-			<label for="city"><b>City</b></label>
-			<input  type="text" name="city" size="20" maxlength="20" placeholder="City"/> 
-
         
 			<input type="submit" name="submit"/>
 
