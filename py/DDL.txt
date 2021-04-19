@@ -76,7 +76,9 @@ CREATE TABLE ShiftTimes
   ShiftName VARCHAR(3),
   StartTime VARCHAR(5),
   EndTime VARCHAR(5) ,
-  PRIMARY KEY (ShiftName)
+  CompName VARCHAR(35) NOT NULL,
+  PRIMARY KEY (ShiftName, CompName),
+  FOREIGN KEY (CompName) REFERENCES Company(Name)
 );
 
 CREATE TABLE WorkingSchedule

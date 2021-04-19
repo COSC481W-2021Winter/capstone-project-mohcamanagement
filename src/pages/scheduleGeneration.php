@@ -89,8 +89,8 @@
         $name=$_POST['shiftName'];
         $start=$_POST['startTime'];
         $end=$_POST['endTime'];
-        $sql="INSERT INTO ShiftTimes(ShiftName,StartTime,EndTime)
-                VALUES('$name','$start','$end')";
+        $sql="INSERT INTO ShiftTimes(ShiftName,StartTime,EndTime,CompName)
+                VALUES('$name','$start','$end','$companyName')";
 
         $conn=getInclude();
         $conn->query($sql);
@@ -265,7 +265,8 @@
 		}
 
 		else {
-			$query = "SELECT * FROM ShiftTimes";
+			global $companyName;
+			$query = "SELECT * FROM ShiftTimes WHERE CompName='$companyName'";
 			$result = mysqli_query($conn=getInclude(), $query);
        		$numOfRows = mysqli_num_rows($result);
 
@@ -445,39 +446,6 @@
 	</table>
 
 	</div>
-
-
-	
-	<button class="collapsible">Next Weeks Schedule</button>
-	<div class="content inside-table">
-	<table id="workSched" style="margin-bottom: 1%;">
-        <?php
-        echo "<tr>";
-		echo "<th>Employee</th>";
-		echo "<th>Monday</th>";
-		echo "<th>Tuesday</th>";
-		echo "<th>Wednesday</th>";
-		echo "<th>Thursday</th>";
-		echo "<th>Friday</th>";
-		echo "<th>Saturday</th>";
-		echo "<th>Sunday</th>";
-		echo "</tr>";
-		
-        $query = "SELECT * FROM Users WHERE isManager=0 AND Name='$companyName'";
-        $result = mysqli_query($conn, $query);
-        $numOfRows = mysqli_num_rows($result);
-
-        while($row = mysqli_fetch_assoc($result)) {
-            echo "<tr>";
-            echo "<td class='schedBorder'name='user'>".($row['Username'])."</td>";
-            generateSchedule($conn, $row['Username']);
-            echo "</tr>";
-        }
-        ?>
-    </table>
-	</div>
-
-
 
 	<button class="collapsible">Time Request Off</button>
 	<div class="content inside-table">

@@ -14,6 +14,7 @@
 		$result = mysqli_query($conn, $query);
 		$row = mysqli_fetch_assoc($result);
 		$isManagerCheck = $row['IsManager'];
+		$companyName = $row['Name'];
 
 		if($isManagerCheck == 1) {
 			header("Location: adminMain.php");
@@ -127,7 +128,7 @@
 					<th>Out</th>
 				</tr>
 				<?php 
-					$query = "SELECT * from ShiftTimes";
+					$query = "SELECT * from ShiftTimes WHERE CompName='$companyName'";
 					$result = mysqli_query($conn, $query);
 					$numOfRows = mysqli_num_rows($result);
 
