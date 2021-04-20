@@ -168,7 +168,7 @@
 		<!-- <p>Suggested Inventory / Writeoffs Placeholder</p> -->
 	<!-- generate writeoff List -->
 	<?php
-		echo "<table style='border:solid black 3px'>";
+		echo "<table>";
 		echo "<tr><th colspan = '2'>Write Offs</th></tr>";
 		writeOffs();
 		echo "</table>";
@@ -182,7 +182,7 @@
 		<!-- generate suggested list -->
 	<?php
 		
-		echo "<table style='border:solid black 3px'>";
+		echo "<table>";
 		echo "<tr><th colspan = '2'>Suggested Inventory</th></tr>";
 		suggestedInventory();
 		echo "</table>";

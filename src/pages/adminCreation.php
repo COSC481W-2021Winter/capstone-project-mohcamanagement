@@ -104,7 +104,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
 	</head>
 
-	<body class="image">
+	<body class="image-four">
 
 		<div class="wrapper">
 			<h1 style="text-align: center;"> Admin Creation </h1>
