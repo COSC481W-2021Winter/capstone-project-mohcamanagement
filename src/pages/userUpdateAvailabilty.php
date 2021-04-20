@@ -23,7 +23,7 @@
 	if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['Add'])) {
 		$pin = $_SESSION['Pin'];
 
-		$query = "SELECT * FROM ShiftTimes";
+		$query = "SELECT * FROM ShiftTimes WHERE CompName='$companyName'";
 		$result = mysqli_query($conn, $query);
 		$numOfRows = mysqli_num_rows($result);
 
@@ -31,7 +31,7 @@
 		if(!empty($_POST['DaySelection']) && !empty($_POST['shift'])) {
 			$daySelected = $_POST['DaySelection'];
 
-			$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = '$daySelected'"; 
+			$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = '$daySelected' AND Name='$companyName'"; 
 			mysqli_query($conn, $query);
 
 			$check = $_POST['shift'];
@@ -39,14 +39,14 @@
 
 			for($i = 0; $i<$size; $i++) {
 				$shiftToInsert = $check[$i];
-				$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+				$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert', '$companyName')";
 				mysqli_query($conn, $query);
 
 				if($shiftToInsert == "Off") {
-					$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = '$daySelected'"; 
+					$query = "DELETE FROM Availability WHERE Pin = '$pin' AND Day = '$daySelected' AND Name='$companyName'"; 
 					mysqli_query($conn, $query);
 
-					$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert')";
+					$query = "INSERT INTO Availability VALUES ('$daySelected','$pin','$shiftToInsert', '$companyName')";
 					mysqli_query($conn, $query);
 				}
 			}
@@ -130,13 +130,13 @@
 				<th>Availability</th>
 			</tr>
 			<?php 
-				$query = "SELECT * from Users where Username='$userCookie'";
+				$query = "SELECT * from Users where Username='$userCookie' AND Name='$companyName'";
 				$result = mysqli_query($conn, $query);
 				$row = mysqli_fetch_assoc($result);
 				$userPin = $row['Pin'];
 				$_SESSION['Pin'] = $userPin;
 
-				$query = "SELECT * from Availability where Pin='$userPin'";
+				$query = "SELECT * from Availability where Pin='$userPin' AND Name='$companyName'";
 				$result = mysqli_query($conn, $query);
 				$numOfRows = mysqli_num_rows($result);
 				$monArr = array();
