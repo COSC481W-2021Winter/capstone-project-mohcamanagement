@@ -402,7 +402,7 @@
 
 	<body class="image">
 		<div class="wrapper">
-		<h1 style="text-align: center;">Create User</h1>
+		<h1 style="text-align: center; padding-top: 2%">Create User</h1>
 		<div style="width: 40%; margin: auto;">
 			<table class="userCreationTable">
 				<form method="post" action="adminCreateUser.php">

@@ -316,9 +316,9 @@
     </ul>
 </header>
 
-<body style="margin-top: 2%">
+<body>
 <div class="wrapper">
-<h1 class="center">Schedule Generation</h1>
+<h1 class="center" style="padding-top: 3%;">Schedule Generation</h1>
 	<button class="collapsible">Availability</button>
 	<div class="content inside-table">
     <table id="avail" style="margin-bottom: 1%;">

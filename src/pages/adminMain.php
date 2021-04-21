@@ -185,7 +185,7 @@
 
 	<!-- generate writeoff List -->
 	<?php
-		echo "<table>";
+		echo "<table style='margin-top: 25px;'>";
 		echo "<tr><th colspan = '2'>Write Offs</th></tr>";
 		writeOffs();
 		echo "</table>";

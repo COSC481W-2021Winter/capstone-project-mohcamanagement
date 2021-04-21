@@ -107,7 +107,7 @@
         <div class="content inside-table">
 	
 	
-		<h1 style="text-align:center;">Request Off <?php echo "$userCookie";?></h1>
+		<h1 style="text-align:center; padding-top: 2%">Request Off <?php echo "$userCookie";?></h1>
 
 		<table class="userCreationTable">
 			<?php
