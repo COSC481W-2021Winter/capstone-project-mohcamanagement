@@ -128,19 +128,19 @@
 
 <!DOCTYPE html>
 <html lang="en">
-	<div id="header">
+	<head>
 		<title>Page Title</title>
 		<link rel="stylesheet" href="../style/style1.css?<?php echo time(); ?>">
     	<link rel="stylesheet" href="../style/style4.css?<?php echo time(); ?>">
 		<link rel="stylesheet" href="../style/tables.css?<?php echo time(); ?>">
 		<link rel="stylesheet" href="../style/footer.css?<?php echo time(); ?>">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
-</div>
+	</head>
 	
 	<!-- contianer class from footer.css is used to format footer -->
 	<div id="container">
 	<!-- Navbar -->
-	<header>
+	<div id="header">
 	    <ul>
 			<li><a href="adminMain.php">Admin Main</a></li>
 	      	<li><a href="inventoryLog.php">Inventory Log</a></li>
@@ -148,7 +148,7 @@
 		  	<li><a href="adminCreateUser.php">Employees</a></li>
 	      	<li style="float:right"><a class="active1" onclick="location.href='../index.php'">Log out</a></li>
 	    </ul>
-	</header>
+	</div>
 		<!-- 
 			to get the footer to stay at the bottom of the page and move down when the table is big
 			<body> is a <div> class from footer.css 
