@@ -128,13 +128,17 @@
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
+	<div id="header">
 		<title>Page Title</title>
 		<link rel="stylesheet" href="../style/style1.css?<?php echo time(); ?>">
-        <link rel="stylesheet" href="../style/tables.css?<?php echo time(); ?>">
     	<link rel="stylesheet" href="../style/style4.css?<?php echo time(); ?>">
+		<link rel="stylesheet" href="../style/tables.css?<?php echo time(); ?>">
+		<link rel="stylesheet" href="../style/footer.css?<?php echo time(); ?>">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
-	</head>
+</div>
+	
+	<!-- contianer class from footer.css is used to format footer -->
+	<div id="container">
 	<!-- Navbar -->
 	<header>
 	    <ul>
@@ -145,18 +149,16 @@
 	      	<li style="float:right"><a class="active1" onclick="location.href='../index.php'">Log out</a></li>
 	    </ul>
 	</header>
-
-	<body class="image-one" style="margin-top: 2%">
+		<!-- 
+			to get the footer to stay at the bottom of the page and move down when the table is big
+			<body> is a <div> class from footer.css 
+		-->
+		<div id="body" class="image-one" style="margin-top: 2%">
         <div class="wrapper content inside-table">
 		<h1 class="center"> Inventory Type</h1>
 		<table id="itemTable" class="userCreationTable">
 			<form method="post" action="inventoryLog.php">
-				<!-- <tr>
-					<td colspan="4" style="text-align: center;">Inventory Type</td>
-				</tr> -->
-
 				<tr>
-				
 					<td colspan="4" style="text-align: center;">
 						<select name="inventory" id="inventory" onchange="this.form.submit()">
 							<option selected disabled>Select Item Category</option>
@@ -175,6 +177,7 @@
 					</td>
 				</tr>
 			</form>
+
 			<!-- Inventory Order -->
 			<form id="inputForm" action="inventoryOrder.php" method="post">
 				<tr>
@@ -214,7 +217,6 @@
 							?>
 						</select>
 					</td>
-					
 				</tr>
 
 				<tr>
@@ -230,7 +232,6 @@
 					<td style="padding-top: 10px;" colspan="2">
 						<input type="text" id="newType" name="newType" placeholder="Inventory Type"/>	
 					</td>
-
 
 					<td style="padding-top: 10px;" colspan="2" style="text-align: center;">
 						<input type="submit" name="addType" value="Add Type" style='background-color: #343131;  color: #969595;'/>
@@ -251,6 +252,9 @@
 
 		<div class="push"></div>
   		</div>
-		<footer class="footer3 center">&#169 2021 Overseer</footer>		
-	</body>
+		  <div id="footer">&#169 2021 Overseer</div>
+	<!-- div below is closing the body tag -->
+	</div> 
+	<!-- div below closing the container class above header tag -->
+	</div>
 </html>
