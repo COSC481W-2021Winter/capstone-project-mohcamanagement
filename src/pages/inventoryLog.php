@@ -139,6 +139,7 @@
 	
 	<!-- contianer class from footer.css is used to format footer -->
 	<div id="container">
+
 	<!-- Navbar -->
 	<div id="header">
 	    <ul>
@@ -149,6 +150,7 @@
 	      	<li style="float:right"><a class="active1" onclick="location.href='../index.php'">Log out</a></li>
 	    </ul>
 	</div>
+	
 		<!-- 
 			to get the footer to stay at the bottom of the page and move down when the table is big
 			<body> is a <div> class from footer.css 
@@ -250,11 +252,12 @@
 			</tr>
 		</table>
 
+		<!-- Footer -->
 		<div class="push"></div>
   		</div>
-		  <div id="footer">&#169 2021 Overseer</div>
+		<div id="footer">&#169 2021 Overseer</div>
 	<!-- div below is closing the body tag -->
 	</div> 
-	<!-- div below closing the container class above header tag -->
+	<!-- div below is closing the container class above header tag -->
 	</div>
 </html>
