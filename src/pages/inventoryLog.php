@@ -155,9 +155,9 @@
 			to get the footer to stay at the bottom of the page and move down when the table is big
 			<body> is a <div> class from footer.css 
 		-->
-		<div id="body" class="image-one" style="margin-top: 2%">
+		<div id="body" class="image-one">
         <div class="wrapper content inside-table">
-		<h1 class="center"> Inventory Type</h1>
+		<h1 class="center" style="padding-top: 3%;"> Inventory Type</h1>
 		<table id="itemTable" class="userCreationTable">
 			<form method="post" action="inventoryLog.php">
 				<tr>
@@ -252,10 +252,7 @@
 			</tr>
 		</table>
 
-		<!-- Footer -->
-		<div class="push"></div>
-  		</div>
-		<div id="footer">&#169 2021 Overseer</div>
+	
 	<!-- div below is closing the body tag -->
 	</div> 
 	<!-- div below is closing the container class above header tag -->
